@@ -70,7 +70,7 @@ $api->version('v1', function ($api) {
         'as'        => 'api.getFile',
         'uses'      => 'App\Http\Controllers\FileEntryController@get'
     ));
-    
+
     $api->get('userSetPP', array(
         'as'        => 'api.userSetPP',
         'uses'      => 'App\Http\Controllers\AlumnoController@setPP'
