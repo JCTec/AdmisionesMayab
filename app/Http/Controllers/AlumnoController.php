@@ -13,6 +13,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AlumnoController extends Controller
 {
+    //Hola
     public function store(Request $request)
     {
 
