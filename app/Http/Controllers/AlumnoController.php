@@ -39,7 +39,7 @@ class AlumnoController extends Controller
 
     public function emailAB(){
 
-        $email = request()->get('email');
+        $email = reques t()->get('email');
 
         $User = User::where('email', $email)->first();
 
