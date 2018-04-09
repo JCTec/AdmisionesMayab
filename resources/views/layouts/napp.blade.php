@@ -23,13 +23,24 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/background.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            min-height: 100%;
+        }
+        html, main {
+            min-height: 100%;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-dark">
 <div id="app">
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand" href="{{'http://www.anahuacmayab.mx/'}}">{{ config('app.name', 'Laravel') }}</a>
+            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,7 +52,8 @@
     <!-- Right Side Of Navbar -->
         <!-- Collect the nav links, forms, and other content for toggling -->
             <ul id="nav" class="navbar-nav ml-auto">
-                <li class="dropdown">
+                @guest
+                <li class="nav nav-link">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{__('Iniciar sesión')}}</b> <span class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
@@ -92,15 +104,31 @@
                         </li>
                     </ul>
                 </li>
-                <li><p class="nav-link">Registrate</p></li>
+                <li><a href="{{ route('register') }}" class="nav-link">Registrate</a></li>
+                @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-<main>
     @yield('content')
-</main>
 </div>
 </body>
 </html>
-
