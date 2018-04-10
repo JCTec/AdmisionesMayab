@@ -25,4 +25,16 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function cuestionario(){
+        return view('Alumno.cuestionario');
+    }
+
+    public function completed(){
+        return view('Alumno.completed');
+    }
+
+    public function orientacionVocacional(){
+        return view('Alumno.orientacionVocacional');
+    }
 }
