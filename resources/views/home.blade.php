@@ -89,13 +89,15 @@
                                 <input class="form-control" type="email" required>
                                 <label class="formLabel">Fecha de nacimiento:</label>
                                 <form class="form-inline">
-                                <label class="sr-only" for="inlineFormInput">Dia</label>
-                                <input id="inlineFormInput" class="form-control" type="text" required>
-                                <label class="sr-only" for="inlineFormInput">Mes</label>
-                                <input  class="form-control" type="text" required>
-                                <label class="sr-only" for="inlineFormInput">Año</label>
-                                <input class="form-control" type="text" required>
+                                    <label class="sr-only" for="inlineFormInput">Dia</label>
+                                    <input id="inlineFormInput" class="form-control" type="text" required>
+                                    <label class="sr-only" for="inlineFormInput">Mes</label>
+                                    <input  class="form-control" type="text" required>
+                                    <label class="sr-only" for="inlineFormInput">Año</label>
+                                    <input class="form-control" type="text" required>
                                 </form>
+                                <label class="formLabel">Telefono celular:</label>
+                                <input class="form-control" type="text">
                             </div>
                             <div class="col-md-6">
                                 <label class="formLabel">Segundo nombre:</label>
@@ -110,14 +112,13 @@
                                     <option>Femenino</option>
                                     <option>HELICOPTERO DE COMBATE TIPO APACHE</option>
                                 </select>
-                                <label class="formLabel">Segundo apellido:</label>
+                                <label class="formLabel">Dirección:</label>
                                 <input class="form-control" type="text">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="formLabel">Segundo nombre:</label>
+                                <label class="formLabel">Código Postal:</label>
                                 <input class="form-control" type="text">
-                                <label class="formLabel">Segundo apellido:</label>
+                                <label class="formLabel">Telefono fijo:</label>
                                 <input class="form-control" type="text">
+
                             </div>
                         </div>
 <<<<<<< Updated upstream
