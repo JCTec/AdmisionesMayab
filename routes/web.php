@@ -19,12 +19,28 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');
+
+Route::get('me','AuthController@me')->name('me');
+Route::get('refresh','AuthController@refresh')->name('refresh');
+Route::post('Usercreate','AlumnoController@Usercreate')->name('Usercreate');
+Route::post('saveAlumno','AlumnoController@saveAlumno')->name('saveAlumno');
+Route::get('email','AlumnoController@emailAB')->name('emailAB');
+
+Route::get('search/{data}','AlumnoController@search')->name('search/{data}');
+Route::post('addPicture','FileEntryController@add')->name('addPicture');
+Route::get('get/{filename}','FileEntryController@get')->name('get/{filename}');
+Route::get('userSetPP','AlumnoController@setPP')->name('userSetPP');
+Route::get('getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');
+
+
 
 $api = app('Dingo\Api\Routing\Router');
 
 
 $api->version('v1', function ($api) {
 
+    /*
     $api->post('login', [
         'uses'      => 'App\Http\Controllers\AuthController@login',
         'as'        => 'api.login'
@@ -85,5 +101,6 @@ $api->version('v1', function ($api) {
         'as'        => 'api.getMyInfo',
         'uses'      => 'App\Http\Controllers\AlumnoController@getMyInfo'
     ));
+    */
 
 });

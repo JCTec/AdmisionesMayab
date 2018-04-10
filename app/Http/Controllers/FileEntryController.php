@@ -8,6 +8,7 @@ use Request;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Response;
 use Dingo\Api\Facade\API;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -16,7 +17,7 @@ class FileEntryController extends Controller
 {
     public function add() {
 
-        $token = JWTAuth::parseToken()->authenticate();
+        $token = Auth::user();
 
         if($token){
 
@@ -45,7 +46,7 @@ class FileEntryController extends Controller
 
     public function get($filename){
 
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = Auth::user();
 
         if($user){
             $entry = Fileentry::where('filename', '=', $filename)->firstOrFail();

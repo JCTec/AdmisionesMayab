@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Exceptions\Handler;
 use App\security;
+use Illuminate\Support\Facades\Auth;
 use Dingo\Api\Facade\API;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use function MongoDB\BSON\toJSON;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AlumnoController extends Controller
@@ -32,7 +34,7 @@ class AlumnoController extends Controller
 
     public function saveAlumno(Request $request){
 
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = Auth::user();
 
         if ($user) {
 
@@ -118,7 +120,7 @@ class AlumnoController extends Controller
     }
 
     public function getMyInfo(){
-        $user = JWTAuth::parseToken()->authenticate();
+        $user = Auth::user();
 
         if ($user) {
             return response()->json(['User' => $user]);

@@ -15,7 +15,7 @@
                     @endif
                     Bienvenido {{Auth::user()->name}} al sistema de admisiones de la Universidad Anáhuac
                         <br>
-                    <form>
+                    <form class="form" role="form" method="POST" action="{{ route('login') }}" accept-charset="UTF-8" id="login-nav">
                         <div class="row">
                             <div class="col-md-6">
                                 <label class="formLabel ">Primer nombre:</label>
@@ -57,6 +57,7 @@
                                 <input class="form-control" type="text">
                             </div>
                         </div>
+                        <input type="submit">
                     </form>
                 </div>
             </div>
