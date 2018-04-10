@@ -86,10 +86,4 @@ $api->version('v1', function ($api) {
         'uses'      => 'App\Http\Controllers\AlumnoController@getMyInfo'
     ));
 
-    $api->get('user/{id}', array(
-        'as'        => 'api.getInfo',
-        'uses'      => 'App\Http\Controllers\ProfesorController@getInfo'
-    ));
-
-
 });
