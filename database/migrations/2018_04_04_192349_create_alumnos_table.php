@@ -14,7 +14,24 @@ class CreateAlumnosTable extends Migration
     public function up()
     {
         Schema::create('alumnos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id_user');
+            $table->string('firstName')->nullable();
+            $table->string('secondName')->nullable();
+            $table->string('firstLastName')->nullable();
+            $table->string('secondLastName')->nullable();
+            $table->string('finalEmail')->nullable();
+            $table->integer('year')->nullable();
+            $table->integer('month')->nullable();
+            $table->integer('day')->nullable();
+            $table->char('sex')->nullable();
+            $table->integer('preparatorias')->nullable();
+            $table->string('otraPreparatoria')->nullable();
+            $table->integer('carrera')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('celular')->nullable();
+            $table->string('postal')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('city')->nullable();
             $table->timestamps();
         });
     }

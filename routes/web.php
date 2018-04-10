@@ -51,6 +51,11 @@ $api->version('v1', function ($api) {
         'as'        => 'api.store'
     ]);
 
+    $api->post('saveAlumno', [
+        'uses'      => 'App\Http\Controllers\AlumnoController@saveAlumno',
+        'as'        => 'api.saveAlumno'
+    ]);
+
     $api->get('email',  array(
         'as'        =>  'api.email',
         'uses'        => 'App\Http\Controllers\AlumnoController@emailAB'

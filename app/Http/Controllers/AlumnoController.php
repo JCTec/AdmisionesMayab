@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Alumno;
 use Illuminate\Http\Request;
 use App\User;
 use App\Exceptions\Handler;
@@ -13,7 +14,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AlumnoController extends Controller
 {
-    //Hola
+
     public function store(Request $request)
     {
 
@@ -29,6 +30,93 @@ class AlumnoController extends Controller
         return response()->json(['status' => 'Success']);
     }
 
+    public function saveAlumno(Request $request){
+
+        $user = JWTAuth::parseToken()->authenticate();
+
+        if ($user) {
+
+            $alumno = Alumno::where('id_user','=',$user->id)->first();
+
+            if(!$alumno){
+                $alumno = new Alumno();
+            }
+
+            if($request->has('firstName')){
+                $alumno->firstName = $request->firstName;
+            }
+
+            if($request->has('secondName')){
+                $alumno->secondName = $request->secondName;
+            }
+
+            if($request->has('firstLastName')){
+                $alumno->firstLastName = $request->firstLastName;
+            }
+
+            if($request->has('secondLastName')){
+                $alumno->secondLastName = $request->secondLastName;
+            }
+
+            if($request->has('finalEmail')){
+                $alumno->finalEmail = $request->finalEmail;
+            }
+
+            if($request->has('year')){
+                $alumno->year = $request->year;
+            }
+
+            if($request->has('month')){
+                $alumno->month = $request->month;
+            }
+
+            if($request->has('day')){
+                $alumno->day = $request->day;
+            }
+
+            if($request->has('sex')){
+                $alumno->sex = $request->sex;
+            }
+
+            if($request->has('preparatorias')){
+                $alumno->preparatorias = $request->preparatorias;
+            }
+
+            if($request->has('otraPreparatoria')){
+                $alumno->otraPreparatoria = $request->otraPreparatoria;
+            }
+
+            if($request->has('carrera')){
+                $alumno->carrera = $request->carrera;
+            }
+
+            if($request->has('telefono')){
+                $alumno->telefono = $request->telefono;
+            }
+
+            if($request->has('celular')){
+                $alumno->celular = $request->celular;
+            }
+
+            if($request->has('postal')){
+                $alumno->postal = $request->postal;
+            }
+
+            if($request->has('direccion')){
+                $alumno->direccion = $request->direccion;
+            }
+
+            if($request->has('city')){
+                $alumno->city = $request->city;
+            }
+
+            $alumno->saveOrFail();
+
+            return response()->json(['status' => 'Success']);
+        }
+
+    }
+
     public function getMyInfo(){
         $user = JWTAuth::parseToken()->authenticate();
 
@@ -40,7 +128,7 @@ class AlumnoController extends Controller
 
     public function emailAB(){
 
-        $email = reques t()->get('email');
+        $email = request()->get('email');
 
         $User = User::where('email', $email)->first();
 

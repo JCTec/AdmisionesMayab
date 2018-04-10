@@ -6,5 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alumno extends Model
 {
-    //
+    protected $table = 'alumnos';
+
+    protected $primaryKey = 'id_user';
+
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
+
+    public $incrementing = false;
+
+
 }

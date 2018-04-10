@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Fileentry;
+use App\Fileentries as Fileentry;
 use Request;
 
 use Illuminate\Support\Facades\Storage;
@@ -28,7 +28,7 @@ class FileEntryController extends Controller
 
 
             $extension = $file->getClientOriginalExtension();
-            Storage::disk('local')->put($file->getFilename().'.'.$extension,  File::get($file));
+            Storage::disk('local')->put('/public/'. $token->id .'/'. $file->getFilename().'.'.$extension,  File::get($file));
             $entry = new Fileentry();
             $entry->mime = $file->getClientMimeType();
             $entry->original_filename = $file->getClientOriginalName();
@@ -49,7 +49,7 @@ class FileEntryController extends Controller
 
         if($user){
             $entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
-            $file = Storage::disk('local')->get($entry->filename);
+            $file = Storage::disk('local')->get('/public/'. $user->id .'/'.$entry->filename);
 
             return (new Response($file, 200))
                 ->header('Content-Type', $entry->mime);
