@@ -27,6 +27,9 @@ class HomeController extends Controller
     }
 
     public function cuestionario(){
+
+
+
         return view('Alumno.cuestionario');
     }
 
