@@ -1,12 +1,12 @@
 @extends('layouts.napp')
 
 @section('content')
-<main class=" py-4">
-<div class="container py-5">
+<body class="bg-animated">
+<div class="container justify-content-start py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Iniciar sesión') }}</div>
+                <div class="card-header text-center">{{ __('Iniciar sesión') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -67,5 +67,5 @@
         </div>
     </div>
 </div>
-</main>
+</body>
 @endsection
