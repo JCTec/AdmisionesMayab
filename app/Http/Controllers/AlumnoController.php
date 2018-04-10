@@ -5,14 +5,9 @@ namespace App\Http\Controllers;
 use App\Alumno;
 use Illuminate\Http\Request;
 use App\User;
-use App\Exceptions\Handler;
 use App\security;
 use Illuminate\Support\Facades\Auth;
-use Dingo\Api\Facade\API;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
-use function MongoDB\BSON\toJSON;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AlumnoController extends Controller
 {
@@ -140,6 +135,89 @@ class AlumnoController extends Controller
             return response()->json(['taken' => true]);
         }else{
             return response()->json(['taken' => false]);
+        }
+    }
+
+
+    public function isFinnished(){
+        $user = Auth::user();
+
+        if ($user) {
+
+            $alumno = Alumno::where('id_user','=',$user->id)->first();
+
+            if(!$alumno){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->firstName){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->secondName){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->firstLastName){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->secondLastName){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->finalEmail){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->year){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->month){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->day){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->sex){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->preparatorias){
+                if(!$alumno->otraPreparatoria){
+                    return response()->json(['message' => 'Not Finnished']);
+                }
+            }
+
+
+            if(!$alumno->carrera){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->telefono){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->celular){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->postal){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->direccion){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            if(!$alumno->city){
+                return response()->json(['message' => 'Not Finnished']);
+            }
+
+            return response()->json(['status' => 'Success']);
         }
     }
 
