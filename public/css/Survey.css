@@ -16,6 +16,7 @@
     padding:0 25px 0 0;
     font-weight: normal;
 }
+<<<<<<< Updated upstream
 .board .nav-tabs {
     position: relative;
     /* border-bottom: 0; */
@@ -170,4 +171,35 @@ span.round-tabs.five{
     .btn-outline-rounded {
         padding:12px 20px;
     }
+=======
+.ul-nav{
+    text-align:center;
+
+}
+.ul-li-nav{
+    display: inline-block;
+
+}
+
+.a-ul-li-nav{
+    font-family:"Open Sans";
+    color: rgba(0, 35, 34, 0.6);
+    font-size: 15px;
+    text-transform:uppercase;
+    text-decoration:none;
+}
+.a-li{
+    background:rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0;1), inset  0 0 1px rgba(225, 255, 255, 0.8);
+    width:120px;
+    height:120px;
+    line-height:115px;
+    border-radius: 50%;
+    display:block;
+}
+.a-li:hover{
+    transition-duration: 300ms;
+
+    background: rgba(0, 120, 140, 0.6);
+>>>>>>> Stashed changes
 }

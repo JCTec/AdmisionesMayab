@@ -23,6 +23,7 @@
                         Sed id neque vitae augue venenatis vestibulum. Quisque quis varius erat. Fusce mattis maximus orci at dapibus.
                         Cras efficitur enim vel scelerisque bibendum. Vestibulum dui ex, congue nec urna sed, ullamcorper commodo tortor.
                         Vivamus ultricies et purus in pretium. In ut molestie dolor. Curabitur sit amet interdum justo, eget condimentum ex.
+<<<<<<< Updated upstream
                         <!--<div class="row">
                             <div class="col-md-12 board">
                                 <div class="board-inner">
@@ -64,6 +65,17 @@
                         </div>
                     </div>-->
 
+=======
+                    </div>
+                        <nav>
+                            <ul class="ul-li-nav ul-nav">
+                                <li><a class="a-li a-ul-li-nav" href="#">Registra tus datos basicos</a></li>
+                                <li><a class="a-li a-ul-li-nav" href="#">Paga tu examen de admisión</a></li>
+                                <li><a class="a-li a-ul-li-nav" href="#">Completa tu ficha de aspirante completa</a></li>
+                                <li><a class="a-li a-ul-li-nav" href="#">Completa tu cuestionario de orientación vocacional</a></li>
+                            </ul>
+                        </nav>
+>>>>>>> Stashed changes
                     <!--Bienvenido {{Auth::user()->name}} al sistema de admisiones de la Universidad Anáhuac
                         <br>
                     <form class="form" role="form" method="POST" action="{{ route('login') }}" accept-charset="UTF-8" id="login-nav">
@@ -108,7 +120,10 @@
                                 <input class="form-control" type="text">
                             </div>
                         </div>
+<<<<<<< Updated upstream
                         <input type="submit">
+=======
+>>>>>>> Stashed changes
                     </form>-->
                 </div>
             </div>
