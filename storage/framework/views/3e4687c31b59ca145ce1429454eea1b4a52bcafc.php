@@ -80,7 +80,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Admisiones Anáhuac Mayab
                 </div>
 
                 <div class="links">

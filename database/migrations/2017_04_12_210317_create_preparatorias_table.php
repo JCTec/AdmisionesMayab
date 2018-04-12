@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrientacionVocacionalsTable extends Migration
+class CreatePreparatoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateOrientacionVocacionalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('orientacion_vocacionals', function (Blueprint $table) {
+        Schema::create('preparatorias', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user');
-            $table->timestamps();
+            $table->string('name');
         });
     }
 
@@ -27,6 +26,6 @@ class CreateOrientacionVocacionalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orientacion_vocacionals');
+        Schema::dropIfExists('preparatorias');
     }
 }

@@ -14,7 +14,8 @@ class CreateAlumnosTable extends Migration
     public function up()
     {
         Schema::create('alumnos', function (Blueprint $table) {
-            $table->integer('id_user');
+            $table->increments('id');
+            $table->integer('id_user')->unsigned();
             $table->string('firstName')->nullable();
             $table->string('secondName')->nullable();
             $table->string('firstLastName')->nullable();
@@ -24,14 +25,17 @@ class CreateAlumnosTable extends Migration
             $table->integer('month')->nullable();
             $table->integer('day')->nullable();
             $table->char('sex')->nullable();
-            $table->integer('preparatorias')->nullable();
+            $table->integer('preparatorias')->nullable()->unsigned();
             $table->string('otraPreparatoria')->nullable();
-            $table->integer('carrera')->nullable();
+            $table->integer('carrera')->nullable()->unsigned();
             $table->string('telefono')->nullable();
             $table->string('celular')->nullable();
             $table->string('postal')->nullable();
             $table->string('direccion')->nullable();
             $table->string('city')->nullable();
+            $table->foreign('carrera')->references('id')->on('carreras');
+            $table->foreign('preparatorias')->references('id')->on('preparatorias');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }
