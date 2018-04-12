@@ -30,30 +30,6 @@ class AuthenticateController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function authenticateProfesor(Request $request)
-    {
-        // grab credentials from the request
-        $credentials = $request->only('email', 'password');
-
-        try {
-            // attempt to verify the credentials and create a token for the user
-            if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
-            }
-        } catch (JWTException $e) {
-            // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
-        }
-
-        $user = JWTAuth::setToken($token)->authenticate();
-
-        if($user->professor != null && $user->professor->exists()){
-            return response()->json(compact('token'));
-        }else{
-            return response()->json(['error' => 'Not a professor'], 401);
-        }
-
-    }
 
     public function validateToken(){
         $token = JWTAuth::parseToken()->authenticate();
