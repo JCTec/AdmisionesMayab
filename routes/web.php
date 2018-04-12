@@ -29,14 +29,16 @@ Route::get('/isFinnished', 'AlumnoController@isFinnished')->name('isFinnished');
 
 Route::get('/getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');
 
-Route::get('/me','AuthController@me')->name('me');
-Route::get('/refresh','AuthController@refresh')->name('refresh');
-Route::post('/Usercreate','AlumnoController@Usercreate')->name('Usercreate');
-Route::post('/saveAlumno',array(
+Route::get('me','AuthController@me')->name('me');
+Route::get('refresh','AuthController@refresh')->name('refresh');
+Route::post('Usercreate','AlumnoController@Usercreate')->name('Usercreate');
+
+Route::post('saveAlumno',array(
     'uses' => 'AlumnoController@saveAlumno',
     'as'   => 'user.saveAlumno'
 ));
-Route::get('/email','AlumnoController@emailAB')->name('emailAB');
+
+Route::get('email','AlumnoController@emailAB')->name('emailAB');
 
 Route::get('/search/{data}','AlumnoController@search')->name('search/{data}');
 Route::post('/addPicture','FileEntryController@add')->name('addPicture');

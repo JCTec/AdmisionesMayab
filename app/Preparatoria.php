@@ -4,15 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrientacionVocacional extends Model
+class Preparatoria extends Model
 {
-    protected $table = 'orientacion_vocacionals';
+    protected $table = 'preparatorias';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id_user',
+        'id','name'
     ];
 
     public $incrementing = true;
+
+    public $timestamps = false;
 }

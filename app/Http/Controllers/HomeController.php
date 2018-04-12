@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Carrera;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Alumno;
 use App\User;
@@ -31,12 +33,12 @@ class HomeController extends Controller
     }
 
     public function cuestionario(){
+        $carreras = Carrera::all();
 
-        return view('Alumno.cuestionario');
+        return view('Alumno.cuestionario')->with(['carreras' => $carreras]);
     }
 
     public function completed(){
-
         if($this->isFinnishedBool()){
             return view('Alumno.completed');
         }else{
