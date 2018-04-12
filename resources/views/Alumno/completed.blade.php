@@ -1,9 +1,10 @@
 @extends('layouts.napp')
 
 @section('content')
-    <main><<
+    <main>
         <div class="card align-middle container">
-            <form class="form" role="form" method="POST" action="{{ route('saveAlumno') }}" accept-charset="UTF-8" id="login-nav">
+            <form method="POST" action="{{ route('user.saveAlumno') }}" >
+                {{csrf_field()}}
                 <div class="row">
                     <div class="col-md-6">
                         <label id="firstName" class="formLabel ">Primer nombre:</label>
