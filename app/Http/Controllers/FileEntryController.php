@@ -15,29 +15,33 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class FileEntryController extends Controller
 {
-    public function add() {
+    public function add($type) {
 
         $token = Auth::user();
 
         if($token){
 
-            $file = Request::file('image');
+            $types = array('Acta de Nacimiento','Certificado de Preparatoria','Foto');
+
+            $file = Request::file('file');
 
             if($file == null){
-                return API::response()->array(['status' => 'Error', 'message' => 'image is null']);
+                return API::response()->array(['status' => 'Error', 'message' => 'file is null']);
             }
-
 
             $extension = $file->getClientOriginalExtension();
             Storage::disk('local')->put('/public/'. $token->id .'/'. $file->getFilename().'.'.$extension,  File::get($file));
             $entry = new Fileentry();
+            $entry->type = $type;
+            $entry->id_user = $token->id;
             $entry->mime = $file->getClientMimeType();
             $entry->original_filename = $file->getClientOriginalName();
-            $entry->filename = $file->getFilename().'.'.$extension;
+            $name = $token->id.'_'.$token->name.'_'.$types[$type].'.'.$extension;
+            $entry->filename = $name;
 
             $entry->save();
 
-            $fileName = $file->getFilename().'.'.$extension;
+            $fileName = $name;
 
             return API::response()->array(['FileName' => $fileName]);
         }
@@ -55,5 +59,9 @@ class FileEntryController extends Controller
             return (new Response($file, 200))
                 ->header('Content-Type', $entry->mime);
         }
+    }
+
+    public function fileuploads(){
+        return view('Test.fileupload');
     }
 }

@@ -15,10 +15,12 @@ class CreateFileentriesTable extends Migration
     {
         Schema::create('fileentries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user');
+            $table->integer('id_user')->unsigned();
             $table->string('filename');
             $table->string('mime');
+            $table->integer('type');
             $table->string('original_filename');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
     }

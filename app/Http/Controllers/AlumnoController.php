@@ -221,6 +221,12 @@ class AlumnoController extends Controller
         }
     }
 
+    public function getFiles(){
+        $user = Auth::user();
 
+        if ($user) {
+            return response()->json(['Files' => $user->files]);
+        }
+    }
 
 }

@@ -30,6 +30,7 @@ Route::get('/isFinnished', 'AlumnoController@isFinnished')->name('isFinnished');
 Route::get('getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');
 
 Route::get('me','AuthController@me')->name('me');
+Route::get('getFiles','AlumnoController@getFiles')->name('getFiles');
 Route::get('refresh','AuthController@refresh')->name('refresh');
 Route::post('Usercreate','AlumnoController@Usercreate')->name('Usercreate');
 
@@ -41,10 +42,11 @@ Route::post('saveAlumno',array(
 Route::get('email','AlumnoController@emailAB')->name('emailAB');
 
 Route::get('search/{data}','AlumnoController@search')->name('search/{data}');
-Route::post('addPicture','FileEntryController@add')->name('addPicture');
+Route::post('addFile/{type}','FileEntryController@add')->name('addFile');
 Route::get('get/{filename}','FileEntryController@get')->name('get/{filename}');
 Route::get('userSetPP','AlumnoController@setPP')->name('userSetPP');
 Route::get('getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');
+Route::get('fileuploads','FileEntryController@fileuploads')->name('fileuploads');
 
 
 

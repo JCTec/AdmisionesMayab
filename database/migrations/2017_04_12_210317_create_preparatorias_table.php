@@ -16,6 +16,7 @@ class CreatePreparatoriasTable extends Migration
         Schema::create('preparatorias', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->timestamps();
         });
     }
 
