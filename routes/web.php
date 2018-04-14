@@ -27,7 +27,7 @@ Route::get('/isFinnished', 'AlumnoController@isFinnished')->name('isFinnished');
 
 
 
-Route::get('getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');
+Route::get('/getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');
 
 Route::get('me','AuthController@me')->name('me');
 Route::get('getFiles','AlumnoController@getFiles')->name('getFiles');
