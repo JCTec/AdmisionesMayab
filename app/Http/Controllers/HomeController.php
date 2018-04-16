@@ -78,7 +78,7 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            $files =  Fileentries::where('id_user','=',$alumno->id_user)->where('aprobado','=',True)->count();
+            $files =  Fileentries::where('id_user','=',$user->id_user)->where('aprobado','=',True)->count();
 
             if($files == 3){
                 return True;
