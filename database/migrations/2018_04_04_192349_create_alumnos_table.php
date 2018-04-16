@@ -27,14 +27,12 @@ class CreateAlumnosTable extends Migration
             $table->char('sex')->nullable();
             $table->integer('preparatorias')->nullable()->unsigned();
             $table->string('otraPreparatoria')->nullable();
-            $table->integer('carrera')->nullable()->unsigned();
+            $table->string('carrera')->nullable();
             $table->string('telefono')->nullable();
             $table->string('celular')->nullable();
             $table->string('postal')->nullable();
             $table->string('direccion')->nullable();
             $table->string('city')->nullable();
-            $table->foreign('carrera')->references('id')->on('carreras');
-            $table->foreign('preparatorias')->references('id')->on('preparatorias');
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });
