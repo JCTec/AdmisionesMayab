@@ -20,6 +20,7 @@ class CreateFileentriesTable extends Migration
             $table->string('mime');
             $table->integer('type');
             $table->string('original_filename');
+            $table->boolean('aprobado')->default(False);
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
         });

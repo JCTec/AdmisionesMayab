@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Carrera;
+use App\Fileentries;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Alumno;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use GuzzleHttp\Client;
 
 
 class HomeController extends Controller
@@ -29,13 +31,58 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $state = $this->getState();
+
+        $pictureState = $this->getPicState();
+
+        if($state == 1){
+            $pictureState = False;
+        }
+
+        return view('home')->with(['state' => $state, 'pictureState' => $pictureState]);
     }
 
     public function cuestionario(){
-        $carreras = Carrera::all();
 
-        return view('Alumno.cuestionario')->with(['carreras' => $carreras]);
+        $client = new Client([
+            'base_uri' => 'https://miplana.mx/u/',
+            'timeout'  => 2.0,
+        ]);
+
+        $response = $client->request('GET', 'Programa/getProgramasActualesLC');
+
+        if($response->getStatusCode() == 200){
+            $json = (string) $response->getBody();
+
+            $decoded = json_decode($json, true);
+
+            $programas = $decoded["programas"];
+
+            $response = $client->request('GET', 'Preparatoria/getPreparatorias');
+
+            if($response->getStatusCode() == 200) {
+                $json = (string)$response->getBody();
+
+                $decoded = json_decode($json, true);
+
+                $preparatorias = $decoded["preparatorias"];
+
+                return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias]);
+            }
+
+        }
+
+    }
+
+    private function getPicState(){
+        $files =  Fileentries::where('id_user','=',$alumno->id_user)->where('aprobado','=',True)->count();
+
+        if($files == 3){
+            return True;
+        }else{
+            return False;
+        }
+
     }
 
     public function completed(){
@@ -128,7 +175,104 @@ class HomeController extends Controller
                 return false;
             }
 
+            $files =  Fileentries::where('id_user','=',$alumno->id_user)->where('aprobado','=',True)->count();
+
+            if($files != 3){
+                return false;
+            }
+
+            //Agregar OrientacionVocacional
+
             return true;
+        }
+    }
+
+    private function getState(){
+        $user = Auth::user();
+
+        if ($user) {
+
+            $alumno = Alumno::where('id_user','=',$user->id)->first();
+
+            if(!$alumno){
+                return 1;
+            }
+
+            if(!$alumno->firstName){
+                return 1;
+            }
+
+            if(!$alumno->secondName){
+                return 1;
+            }
+
+            if(!$alumno->firstLastName){
+                return 1;
+            }
+
+            if(!$alumno->secondLastName){
+                return 1;
+            }
+
+            if(!$alumno->finalEmail){
+                return 1;
+            }
+
+            if(!$alumno->year){
+                return 1;
+            }
+
+            if(!$alumno->month){
+                return 1;
+            }
+
+            if(!$alumno->day){
+                return 1;
+            }
+
+            if(!$alumno->sex){
+                return 1;
+            }
+
+            if(!$alumno->preparatorias){
+                if(!$alumno->otraPreparatoria){
+                    return 1;
+                }
+            }
+
+            if(!$alumno->carrera){
+                return 1;
+            }
+
+            if(!$alumno->telefono){
+                return 1;
+            }
+
+            if(!$alumno->celular){
+                return 1;
+            }
+
+            if(!$alumno->postal){
+                return 1;
+            }
+
+            if(!$alumno->direccion){
+                return 1;
+            }
+
+            if(!$alumno->city){
+                return 1;
+            }
+
+            $files =  Fileentries::where('id_user','=',$alumno->id_user)->count();
+
+            if($files != 3){
+                return 2;
+            }
+
+            //Agregar OrientacionVocacional -> 3
+
+            return 4;
         }
     }
 }
