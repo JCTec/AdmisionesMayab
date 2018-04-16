@@ -75,13 +75,18 @@ class HomeController extends Controller
     }
 
     private function getPicState(){
-        $files =  Fileentries::where('id_user','=',$alumno->id_user)->where('aprobado','=',True)->count();
+        $user = Auth::user();
 
-        if($files == 3){
-            return True;
-        }else{
-            return False;
+        if ($user) {
+            $files =  Fileentries::where('id_user','=',$alumno->id_user)->where('aprobado','=',True)->count();
+
+            if($files == 3){
+                return True;
+            }else{
+                return False;
+            }
         }
+
 
     }
 
