@@ -21,35 +21,17 @@
 
                         <div id="menuJC">
                             <ul>
-                                <p class="divider">
-                                    <span><li><a href="#">Link</a>
-                                    </li></span>
-                                    <span class="divider"></span>
-                                    <span><li><a href="#">Link</a>
-                                    </li></span>
-                                    <span class="divider"></span>
-                                    <span><li><a href="#">Link</a>
-                                    </li></span>
-                                    <span class="divider"></span>
-                                    <span><li><a href="#">Link</a>
-                                    </li></span>
-                                    <span class="divider"></span>
-                                    <span><li><a href="#">Link</a>
-                                    </li></span>
-                                </p>
+                                <li><a href="{{ route('cuestionario') }}">Basico</a>
+                                </li>
+                                <li><a href="{{ route('orientacionVocacional') }}">OV</a>
+                                </li>
+                                <li><a href="{{ route('payment') }}">Pago</a>
+                                </li>
+                                <li><a href="{{ route('completed') }}">Full</a>
+                                </li>
                             </ul>
                         </div>
-
                     </div>
-
-                    <!-- <nav>
-                         <ul class="ul-li-nav ul-nav">
-                             <li><a class="a-li a-ul-li-nav" href="#">Registra tus datos basicos</a></li>
-                             <li><a class="a-li a-ul-li-nav" href="#">Paga tu examen de admisión</a></li>
-                             <li><a class="a-li a-ul-li-nav" href="#">Completa tu ficha de aspirante completa</a></li>
-                             <li><a class="a-li a-ul-li-nav" href="#">Completa tu cuestionario de orientación vocacional</a></li>
-                         </ul>
-                     </nav>-->
                 </div>
             </div>
         </div>
