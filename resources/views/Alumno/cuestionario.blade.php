@@ -19,8 +19,20 @@
                         <input name="year" id="year" class="form-control" type="text" required>
                         <label class="formLabel">Preparatoria:</label>
                         <input name="otraPrepatoria" id="otraPreparatoria" class="form-control" required>
+                        <select id='preparatoria' name='preparatoria'>
+                            <option value=''>Select supplier</option>
+                            @foreach ($preparatorias as $key => $value)
+                                <option value='{{$key}}'>{{value}}</option>
+                            @endforeach
+                        </select>
                         <label class="formLabel">Carrera:</label>
                         <input name="carrera" id="carrera" class="form-control" required>
+                        <select id='carrera' name='carrera'>
+                            <option value=''>Select supplier</option>
+                            @foreach ($carreras as $key => $value)
+                                <option value='{{$key}}'>{{value}}</option>
+                            @endforeach
+                        </select>
                         <label class="formLabel">Postal:</label>
                         <input name="postal" id="postal" class="form-control" required>
                     </div>
