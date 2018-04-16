@@ -35,7 +35,6 @@
                         <select name="sex" id="sex" class="form-control" required>
                             <option>Masculino</option>
                             <option>Femenino</option>
-                            <option>HELICOPTERO DE COMBATE TIPO APACHE</option>
                         </select>
                         <label class="formLabel">Celular:</label>
                         <input name="celular" id="celular" class="form-control" type="text" required>

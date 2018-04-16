@@ -34,66 +34,46 @@
         html, main {
             min-height: 100%;
         }
+
+         #menuJC ul {
+             list-style-type: none;
+             padding: 0;
+             margin: 0;
+             text-align: center;
+         }
+        #menuJC li {
+            display: inline-block;
+            padding: 10px 30px;
+        }
+        #menuJC a {
+            display: block;
+            width: 5vw;
+            height: 5vw;
+            border-radius: 50%;
+            border: 1px #a2a2a2 solid;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 1vw;
+            text-align: center;
+            line-height:  5vw;
+            margin: 5%;
+        }
+        p.divider {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        p.divider * {
+            flex-shrink: 0
+        }
+        p.divider span.divider {
+            width: 100%;
+            flex-shrink: 1;
+            border-bottom: 1px solid black;
+            margin: 5px
+        }
     </style>
 
-    <script>// Tooltips Initialization
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-
-        // Steppers
-        $(document).ready(function () {
-            var navListItems = $('div.setup-panel-2 div a'),
-                allWells = $('.setup-content-2'),
-                allNextBtn = $('.nextBtn-2'),
-                allPrevBtn = $('.prevBtn-2');
-
-            allWells.hide();
-
-            navListItems.click(function (e) {
-                e.preventDefault();
-                var $target = $($(this).attr('href')),
-                    $item = $(this);
-
-                if (!$item.hasClass('disabled')) {
-                    navListItems.removeClass('btn-amber').addClass('btn-blue-grey');
-                    $item.addClass('btn-amber');
-                    allWells.hide();
-                    $target.show();
-                    $target.find('input:eq(0)').focus();
-                }
-            });
-
-            allPrevBtn.click(function(){
-                var curStep = $(this).closest(".setup-content-2"),
-                    curStepBtn = curStep.attr("id"),
-                    prevStepSteps = $('div.setup-panel-2 div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
-
-                prevStepSteps.removeAttr('disabled').trigger('click');
-            });
-
-            allNextBtn.click(function(){
-                var curStep = $(this).closest(".setup-content-2"),
-                    curStepBtn = curStep.attr("id"),
-                    nextStepSteps = $('div.setup-panel-2 div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-                    curInputs = curStep.find("input[type='text'],input[type='url']"),
-                    isValid = true;
-
-                $(".form-group").removeClass("has-error");
-                for(var i=0; i< curInputs.length; i++){
-                    if (!curInputs[i].validity.valid){
-                        isValid = false;
-                        $(curInputs[i]).closest(".form-group").addClass("has-error");
-                    }
-                }
-
-                if (isValid)
-                    nextStepSteps.removeAttr('disabled').trigger('click');
-            });
-
-            $('div.setup-panel-2 div a.btn-amber').trigger('click');
-        });
-    </script>
 </head>
 <body class="bg-dark">
 <div id="app">
