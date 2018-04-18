@@ -11,7 +11,7 @@ class OrientacionVocacional extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id_user',
+        'idUser',
     ];
 
     public $incrementing = true;

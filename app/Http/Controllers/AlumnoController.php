@@ -38,7 +38,7 @@ class AlumnoController extends Controller
             if(!$alumno){
                 $alumno = new Alumno();
 
-                $alumno->id_user = $user->id;
+                $alumno->idUser = $user->id;
             }
 
             if($request->has('firstName')){

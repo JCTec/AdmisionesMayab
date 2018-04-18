@@ -11,7 +11,7 @@ class Alumno extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id_user', 'firstName', 'secondName','firstLastName','secondLastName','finalEmail','year','month','day','sex','preparatorias','otraPreparatoria','carrera','telefono','celular','postal','direccion','city',
+        'idUser', 'firstName', 'secondName','firstLastName','secondLastName','finalEmail','year','month','day','sex','preparatorias','otraPreparatoria','carrera','telefono','celular','postal','direccion','city',
     ];
 
     public $incrementing = true;

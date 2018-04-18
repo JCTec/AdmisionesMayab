@@ -10,7 +10,7 @@ class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    protected $table = 'users';
+    protected $table = 'user';
 
     protected $primaryKey = 'id';
 
@@ -53,6 +53,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function files(){
-        return $this->hasMany(Fileentries::class,'id_user','id');
+        return $this->hasMany(Fileentries::class,'idUser','id');
     }
 }

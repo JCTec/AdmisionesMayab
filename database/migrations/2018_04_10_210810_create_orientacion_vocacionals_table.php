@@ -15,7 +15,9 @@ class CreateOrientacionVocacionalsTable extends Migration
     {
         Schema::create('orientacion_vocacionals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user');
+            $table->integer('idUser')->unsigned();
+            $table->boolean('active')->default(true);
+            $table->foreign('idUser')->references('id')->on('user');
             $table->timestamps();
         });
     }

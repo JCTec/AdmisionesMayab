@@ -78,7 +78,7 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            $files =  Fileentries::where('id_user','=',$user->id_user)->where('aprobado','=',True)->count();
+            $files =  Fileentries::where('idUser','=',$user->id)->where('aprobado','=',True)->count();
 
             if($files == 3){
                 return True;
@@ -108,7 +108,7 @@ class HomeController extends Controller
 
         if ($user) {
 
-            $alumno = Alumno::where('id_user','=',$user->id)->first();
+            $alumno = Alumno::where('idUser','=',$user->id)->first();
 
             if(!$alumno){
                 return false;
@@ -180,7 +180,7 @@ class HomeController extends Controller
                 return false;
             }
 
-            $files =  Fileentries::where('id_user','=',$alumno->id_user)->where('aprobado','=',True)->count();
+            $files =  Fileentries::where('idUser','=',$alumno->idUser)->where('aprobado','=',True)->count();
 
             if($files != 3){
                 return false;
@@ -269,7 +269,7 @@ class HomeController extends Controller
                 return 1;
             }
 
-            $files =  Fileentries::where('id_user','=',$alumno->id_user)->count();
+            $files =  Fileentries::where('idUser','=',$alumno->idUser)->count();
 
             if($files != 3){
                 return 2;

@@ -15,7 +15,7 @@ class CreateAlumnosTable extends Migration
     {
         Schema::create('alumnos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
+            $table->integer('idUser')->unsigned();
             $table->string('firstName')->nullable();
             $table->string('secondName')->nullable();
             $table->string('firstLastName')->nullable();
@@ -33,7 +33,8 @@ class CreateAlumnosTable extends Migration
             $table->string('postal')->nullable();
             $table->string('direccion')->nullable();
             $table->string('city')->nullable();
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('idUser')->references('id')->on('user');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

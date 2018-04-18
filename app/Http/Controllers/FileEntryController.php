@@ -33,7 +33,7 @@ class FileEntryController extends Controller
             Storage::disk('local')->put('/public/'. $token->id .'/'. $file->getFilename().'.'.$extension,  File::get($file));
             $entry = new Fileentry();
             $entry->type = $type;
-            $entry->id_user = $token->id;
+            $entry->idUser = $token->id;
             $entry->mime = $file->getClientMimeType();
             $entry->original_filename = $file->getClientOriginalName();
             $name = $token->id.'_'.$token->name.'_'.$types[$type].'.'.$extension;

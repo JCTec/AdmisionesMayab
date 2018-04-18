@@ -15,13 +15,14 @@ class CreateFileentriesTable extends Migration
     {
         Schema::create('fileentries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user')->unsigned();
+            $table->integer('idUser')->unsigned();
             $table->string('filename');
             $table->string('mime');
             $table->integer('type');
             $table->string('original_filename');
             $table->boolean('aprobado')->default(False);
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('idUser')->references('id')->on('user');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

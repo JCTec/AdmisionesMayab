@@ -11,6 +11,6 @@ class Fileentries extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'filename', 'mime', 'original_filename','id_user','type','aprobado'
+        'filename', 'mime', 'original_filename','idUser','type','aprobado'
     ];
 }
