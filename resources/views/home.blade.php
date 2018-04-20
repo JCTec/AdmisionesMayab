@@ -23,6 +23,8 @@
                             <ul>
                                 <li><a href="{{ route('cuestionario') }}">Basico</a>
                                 </li>
+                                <li><a href="{{ route('familiar') }}">Familia</a>
+                                </li>
                                 <li><a href="{{ route('orientacionVocacional') }}">OV</a>
                                 </li>
                                 <li><a href="{{ route('payment') }}">Pago</a>

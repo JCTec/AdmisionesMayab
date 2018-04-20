@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Carrera;
+use App\familiar;
 use App\Fileentries;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -99,8 +100,54 @@ class HomeController extends Controller
     }
 
     public function orientacionVocacional(){
-        return view('Alumno.orientacionVocacional');
+        $user = Auth::user();
+
+        if ($user) {
+            return view('Alumno.orientacionVocacional');
+        }
     }
+
+    public function familiarTutorInfo(){
+        $user = Auth::user();
+
+        if ($user) {
+            return view('Alumno.tutor');
+        }
+    }
+
+    public function familiar(){
+        $user = Auth::user();
+
+        if ($user) {
+            $padre = familiar::where('idUser','=', $user->id)->where('relacion','=',1)->first();
+
+
+            if($padre){
+                $madre = familiar::where('idUser','=', $user->id)->where('relacion','=',2)->first();
+
+                if($madre){
+                    $tutor = familiar::where('idUser','=', $user->id)->where('relacion','=',3)->first();
+
+                    if($tutor){
+                        return view('home');
+                    }else{
+                        $alumno = Alumno::where('idUser','=',$user->id)->first();
+
+                        if ($alumno->tutor){
+                            return view('home');
+                        }else{
+                            return view('Alumno.selectTutor');
+                        }
+                    }
+                }else{
+                    return view('Alumno.familiar2');
+                }
+            }else{
+                return view('Alumno.familiar1');
+            }
+        }
+    }
+
 
 
     private function isFinnishedBool(){
@@ -150,7 +197,7 @@ class HomeController extends Controller
                 return false;
             }
 
-            if(!$alumno->preparatorias){
+            if(!$alumno->preparatoria){
                 if(!$alumno->otraPreparatoria){
                     return false;
                 }
@@ -197,7 +244,7 @@ class HomeController extends Controller
 
         if ($user) {
 
-            $alumno = Alumno::where('id_user','=',$user->id)->first();
+            $alumno = Alumno::where('idUser','=',$user->id)->first();
 
             if(!$alumno){
                 return 1;

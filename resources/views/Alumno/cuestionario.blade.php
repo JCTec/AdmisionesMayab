@@ -24,16 +24,15 @@
                                 <input name="year" id="year inlineFormInputGroup" class="form-control" type="text" required>
                                 <label class="formLabel">Preparatoria:</label>
                                 <select id='preparatoria' name='preparatoria' class="form-control" required>
-                                    <option value=''></option>
-                                    @foreach ($preparatorias as $key => $value)
-                                        <option value='{{$key}}'>{{$value["nombrePreparatoria"]}}</option>
+                                    @foreach ($preparatorias as $prepa)
+                                        <option value='{{$prepa["id"]}}'>{{$prepa["nombrePreparatoria"]}}</option>
                                     @endforeach
                                 </select>
                                 <label class="formLabel">Carrera:</label>
                                 <select id='carrera' name='carrera' class="form-control" required>
-                                    <option value=''></option>
-                                    @foreach ($programas as $key => $value)
-                                        <option value='{{$key}}'>{{$value["nombre"]}}</option>
+                                    <option>Seleccionar</option>
+                                    @foreach ($programas as $programa)
+                                        <option value='{{$programa["programa"]}}'>{{$programa["nombre"]}}</option>
                                     @endforeach
                                 </select>
                                 <label class="formLabel">Postal:</label>
@@ -51,6 +50,8 @@
                                     <option>Masculino</option>
                                     <option>Femenino</option>
                                 </select>
+                                <label class="formLabel">Telefono:</label>
+                                <input name="telefono" id="telefono" class="form-control" type="text" required>
                                 <label class="formLabel">Celular:</label>
                                 <input name="celular" id="celular" class="form-control" type="text" required>
                                 <label class="formLabel">Dirección:</label>

@@ -22,7 +22,7 @@ class CreateContactoEmergenciasTable extends Migration
             $table->string('secondLastName')->nullable();
             $table->string('telefono')->nullable();
             $table->string('celular')->nullable();
-            $table->foreign('idUser')->references('id')->on('user');
+            $table->foreign('idUser')->references('id')->on('users');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

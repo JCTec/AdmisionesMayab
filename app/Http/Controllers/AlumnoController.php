@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alumno;
+use App\familiar;
 use Illuminate\Http\Request;
 use App\User;
 use App\security;
@@ -33,7 +34,7 @@ class AlumnoController extends Controller
 
         if ($user) {
 
-            $alumno = Alumno::where('id_user','=',$user->id)->first();
+            $alumno = Alumno::where('idUser','=',$user->id)->first();
 
             if(!$alumno){
                 $alumno = new Alumno();
@@ -77,8 +78,8 @@ class AlumnoController extends Controller
                 $alumno->sex = $request->sex;
             }
 
-            if($request->has('preparatorias')){
-                $alumno->preparatorias = $request->preparatorias;
+            if($request->has('preparatoria')){
+                $alumno->preparatoria = $request->preparatoria;
             }
 
             if($request->has('otraPreparatoria')){
@@ -111,7 +112,7 @@ class AlumnoController extends Controller
 
             $alumno->saveOrFail();
 
-            return response()->json(['status' => 'Success']);
+            return redirect()->route('home');
         }
 
     }
@@ -138,13 +139,28 @@ class AlumnoController extends Controller
         }
     }
 
+    public function setTutor($id){
+        $user = Auth::user();
+
+        if ($user) {
+
+            $alumno = Alumno::where('idUser','=',$user->id)->first();
+
+            if($alumno){
+                $alumno->tutor = $id;
+            }
+
+            return redirect()->route('home');
+        }
+    }
+
 
     public function isFinnished(){
         $user = Auth::user();
 
         if ($user) {
 
-            $alumno = Alumno::where('id_user','=',$user->id)->first();
+            $alumno = Alumno::where('idUser','=',$user->id)->first();
 
             if(!$alumno){
                 return response()->json(['message' => 'Not Finnished']);
@@ -186,7 +202,7 @@ class AlumnoController extends Controller
                 return response()->json(['message' => 'Not Finnished']);
             }
 
-            if(!$alumno->preparatorias){
+            if(!$alumno->preparatoria){
                 if(!$alumno->otraPreparatoria){
                     return response()->json(['message' => 'Not Finnished']);
                 }
@@ -217,7 +233,7 @@ class AlumnoController extends Controller
                 return response()->json(['message' => 'Not Finnished']);
             }
 
-            return response()->json(['status' => 'Success']);
+            return redirect()->route('home');
         }
     }
 
@@ -228,5 +244,27 @@ class AlumnoController extends Controller
             return response()->json(['Files' => $user->files]);
         }
     }
+
+    public function createFamiliar(Request $request){
+        $user = Auth::user();
+
+        //Type 1 for dad, 2 for mom and 3 for tutor
+
+        if ($user) {
+
+            familiar::create(array_merge($request->all(), ['idUser' => $user->id]));
+
+            if($request->relacion == 1){
+                return redirect()->route('familiar');
+            }elseif ($request->relacion == 2){
+                return redirect()->route('familiar');
+            }elseif ($request->relacion == 3){
+                return redirect()->route('home');
+            }else{
+                return response()->json(['message' => 'Error desconocido']);
+            }
+        }
+    }
+
 
 }

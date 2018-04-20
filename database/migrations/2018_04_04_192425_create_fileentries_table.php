@@ -21,7 +21,7 @@ class CreateFileentriesTable extends Migration
             $table->integer('type');
             $table->string('original_filename');
             $table->boolean('aprobado')->default(False);
-            $table->foreign('idUser')->references('id')->on('user');
+            $table->foreign('idUser')->references('id')->on('users');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

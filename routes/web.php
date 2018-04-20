@@ -21,9 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/cuestionario', 'HomeController@cuestionario')->name('cuestionario');
 Route::get('/completed', 'HomeController@completed')->name('completed');
 Route::get('/orientacionVocacional', 'HomeController@orientacionVocacional')->name('orientacionVocacional');
+Route::get('/familiar', 'HomeController@familiar')->name('familiar');
+Route::get('/familiar/tutor/info', 'HomeController@familiarTutorInfo')->name('familiarTutorInfo');
+Route::get('/familiar/setTutor/{id}', 'AlumnoController@setTutor');
 Route::get('/payment', 'PaymentController@payment')->name('payment');
 Route::get('/isFinnished', 'AlumnoController@isFinnished')->name('isFinnished');
-
 
 
 
@@ -37,6 +39,11 @@ Route::post('Usercreate','AlumnoController@Usercreate')->name('Usercreate');
 Route::post('saveAlumno',array(
     'uses' => 'AlumnoController@saveAlumno',
     'as'   => 'user.saveAlumno'
+));
+
+Route::post('createFamiliar',array(
+    'uses' => 'AlumnoController@createFamiliar',
+    'as'   => 'user.createFamiliar'
 ));
 
 Route::get('email','AlumnoController@emailAB')->name('emailAB');
