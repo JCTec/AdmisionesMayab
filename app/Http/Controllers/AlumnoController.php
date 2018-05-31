@@ -146,8 +146,10 @@ class AlumnoController extends Controller
 
             $alumno = Alumno::where('idUser','=',$user->id)->first();
 
-            if($alumno){
+            if($alumno != null){
                 $alumno->tutor = $id;
+
+                $alumno->saveOrFail();
             }
 
             return redirect()->route('home');

@@ -1,14 +1,15 @@
 @extends('layouts.napp')
 
 @section('content')
-    <main>
+    <main class="py-4">
         <div class="container">
-            <div class="card-header">
-            </div>
+
             <div class="card align-middle container">
+
                 <div class="card-header text-center">
                     Datos del Padre
                 </div>
+
                 <form class="form" role="form" method="POST" action="{{ route('user.createFamiliar') }}" accept-charset="UTF-8" id="login-nav">
                     @csrf
                     <input type="hidden" name="relacion" value=1>

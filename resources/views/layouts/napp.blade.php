@@ -24,6 +24,10 @@
     <link href="{{ asset('css/background.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/Survey.css') }}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+
     <style>
         html {
             height: 100%;
@@ -43,21 +47,47 @@
          }
         #menuJC li {
             display: inline-block;
-            padding: 10px 30px;
+            padding: 50px 30px;
         }
+
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 1em 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 900px;
+            border: 2px solid #4c2f1e;
+            padding: 25px;
+            margin: 25px;
+            background-color: #613b25;
+            border-radius: 25px;
+            font-family: Roboto;
+            color: #ffffff;
+        }
+
         #menuJC a {
             display: block;
-            width: 5vw;
-            height: 5vw;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            border: 1px #a2a2a2 solid;
-            text-transform: uppercase;
+            border: 2px #4c2f1e solid;
             text-decoration: none;
             font-size: 1vw;
             text-align: center;
+            padding-top: 15px;
             line-height:  5vw;
             margin: 5%;
+            color: #ffffff;
+            background-color: #613b25;
+            font-family: "Roboto Condensed";
+            font-size: 20px;
         }
+
         p.divider {
             display: flex;
             flex-direction: row;
@@ -74,10 +104,24 @@
         }
     </style>
 
+    <script>
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+        });
+    </script>
+
 </head>
-<body class="bg-dark">
+<body style="background-color: #fd8023">
 <div id="app">
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+    <ul class="navbar-nav mr-auto">
+        <img src="img/anahuac.jpg" alt="Mountain View" width="150" height="50">
+    </ul>
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
             <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
@@ -86,9 +130,7 @@
             </button>
         <!-- Left Side Of Navbar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
 
-        </ul>
     <!-- Right Side Of Navbar -->
         <!-- Collect the nav links, forms, and other content for toggling -->
             <ul id="nav" class="navbar-nav ml-auto">
