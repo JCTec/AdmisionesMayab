@@ -45,30 +45,55 @@ class HomeController extends Controller
 
     public function cuestionario(){
 
-        $client = new Client([
-            'base_uri' => 'https://miplana.mx/u/',
-            'timeout'  => 2.0,
-        ]);
+        $user = Auth::user();
 
-        $response = $client->request('GET', 'Programa/getProgramasActualesLC');
+        if ($user) {
 
-        if($response->getStatusCode() == 200){
-            $json = (string) $response->getBody();
+            $alumno = Alumno::where('idUser','=',$user->id)->first();
 
-            $decoded = json_decode($json, true);
+            $client = new Client([
+                'base_uri' => 'https://miplana.mx/u/',
+                'timeout'  => 2.0,
+            ]);
 
-            $programas = $decoded["programas"];
+            $response = $client->request('GET', 'Programa/getProgramasActualesLC');
 
-            $response = $client->request('GET', 'Preparatoria/getPreparatorias');
+            if($response->getStatusCode() == 404){
+                return abort(404);
+            }
 
-            if($response->getStatusCode() == 200) {
-                $json = (string)$response->getBody();
+            if($response->getStatusCode() == 200){
+                $json = (string) $response->getBody();
 
                 $decoded = json_decode($json, true);
 
-                $preparatorias = $decoded["preparatorias"];
+                $programas = $decoded["programas"];
 
-                return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias]);
+                $response = $client->request('GET', 'Preparatoria/getPreparatorias');
+
+                if($response->getStatusCode() == 404){
+                    return abort(404);
+                }
+
+                if($response->getStatusCode() == 200) {
+                    $json = (string)$response->getBody();
+
+                    $decoded = json_decode($json, true);
+
+                    $preparatorias = $decoded["preparatorias"];
+
+                    if($alumno){
+                        return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno]);
+
+                    }else{
+                        $alumno = new Alumno();
+                        return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno]);
+                    }
+
+                }else{
+                    return abort(404);
+                }
+
             }
 
         }
@@ -129,12 +154,14 @@ class HomeController extends Controller
                     $tutor = familiar::where('idUser','=', $user->id)->where('relacion','=',3)->first();
 
                     if($tutor){
-                        return view('home');
+                        $state = $this->getState();
+                        return view('home')->with(['state' => $state]);
                     }else{
                         $alumno = Alumno::where('idUser','=',$user->id)->first();
 
                         if ($alumno->tutor){
-                            return view('home');
+                            $state = $this->getState();
+                            return view('home')->with(['state' => $state]);
                         }else{
                             return view('Alumno.selectTutor');
                         }
@@ -322,80 +349,84 @@ class HomeController extends Controller
 
             $familiar2 = familiar::where('idUser','=',$user->id)->where('relacion','=',2)->first();
 
-            if(!$familiar->titulo){
-                return 2;
-            }
+            if($familiar && $familiar2){
+                if(!$familiar->titulo){
+                    return 2;
+                }
 
-            if(!$familiar->firstName){
-                return 2;
-            }
-
-
-            if(!$familiar->secondName){
-                return 2;
-            }
+                if(!$familiar->firstName){
+                    return 2;
+                }
 
 
-            if(!$familiar->telefono){
-                return 2;
-            }
-
-            if(!$familiar->celular){
-                return 2;
-            }
-
-            if(!$familiar->email){
-                return 2;
-            }
+                if(!$familiar->secondName){
+                    return 2;
+                }
 
 
-            if(!$familiar->giro){
-                return 2;
-            }
+                if(!$familiar->telefono){
+                    return 2;
+                }
 
-            if(!$familiar->puesto){
-                return 2;
-            }
+                if(!$familiar->celular){
+                    return 2;
+                }
 
-            if($familiar->empresa == null){
-                return 2;
-            }
-
-            if(!$familiar2->titulo){
-                return 2;
-            }
-
-            if(!$familiar2->firstName){
-                return 2;
-            }
-
-            if(!$familiar2->secondName){
-                return 2;
-            }
+                if(!$familiar->email){
+                    return 2;
+                }
 
 
-            if(!$familiar2->telefono){
-                return 2;
-            }
+                if(!$familiar->giro){
+                    return 2;
+                }
 
-            if(!$familiar2->celular){
-                return 2;
-            }
+                if(!$familiar->puesto){
+                    return 2;
+                }
 
-            if(!$familiar2->email){
-                return 2;
-            }
+                if($familiar->empresa == null){
+                    return 2;
+                }
+
+                if(!$familiar2->titulo){
+                    return 2;
+                }
+
+                if(!$familiar2->firstName){
+                    return 2;
+                }
+
+                if(!$familiar2->secondName){
+                    return 2;
+                }
 
 
-            if(!$familiar2->giro){
-                return 2;
-            }
+                if(!$familiar2->telefono){
+                    return 2;
+                }
 
-            if(!$familiar2->puesto){
-                return 2;
-            }
+                if(!$familiar2->celular){
+                    return 2;
+                }
 
-            if($familiar2->empresa == null){
+                if(!$familiar2->email){
+                    return 2;
+                }
+
+
+                if(!$familiar2->giro){
+                    return 2;
+                }
+
+                if(!$familiar2->puesto){
+                    return 2;
+                }
+
+                if($familiar2->empresa == null){
+                    return 2;
+                }
+            }else{
                 return 2;
             }
 

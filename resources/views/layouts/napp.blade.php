@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -79,13 +79,17 @@
             text-decoration: none;
             font-size: 1vw;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 10px;
             line-height:  5vw;
             margin: 5%;
             color: #ffffff;
             background-color: #613b25;
             font-family: "Roboto Condensed";
             font-size: 20px;
+        }
+
+        .formLabel {
+            font-family: "Roboto Slab";
         }
 
         p.divider {
@@ -102,6 +106,14 @@
             border-bottom: 1px solid black;
             margin: 5px
         }
+
+        * {margin: 0; padding: 0;}
+        #container {height: 100%; width:100%; font-size: 0;}
+        #left, #middle, #right {display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;}
+        #left {width: 25%; }
+        #middle {width: 50%; }
+        #right {width: 25%; }
+
     </style>
 
     <script>
@@ -117,7 +129,7 @@
 
 </head>
 <body style="background-color: #fd8023">
-<div id="app">
+<div id="app" style="padding-bottom: 40px">
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <ul class="navbar-nav mr-auto">
         <img src="img/anahuac.jpg" alt="Mountain View" width="150" height="50">

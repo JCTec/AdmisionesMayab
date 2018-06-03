@@ -43,6 +43,14 @@
 
                         $('#full').css('color','#d7d7d6');
 
+                        $('#familia').css('cursor','default');
+
+                        $('#ov').css('cursor','default');
+
+                        $('#pago').css('cursor','default');
+
+                        $('#full').css('cursor','default');
+
 
                     }else if (state == 2){
 
@@ -70,6 +78,12 @@
 
                         $('#full').css('color','#d7d7d6');
 
+                        $('#ov').css('cursor','default');
+
+                        $('#pago').css('cursor','default');
+
+                        $('#full').css('cursor','default');
+
                     }else if(state == 3){
 
                         $('#pago').on('click', function (e) {
@@ -87,6 +101,10 @@
                         $('#pago').css('color','#d7d7d6');
 
                         $('#full').css('color','#d7d7d6');
+
+                        $('#pago').css('cursor','default');
+
+                        $('#full').css('cursor','default');
 
                     }else {
 
