@@ -20,7 +20,7 @@ class CreateFamiliarsTable extends Migration
             $table->integer('relacion');
             $table->string('titulo');
             $table->string('firstName');
-            $table->string('secondName');
+            $table->string('secondName')->nullable();
             $table->string('firstLastName');
             $table->string('secondLastName');
             $table->string('telefono');

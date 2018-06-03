@@ -18,7 +18,7 @@ class CreateAlumnosTable extends Migration
             $table->integer('idUser')->unsigned()->unique();
             $table->integer('tutor')->nullable()->unsigned();
             $table->string('firstName');
-            $table->string('secondName');
+            $table->string('secondName')->nullable();
             $table->string('firstLastName');
             $table->string('secondLastName');
             $table->string('finalEmail')->unique();

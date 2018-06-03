@@ -132,7 +132,7 @@
 <div id="app" style="padding-bottom: 40px">
 <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <ul class="navbar-nav mr-auto">
-        <img src="img/anahuac.jpg" alt="Mountain View" width="150" height="50">
+        <img src="{{ URL::asset("img/anahuac.jpg") }}" width="150" height="50">
     </ul>
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->

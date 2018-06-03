@@ -192,10 +192,6 @@ class HomeController extends Controller
                 return false;
             }
 
-            if(!$alumno->secondName){
-                return false;
-            }
-
             if(!$alumno->firstLastName){
                 return false;
             }
@@ -281,10 +277,6 @@ class HomeController extends Controller
                 return 1;
             }
 
-            if(!$alumno->secondName){
-                return 1;
-            }
-
             if(!$alumno->firstLastName){
                 return 1;
             }
@@ -359,11 +351,6 @@ class HomeController extends Controller
                 }
 
 
-                if(!$familiar->secondName){
-                    return 2;
-                }
-
-
                 if(!$familiar->telefono){
                     return 2;
                 }
@@ -394,10 +381,6 @@ class HomeController extends Controller
                 }
 
                 if(!$familiar2->firstName){
-                    return 2;
-                }
-
-                if(!$familiar2->secondName){
                     return 2;
                 }
 
@@ -442,11 +425,6 @@ class HomeController extends Controller
                     if(!$familiar3->firstName){
                         return 2;
                     }
-
-                    if(!$familiar3->secondName){
-                        return 2;
-                    }
-
 
                     if(!$familiar3->telefono){
                         return 2;

@@ -172,15 +172,7 @@ class AlumnoController extends Controller
                 return response()->json(['message' => 'Not Finnished']);
             }
 
-            if(!$alumno->secondName){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
             if(!$alumno->firstLastName){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->secondLastName){
                 return response()->json(['message' => 'Not Finnished']);
             }
 

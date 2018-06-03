@@ -6,7 +6,7 @@
 
             <div class="card align-middle container">
 
-                <div class="card-header text-center">
+                <div class="card-header text-center" style="font-family: 'Roboto Slab';">
                     Datos del Padre
                 </div>
 
