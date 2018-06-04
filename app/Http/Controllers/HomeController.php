@@ -157,7 +157,7 @@ class HomeController extends Controller
                         $state = $this->getState();
                         return view('home')->with(['state' => $state]);
                     }else{
-                        $alumno = Alumno::where('idUser','=',$user->id)->first();
+                        $alumno = Alumno::select('tutor')->where('idUser','=',$user->id)->first();
 
                         if ($alumno->tutor){
                             $state = $this->getState();
