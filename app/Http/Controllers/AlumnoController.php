@@ -28,6 +28,21 @@ class AlumnoController extends Controller
         return response()->json(['status' => 'Success']);
     }
 
+    public function back(){
+        $user = Auth::user();
+
+        if ($user) {
+
+            $step = $user->step;
+
+            $user->step = ($step - 1);
+
+            $user->saveOrFail();
+
+            return redirect()->route('familiar');
+        }
+    }
+
     public function saveAlumno(Request $request){
 
         $user = Auth::user();
@@ -144,6 +159,10 @@ class AlumnoController extends Controller
 
         if ($user) {
 
+            $user->step = 1;
+
+            $user->saveOrFail();
+
             $alumno = Alumno::where('idUser','=',$user->id)->first();
 
             if($alumno != null){
@@ -246,16 +265,25 @@ class AlumnoController extends Controller
 
         if ($user) {
 
+            $step = $user->step;
+
             familiar::create(array_merge($request->all(), ['idUser' => $user->id]));
 
-            if($request->relacion == 1){
-                return redirect()->route('familiar');
-            }elseif ($request->relacion == 2){
-                return redirect()->route('familiar');
-            }elseif ($request->relacion == 3){
+            if($step == 4){
+                $user->step = 1;
+
+                $user->saveOrFail();
+
                 return redirect()->route('home');
             }else{
-                return response()->json(['message' => 'Error desconocido']);
+                $rStep = ($step + 1);
+
+                $user->step = $rStep;
+
+                $user->saveOrFail();
+
+                return redirect()->route('familiar');
+
             }
         }
     }

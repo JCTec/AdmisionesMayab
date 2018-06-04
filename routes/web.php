@@ -18,10 +18,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/subirArchivos', 'HomeController@uploadFiles')->name('uploadFiles');
 Route::get('/cuestionario', 'HomeController@cuestionario')->name('cuestionario');
 Route::get('/completed', 'HomeController@completed')->name('completed');
 Route::get('/orientacionVocacional', 'HomeController@orientacionVocacional')->name('orientacionVocacional');
 Route::get('/familiar', 'HomeController@familiar')->name('familiar');
+Route::get('/familiar/settings/back', 'AlumnoController@back')->name('back');
 Route::get('/familiar/tutor/info', 'HomeController@familiarTutorInfo')->name('familiarTutorInfo');
 Route::get('/familiar/setTutor/{id}', 'AlumnoController@setTutor');
 Route::get('/payment', 'PaymentController@payment')->name('payment');

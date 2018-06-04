@@ -12,6 +12,17 @@
 
                     $(document).ready(function () {
 
+                        $('#back').on('click', function () {
+                            window.location = "{{route('back')}}";
+                        });
+
+                        $('#back').mouseenter(function () {
+                            $(this).css('color', '#ffffff');
+                        }).mouseleave(function () {
+                            $(this).css('color', '#007bff');
+
+                        });
+
                         $('#saveASD').on('click', function (e) {
                             e.preventDefault();
 
@@ -20,14 +31,14 @@
                     });
 
                     function redirect() {
-                        var selectElem = document.getElementById('tutor')
+                        var selectElem = document.getElementById('tutor');
 
                         var id = selectElem.options[selectElem.selectedIndex].value;
 
                         if(id == 3){
-                            window.location = "familiar/tutor/info"
+                            window.location = "familiar/tutor/info";
                         }else{
-                            window.location = ("familiar/setTutor/" + id)
+                            window.location = ("familiar/setTutor/" + id);
                         }
                     }
 
@@ -43,9 +54,11 @@
                     </div>
 
                     <div id="container">
-                        <div id="left"></div>
+                        <div id="left">
+                            <a id="back" style="color: #007bff" class="btn btn-outline-primary">Atras</a>
+                        </div>
                         <div id="middle"></div>
-                        <div id="right" style="padding-left: 400px;">
+                        <div id="right" style="text-align: right">
                             <button id="saveASD" class="btn btn-outline-primary">Guardar</button>
                         </div>
                     </div>

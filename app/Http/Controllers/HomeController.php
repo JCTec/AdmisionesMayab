@@ -124,6 +124,14 @@ class HomeController extends Controller
         }
     }
 
+    public function uploadFiles(){
+        $user = Auth::user();
+
+        if ($user) {
+            return view('Alumno.uploadFiles');
+        }
+    }
+
     public function orientacionVocacional(){
         $user = Auth::user();
 
@@ -136,43 +144,50 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            return view('Alumno.tutor');
+
+            $user->step = 4;
+
+            $user->saveOrFail();
+
+            $familiar = familiar::where('idUser','=',$user->id)->where('relacion','=',3)->first();
+
+            if(!$familiar){
+                $familiar = new familiar();
+            }
+
+            return view('Alumno.tutor')->with(['familiar' => $familiar]);
         }
     }
 
     public function familiar(){
         $user = Auth::user();
 
-        if ($user) {
-            $padre = familiar::where('idUser','=', $user->id)->where('relacion','=',1)->first();
+        $step = $user->step;
 
+        if($step == 1){
+            $familiar = familiar::where('idUser','=',$user->id)->where('relacion','=',1)->first();
 
-            if($padre){
-                $madre = familiar::where('idUser','=', $user->id)->where('relacion','=',2)->first();
-
-                if($madre){
-                    $tutor = familiar::where('idUser','=', $user->id)->where('relacion','=',3)->first();
-
-                    if($tutor){
-                        $state = $this->getState();
-                        return view('home')->with(['state' => $state]);
-                    }else{
-                        $alumno = Alumno::where('idUser','=',$user->id)->first();
-
-                        if ($alumno->tutor){
-                            $state = $this->getState();
-                            return view('home')->with(['state' => $state]);
-                        }else{
-                            return view('Alumno.selectTutor');
-                        }
-                    }
-                }else{
-                    return view('Alumno.familiar2');
-                }
-            }else{
-                return view('Alumno.familiar1');
+            if(!$familiar){
+                $familiar = new familiar();
             }
+
+            return view('Alumno.familiar1')->with(['familiar' => $familiar]);
+        }elseif ($step == 2){
+            $familiar = familiar::where('idUser','=',$user->id)->where('relacion','=',2)->first();
+
+            if(!$familiar){
+                $familiar = new familiar();
+            }
+
+            return view('Alumno.familiar2')->with(['familiar' => $familiar]);
+
+        }elseif ($step == 3){
+
+            return view('Alumno.selectTutor');
+        }else{
+            return redirect()->route('familiarTutorInfo');
         }
+
     }
 
 
@@ -362,7 +377,6 @@ class HomeController extends Controller
                 if(!$familiar->email){
                     return 2;
                 }
-
 
                 if(!$familiar->giro){
                     return 2;
