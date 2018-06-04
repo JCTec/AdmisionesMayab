@@ -20,3 +20,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+function mostrarSecu2()
+{
+    var objeto=document.getElementById("Secundaria2")
+    if(objeto.style.display=="block")
+        objeto.style.display="none";
+    else
+        objeto.style.display="block";
+};
