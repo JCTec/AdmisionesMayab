@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header text-center">
-                    Cuestionario de orientación vocacional
+                        Cuestionario de orientación vocacional
                     </div>
                     <div class="card-body align-middle container">
                         <div class="row">
