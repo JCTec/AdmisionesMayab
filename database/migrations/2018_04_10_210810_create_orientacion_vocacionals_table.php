@@ -18,6 +18,16 @@ class CreateOrientacionVocacionalsTable extends Migration
             $table->integer('idUser')->unsigned()->unique();
             $table->boolean('active')->default(true);
             $table->foreign('idUser')->references('id')->on('users');
+            $table->integer('conQuienVives');
+            $table->integer('quienPagaTusEstudios');
+            $table->string('situacionPadres');
+            $table->string('areaCursadaBachillerato');
+            $table->string('hasEstudiadoExtranjero');
+            $table->string('califMasAltas');
+            $table->string('califMasBajas');
+            $table->string('materiasGustasMas');
+            $table->string('materiasGustasMenos');
+            $table->boolean('estudiadoExtranjero');
             $table->timestamps();
         });
     }

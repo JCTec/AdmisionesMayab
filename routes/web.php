@@ -29,6 +29,7 @@ Route::get('/familiar/setTutor/{id}', 'AlumnoController@setTutor');
 Route::get('/payment', 'PaymentController@payment')->name('payment');
 Route::get('/isFinnished', 'AlumnoController@isFinnished')->name('isFinnished');
 
+Route::post('/postHelper', 'HomeController@postHelper')->name('postHelper');
 
 
 Route::get('/getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');

@@ -124,6 +124,10 @@ class HomeController extends Controller
         }
     }
 
+    function postHelper(Request $request){
+        return $request;
+    }
+
     public function uploadFiles(){
         $user = Auth::user();
 
@@ -136,7 +140,41 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            return view('Alumno.orientacionVocacional');
+            $padre = familiar::where('idUser','=',$user->id)->where('relacion','=',1)->first();
+            $madre = familiar::where('idUser','=',$user->id)->where('relacion','=',2)->first();
+            $tutor = familiar::where('idUser','=',$user->id)->where('relacion','=',3)->first();
+
+            $alumno = Alumno::where('idUser','=',$user->id)->first();
+
+
+            if(!$padre || !$madre || !$alumno){
+                return redirect()->route('home');
+            }else{
+
+                if($tutor){
+                    if($user->step2 == 1){
+                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno]);
+                    }elseif ($user->step2 == 2){
+                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno]);
+                    }elseif ($user->step2 == 3){
+                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno]);
+                    }elseif ($user->step2 == 4){
+                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno]);
+                    }
+                }else {
+                    if($user->step2 == 1){
+                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno]);
+                    }elseif ($user->step2 == 2){
+                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno]);
+                    }elseif ($user->step2 == 3){
+                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno]);
+                    }elseif ($user->step2 == 4){
+                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno]);
+                    }
+                }
+
+            }
+
         }
     }
 

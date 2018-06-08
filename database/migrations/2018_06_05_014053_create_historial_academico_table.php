@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateHistorialAcademicoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('historial_academico', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->integer('idUser')->unsigned()->unique();
             $table->boolean('active')->default(true);
-            $table->integer('step')->default(1);
-            $table->integer('step2')->default(1);
-            $table->rememberToken();
+            $table->foreign('idUser')->references('id')->on('users');
+            $table->integer('grado');
+            $table->string('nombre');
+            $table->string('ciudad');
+            $table->integer('promedio');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('historial_academico');
     }
 }

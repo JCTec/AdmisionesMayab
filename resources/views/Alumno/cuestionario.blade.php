@@ -98,8 +98,8 @@
                             <div class="col-md-12">
                                 <label  class="formLabel">Sexo:</label>
                                 <select name="sex" id="sex" class="form-control" required>
-                                    <option>Masculino</option>
-                                    <option>Femenino</option>
+                                    <option value="m">Masculino</option>
+                                    <option value="f">Femenino</option>
                                 </select>
                             </div>
                         </div>

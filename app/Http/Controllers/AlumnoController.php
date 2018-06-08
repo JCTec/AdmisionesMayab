@@ -43,6 +43,21 @@ class AlumnoController extends Controller
         }
     }
 
+    public function backOV(){
+        $user = Auth::user();
+
+        if ($user) {
+
+            $step = $user->step2;
+
+            $user->step2 = ($step - 1);
+
+            $user->saveOrFail();
+
+            return redirect()->route('orientacionVocacional');
+        }
+    }
+
     public function saveAlumno(Request $request){
 
         $user = Auth::user();
