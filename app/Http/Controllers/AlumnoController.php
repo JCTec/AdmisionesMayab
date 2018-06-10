@@ -230,7 +230,7 @@ class AlumnoController extends Controller
                 return response()->json(['message' => 'Not Finnished']);
             }
 
-            if(!$alumno->preparatoria){
+            if($alumno->preparatoria == 159){
                 if(!$alumno->otraPreparatoria){
                     return response()->json(['message' => 'Not Finnished']);
                 }
@@ -282,7 +282,17 @@ class AlumnoController extends Controller
 
             $step = $user->step;
 
-            familiar::create(array_merge($request->all(), ['idUser' => $user->id]));
+            $id = (int) $request->id;
+
+            $info = array_merge($request->except('_token', 'id'), ['idUser' => $user->id]);
+
+            $fam = familiar::where('id', '=', $id)->first();
+
+            if($fam){
+                $fam->update($info);
+            }else{
+                familiar::create($info);
+            }
 
             if($step == 4){
                 $user->step = 1;
