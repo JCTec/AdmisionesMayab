@@ -124,10 +124,6 @@ class HomeController extends Controller
         }
     }
 
-    function postHelper(Request $request){
-        return $request;
-    }
-
     public function uploadFiles(){
         $user = Auth::user();
 

@@ -31,7 +31,6 @@ Route::get('/isFinnished', 'AlumnoController@isFinnished')->name('isFinnished');
 
 Route::post('/postHelper', 'HomeController@postHelper')->name('postHelper');
 
-
 Route::get('/getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');
 
 Route::get('me','AuthController@me')->name('me');
