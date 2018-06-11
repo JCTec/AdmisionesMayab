@@ -273,7 +273,7 @@ class HomeController extends Controller
                 return false;
             }
 
-            if(!$alumno->preparatoria){
+            if($alumno->preparatoria == 159){
                 if(!$alumno->otraPreparatoria){
                     return false;
                 }
@@ -342,7 +342,6 @@ class HomeController extends Controller
                 return 1;
             }
 
-
             if(!$alumno->year){
                 return 1;
             }
@@ -359,7 +358,7 @@ class HomeController extends Controller
                 return 1;
             }
 
-            if(!$alumno->preparatoria){
+            if($alumno->preparatoria == 159){
                 if(!$alumno->otraPreparatoria){
                     return 1;
                 }
