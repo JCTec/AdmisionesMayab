@@ -186,7 +186,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
             <ul id="nav" class="navbar-nav ml-auto">
                 @guest
-                <li class="nav nav-link">
+                    <li><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>
+                    <li><a class="nav-link" href="{{ route('register') }}">{{ __('Registrate') }}</a></li>
+                    <!-- <li class="nav nav-link">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{__('Iniciar sesión')}}</b> <span class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
@@ -237,7 +239,7 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="{{ route('register') }}" class="nav-link">Registrate</a></li>
+                <li><a href="{{ route('register') }}" class="nav-link">Registrate</a></li>-->
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

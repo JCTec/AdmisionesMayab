@@ -7,10 +7,104 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header text-center">
-                            Datos de la Madre
+                            Cuestionario de Orientación Vocacional
                         </div>
                         <script>
                             $(document).ready(function () {
+
+                                var conQuienVives = parseInt("{{$ov->conQuienVives}}");
+                                var quienPagaTusEstudios = parseInt("{{$ov->quienPagaTusEstudios}}");
+                                var situacionPadres = "{{$ov->situacionPadres}}";
+
+                                if(conQuienVives){
+                                    $("#conQuienVives").val(conQuienVives);
+                                }
+
+                                if(quienPagaTusEstudios){
+                                    $("#quienPagaTusEstudios").val(quienPagaTusEstudios);
+                                }
+
+                                if(situacionPadres){
+                                    $("#situacionPadres").val(situacionPadres);
+                                }
+
+                                var estudioEnExtranjero = parseInt("{{$ov->estudioEnExtranjero}}");
+                                var examenesExtraordinarios = parseInt("{{$ov->examenesExtraordinarios}}");
+                                var reprobarSemestre = parseInt("{{$ov->reprobarSemestre}}");
+                                var universidadPrevia = parseInt("{{$ov->universidadPrevia}}");
+
+                                if(estudioEnExtranjero == 1){
+                                    var $radios = $('input:radio[name=estudioEnExtranjero]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=1]').prop('checked', true);
+                                    }
+                                }else if (estudioEnExtranjero == 0){
+                                    var $radios = $('input:radio[name=estudioEnExtranjero]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=0]').prop('checked', true);
+                                    }
+                                }else{
+                                    var $radios = $('input:radio[name=estudioEnExtranjero]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=1]').prop('checked', true);
+                                    }
+                                }
+
+                                if(examenesExtraordinarios == 1){
+                                    var $radios = $('input:radio[name=examenesExtraordinarios]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=1]').prop('checked', true);
+                                    }
+                                }else if (examenesExtraordinarios == 0){
+                                    var $radios = $('input:radio[name=examenesExtraordinarios]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=0]').prop('checked', true);
+                                    }
+                                }else{
+                                    var $radios = $('input:radio[name=examenesExtraordinarios]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=1]').prop('checked', true);
+                                    }
+                                }
+
+                                if(reprobarSemestre == 1){
+                                    var $radios = $('input:radio[name=reprobarSemestre]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=1]').prop('checked', true);
+                                    }
+                                }else if (reprobarSemestre == 0){
+                                    var $radios = $('input:radio[name=reprobarSemestre]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=0]').prop('checked', true);
+                                    }
+                                }else{
+                                    var $radios = $('input:radio[name=reprobarSemestre]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=1]').prop('checked', true);
+                                    }
+                                }
+
+                                if(universidadPrevia == 1){
+                                    var $radios = $('input:radio[name=universidadPrevia]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=1]').prop('checked', true);
+                                    }
+                                }else if (universidadPrevia == 0){
+                                    var $radios = $('input:radio[name=universidadPrevia]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=0]').prop('checked', true);
+                                    }
+                                }else{
+                                    var $radios = $('input:radio[name=universidadPrevia]');
+                                    if($radios.is(':checked') === false) {
+                                        $radios.filter('[value=1]').prop('checked', true);
+                                    }
+                                }
+
+
+                                $('#removeP').hide();
+                                $('#removeS').hide();
+                                $('#removePrepa').hide();
 
                                 var sectionsCount = 1;
                                 var primariaCount = 1;
@@ -21,6 +115,49 @@
                                 var primaria = $('#primariaTemplate').clone();
                                 var secundaria = $('#secundariaTemplate').clone();
                                 var prepa = $('#prepaTemplate').clone();
+
+                                $('#brotherSecction').children().last().remove();
+
+                                var section = template.clone();
+
+                                section.find('#Brother-nombre').attr('id', 'Brother-' + sectionsCount + '[nombre]').attr('name', 'Brother-' + sectionsCount + '[nombre]');
+                                section.find('#Brother-sex').attr('id', 'Brother-' + sectionsCount + '[sex]').attr('name', 'Brother-' + sectionsCount + '[sex]');
+                                section.find('#Brother-edad').attr('id', 'Brother-' + sectionsCount + '[edad]').attr('name', 'Brother-' + sectionsCount + '[edad]');
+                                section.find('#Brother-trabajoEstudio').attr('id', 'Brother-' + sectionsCount + '[trabajoEstudio]').attr('name', 'Brother-' + sectionsCount + '[trabajoEstudio]');
+
+                                section.appendTo('#brotherSecction');
+
+                                $('#primariaSecction').children().last().remove();
+
+                                var section = primaria.clone();
+
+                                section.find('#primaria-nombre').attr('id', 'Primaria-' + primariaCount + '[nombre]').attr('name', 'Primaria-' + primariaCount + '[nombre]');
+                                section.find('#primaria-ciudad').attr('id', 'Primaria-' + primariaCount + '[ciudad]').attr('name', 'Primaria-' + primariaCount + '[ciudad]');
+                                section.find('#primaria-promedioGeneral').attr('id', 'Primaria-' + primariaCount + '[promedioGeneral]').attr('name', 'Primaria-' + primariaCount + '[promedioGeneral]');
+
+                                section.appendTo('#primariaSecction');
+
+                                $('#secundariaSecction').children().last().remove();
+
+                                var section = secundaria.clone();
+
+                                section.find('#secundaria-nombre').attr('id', 'Secundaria-' + secundariaCount + '[nombre]').attr('name', 'Secundaria-' + secundariaCount + '[nombre]');
+                                section.find('#secundaria-ciudad').attr('id', 'Secundaria-' + secundariaCount + '[ciudad]').attr('name', 'Secundaria-' + secundariaCount + '[ciudad]');
+                                section.find('#secundaria-promedioGeneral').attr('id', 'Secundaria-' + secundariaCount + '[promedioGeneral]').attr('name', 'Secundaria-' + secundariaCount + '[promedioGeneral]');
+
+                                section.appendTo('#secundariaSecction');
+
+                                $('#prepaSecction').children().last().remove();
+
+                                var section = prepa.clone();
+
+                                section.find('#prepa-nombre').attr('id', 'Preparatoria-' + prepaCount + '[nombre]').attr('name', 'Preparatoria-' + prepaCount + '[nombre]');
+                                section.find('#prepa-ciudad').attr('id', 'Preparatoria-' + prepaCount + '[ciudad]').attr('name', 'Preparatoria-' + prepaCount + '[ciudad]');
+                                section.find('#prepa-promedioGeneral').attr('id', 'Preparatoria-' + prepaCount + '[promedioGeneral]').attr('name', 'Preparatoria-' + prepaCount + '[promedioGeneral]');
+
+                                section.appendTo('#prepaSecction');
+
+
 
                                 $('#back').on('click', function (e) {
                                     e.preventDefault();
@@ -41,13 +178,15 @@
 
                                     var section = template.clone();
 
-                                    section.find('#Brother-nombre').attr('id', 'Brother-nombre-' + sectionsCount).attr('name', 'Brother-nombre-' + sectionsCount);
-                                    section.find('#Brother-sex').attr('id', 'Brother-sex-' + sectionsCount).attr('name', 'Brother-sex-' + sectionsCount);
-                                    section.find('#Brother-edad').attr('id', 'Brother-edad-' + sectionsCount).attr('name', 'Brother-edad-' + sectionsCount);
-                                    section.find('#Brother-trabajoEstudio').attr('id', 'Brother-trabajoEstudio-' + sectionsCount).attr('name', 'Brother-trabajoEstudio-' + sectionsCount);
+                                    section.find('#Brother-nombre').attr('id', 'Brother-' + sectionsCount + '[nombre]').attr('name','Brother-' + sectionsCount + '[nombre]');
+                                    section.find('#Brother-sex').attr('id', 'Brother-' + sectionsCount + '[sex]').attr('name', 'Brother-' + sectionsCount + '[sex]');
+                                    section.find('#Brother-edad').attr('id', 'Brother-' + sectionsCount + '[edad]').attr('name', 'Brother-' + sectionsCount + '[edad]');
+                                    section.find('#Brother-trabajoEstudio').attr('id', 'Brother-' + sectionsCount + '[trabajoEstudio]').attr('name', 'Brother-' + sectionsCount + '[trabajoEstudio]');
 
 
                                     section.appendTo('#brotherSecction');
+
+                                    $('#removeB').show(200);
 
                                 });
 
@@ -58,666 +197,359 @@
 
                                     var section = primaria.clone();
 
-                                    section.find('#primaria-nombre').attr('id', 'primaria-nombre-' + primariaCount).attr('name', 'primaria-nombre-' + primariaCount);
-                                    section.find('#primaria-ciudad').attr('id', 'primaria-ciudad-' + primariaCount).attr('name', 'primaria-ciudad-' + primariaCount);
-                                    section.find('#primaria-promedioGeneral').attr('id', 'primaria-promedioGeneral-' + primariaCount).attr('name', 'primaria-promedioGeneral-' + primariaCount);
+                                    section.find('#primaria-nombre').attr('id', 'Primaria-' + primariaCount + '[nombre]').attr('name', 'Primaria-' + primariaCount + '[nombre]');
+                                    section.find('#primaria-ciudad').attr('id', 'Primaria-' + primariaCount + '[ciudad]').attr('name', 'Primaria-' + primariaCount + '[ciudad]');
+                                    section.find('#primaria-promedioGeneral').attr('id', 'Primaria-' + primariaCount + '[promedioGeneral]').attr('name', 'Primaria-' + primariaCount + '[promedioGeneral]');
 
                                     section.appendTo('#primariaSecction');
+
+                                    $('#removeP').show(200);
 
                                 });
 
                                 $('#duplicateS').on('click', function (e) {
                                     e.preventDefault();
 
-                                    sectionsCount += 1;
+                                    secundariaCount += 1;
 
                                     var section = secundaria.clone();
 
-                                    section.find('#secundaria-nombre').attr('id', 'secundaria-nombre-' + secundariaCount).attr('name', 'secundaria-nombre-' + secundariaCount);
-                                    section.find('#secundaria-ciudad').attr('id', 'secundaria-ciudad-' + secundariaCount).attr('name', 'secundaria-ciudad-' + secundariaCount);
-                                    section.find('#secundaria-promedioGeneral').attr('id', 'secundaria-promedioGeneral-' + secundariaCount).attr('name', 'secundaria-promedioGeneral-' + secundariaCount);
+                                    section.find('#secundaria-nombre').attr('id', 'Secundaria-' + secundariaCount + '[nombre]').attr('name', 'Secundaria-' + secundariaCount + '[nombre]');
+                                    section.find('#secundaria-ciudad').attr('id', 'Secundaria-' + secundariaCount + '[ciudad]').attr('name', 'Secundaria-' + secundariaCount + '[ciudad]');
+                                    section.find('#secundaria-promedioGeneral').attr('id', 'Secundaria-' + secundariaCount + '[promedioGeneral]').attr('name', 'Secundaria-' + secundariaCount + '[promedioGeneral]');
 
                                     section.appendTo('#secundariaSecction');
+
+                                    $('#removeS').show(200);
+
 
                                 });
 
                                 $('#duplicatePrepa').on('click', function (e) {
                                     e.preventDefault();
 
-                                    sectionsCount += 1;
+                                    prepaCount += 1;
 
                                     var section = prepa.clone();
 
-                                    section.find('#prepa-nombre').attr('id', 'prepa-nombre-' + primariaCount).attr('name', 'prepa-nombre-' + primariaCount);
-                                    section.find('#prepa-ciudad').attr('id', 'prepa-ciudad-' + prepaCount).attr('name', 'prepa-ciudad-' + prepaCount);
-                                    section.find('#prepa-promedioGeneral').attr('id', 'prepa-promedioGeneral-' + prepaCount).attr('name', 'prepa-promedioGeneral-' + prepaCount);
+                                    section.find('#prepa-nombre').attr('id', 'Preparatoria-' + prepaCount + '[nombre]').attr('name', 'Preparatoria-' + prepaCount + '[nombre]');
+                                    section.find('#prepa-ciudad').attr('id', 'Preparatoria-' + prepaCount + '[ciudad]').attr('name', 'Preparatoria-' + prepaCount + '[ciudad]');
+                                    section.find('#prepa-promedioGeneral').attr('id', 'Preparatoria-' + prepaCount + '[promedioGeneral]').attr('name', 'Preparatoria-' + prepaCount + '[promedioGeneral]');
 
                                     section.appendTo('#prepaSecction');
 
+                                    $('#removePrepa').show(200);
+
                                 });
+
+                                $('#removeB').on('click', function (e) {
+                                    e.preventDefault();
+
+                                    if(sectionsCount > 0){
+                                        sectionsCount -= 1;
+
+                                        $('#brotherSecction').children().last().remove();
+                                    }
+
+                                    if(sectionsCount == 0){
+                                        $('#removeB').hide(200);
+                                    }
+
+                                });
+
+                                $('#removeP').on('click', function (e) {
+                                    e.preventDefault();
+
+                                    if(primariaCount > 1){
+                                        primariaCount -= 1;
+
+                                        $('#primariaSecction').children().last().remove();
+                                    }
+
+                                    if(primariaCount == 1){
+                                        $('#removeP').hide(200);
+                                    }
+
+                                });
+
+                                $('#removeS').on('click', function (e) {
+                                    e.preventDefault();
+
+                                    if(secundariaCount > 1){
+                                        secundariaCount -= 1;
+
+                                        $('#secundariaSecction').children().last().remove();
+                                    }
+
+                                    if(secundariaCount == 1){
+                                        $('#removeS').hide(200);
+                                    }
+
+                                });
+
+                                $('#removePrepa').on('click', function (e) {
+                                    e.preventDefault();
+
+                                    if(prepaCount > 1){
+                                        prepaCount -= 1;
+
+                                        $('#prepaSecction').children().last().remove();
+                                    }
+
+                                    if(prepaCount == 1){
+                                        $('#removePrepa').hide(200);
+                                    }
+
+                                });
+
                             });
                         </script>
 
-                        <form class="form-inline" role="form" method="POST" action="{{ route('postHelper') }}" accept-charset="UTF-8" id="login-nav">
-                            @csrf
+                        <div class="card-body">
+                            <form role="form" method="POST" action="{{ route('user.createOV') }}" accept-charset="UTF-8" id="login-nav">
+                                @csrf
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-6">
-                                    <label class="formLabel ">¿Con Quién Vives?:</label>
-                                    <select id='conQuienVives' name='conQuienVives' style="width: 65%" class="form-control" required>
-                                        @if($tutor)
-                                            <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
-                                            <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
-                                            <option value='3' selected="selected">{{$tutor->titulo}} {{$tutor->firstName}}</option>
-                                        @else
-                                            @if($alumno->tutor == 1)
-                                                <option value='1' selected="selected">{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
-                                            @else
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label class="formLabel ">¿Con Quién Vives?:</label>
+                                        <select id='conQuienVives' name='conQuienVives' class="form-control" required>
+                                            @if($tutor)
                                                 <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                <option value='2' selected="selected">{{$madre->titulo}} {{$madre->firstName}}</option>
-                                            @endif
-                                        @endif
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="formLabel ">¿Quién paga tus estudios?:</label>
-                                    <select id='conQuienVives' name='conQuienVives' style="width:55%" class="form-control" required>
-                                        @if($tutor)
-                                            <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
-                                            <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
-                                            <option value='3' selected="selected">{{$tutor->titulo}} {{$tutor->firstName}}</option>
-                                        @else
-                                            @if($alumno->tutor == 1)
-                                                <option value='1' selected="selected">{{$padre->titulo}} {{$padre->firstName}}</option>
                                                 <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                <option value='3' selected="selected">{{$tutor->titulo}} {{$tutor->firstName}}</option>
                                             @else
-                                                <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                <option value='2' selected="selected">{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                @if($alumno->tutor == 1)
+                                                    <option value='1' selected="selected">{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                    <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                @else
+                                                    <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                    <option value='2' selected="selected">{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                @endif
                                             @endif
-                                        @endif
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Tus padres estan?</label>
-                                    <select name="situacionPadres" id="situacionPadres" class="form-control" style="width:83%" required>
-                                        <option value="Casados">Casados</option>
-                                        <option value="Separados">Separados</option>
-                                        <option value="Divorciados">Divorciados</option>
-                                        <option value="Viudo(a)">Viudo(a)</option>
-                                        <option value="">Otro</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div id="brotherSecction">
-                                <div id="brotherTemplate" class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px; width: 100%;">
-                                    <div id="main" class="col-md-12">
-                                        <label id="hermano" class="formLabel">Hermano:</label>
-                                        <input name="Brother-nombre" id="Brother-nombre" class="form-control" placeholder="Nombre"  type="text" required>
-                                        <select name="Brother-sex" id="Brother-sex" class="form-control" required>
-                                            <option value="m">Masculino</option>
-                                            <option value="f">Femenino</option>
                                         </select>
-                                        <input name="Brother-edad" id="Brother-edad" class="form-control" placeholder="Edad" type="text" required>
-                                        <input name="Brother-trabajoEstudio" id="Brother-trabajoEstudio" class="form-control" placeholder="Lugar donde trabaja o estudia" type="text" required>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label class="formLabel ">¿Quién paga tus estudios?:</label>
+                                        <select id='quienPagaTusEstudios' name='quienPagaTusEstudios' class="form-control" required>
+                                            @if($tutor)
+                                                <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                <option value='3' selected="selected">{{$tutor->titulo}} {{$tutor->firstName}}</option>
+                                            @else
+                                                @if($alumno->tutor == 1)
+                                                    <option value='1' selected="selected">{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                    <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                @else
+                                                    <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                    <option value='2' selected="selected">{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                @endif
+                                            @endif
+                                        </select>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px;">
-                                <div id="container">
-                                    <div id="left"></div>
-                                    <div id="middle"></div>
-                                    <div id="right" style="text-align: right; padding-right: 35px; padding-bottom: 30px; padding-top: 10px">
+                                <div class="row">
+                                    <div class="col-md-12 form-group">
+                                        <label class="formLabel">¿Tus padres estan?</label>
+                                        <select name="situacionPadres" id="situacionPadres" class="form-control" required>
+                                            <option value="Casados">Casados</option>
+                                            <option value="Separados">Separados</option>
+                                            <option value="Divorciados">Divorciados</option>
+                                            <option value="Viudo(a)">Viudo(a)</option>
+                                            <option value="">Otro</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="brotherSecction">
+                                    <div id="brotherTemplate" class="row">
+                                        <div id="main" class="col-md-12 form-group form-inline">
+                                            <label id="hermano" class="formLabel">Hermano:</label>
+                                            <input name="Brother-nombre" id="Brother-nombre" class="form-control" placeholder="Nombre"  type="text" required>
+                                            <select name="Brother-sex" id="Brother-sex" class="form-control" required>
+                                                <option value="m">Masculino</option>
+                                                <option value="f">Femenino</option>
+                                            </select>
+                                            <input name="Brother-edad" id="Brother-edad" class="form-control" placeholder="Edad" type="text" required>
+                                            <input name="Brother-trabajoEstudio" id="Brother-trabajoEstudio" class="form-control" placeholder="Lugar donde trabaja o estudia" type="text" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <button id="removeB" class="btn btn-outline-primary">Quitar Hermano</button>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right">
                                         <button id="duplicateB" class="btn btn-outline-primary">Agregar Hermano</button>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div id="primariaSecction">
-                                <div id="primariaTemplate" class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                    <div id="main" class="col-md-12">
-                                        <label id="primaria" class="formLabel">Primaria:</label>
-                                        <input type="hidden" name="grado" value=1>
-                                        <input name="primaria-nombre" id="primaria-nombre" class="form-control" placeholder="Nombre"  type="text" required>
-                                        <input name="primaria-ciudad" id="primaria-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
-                                        <input name="primaria-promedioGeneral" id="primaria-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                <div id="primariaSecction">
+                                    <div id="primariaTemplate" class="row">
+                                        <div id="main" class="form-group col-md-12 form-inline">
+                                            <label id="primaria" class="formLabel">Primaria:</label>
+                                            <input name="primaria-nombre" id="primaria-nombre" class="form-control" placeholder="Nombre"  type="text" required>
+                                            <input name="primaria-ciudad" id="primaria-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
+                                            <input name="primaria-promedioGeneral" id="primaria-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div id="container">
-                                    <div id="left"></div>
-                                    <div id="middle"></div>
-                                    <div id="right" style="text-align: right; padding-right: 35px; padding-bottom: 30px; padding-top: 10px">
+                                <div class="row">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <button id="removeP" class="btn btn-outline-primary">Quitar Primaria</button>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right">
                                         <button id="duplicateP" class="btn btn-outline-primary">Agregar Primaria</button>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div id="secundariaSecction">
-                                <div id="secundariaTemplate" class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                    <div id="main" class="col-md-12">
-                                        <label id="secundaria" class="formLabel">Secundaria:</label>
-                                        <input type="hidden" name="grado" value=2>
-                                        <input name="secundaria-nombre" id="secundaria-nombre" class="form-control" placeholder="Nombre"  type="text" required>
-                                        <input name="secundaria-ciudad" id="secundaria-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
-                                        <input name="secundaria-promedioGeneral" id="secundaria-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                <div id="secundariaSecction">
+                                    <div id="secundariaTemplate" class="row">
+                                        <div id="main" class="form-group col-md-12 form-inline">
+                                            <label id="secundaria" class="formLabel">Secundaria:</label>
+                                            <input name="secundaria-nombre" id="secundaria-nombre" class="form-control" placeholder="Nombre"  type="text" required>
+                                            <input name="secundaria-ciudad" id="secundaria-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
+                                            <input name="secundaria-promedioGeneral" id="secundaria-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div id="container">
-                                    <div id="left"></div>
-                                    <div id="middle"></div>
-                                    <div id="right" style="text-align: right; padding-right: 35px; padding-bottom: 30px; padding-top: 10px">
+                                <div class="row">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <button id="removeS" class="btn btn-outline-primary">Quitar Secundaria</button>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right">
                                         <button id="duplicateS" class="btn btn-outline-primary">Agregar Secundaria</button>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div id="prepaSecction">
-                                <div id="prepaTemplate" class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                    <div id="main" class="col-md-12">
-                                        <label id="prepa" class="formLabel">Bachillerato:</label>
-                                        <input type="hidden" name="grado" value=3>
-                                        <input name="prepa-nombre" id="prepa-nombre" class="form-control" placeholder="Nombre"  type="text" required>
-                                        <input name="prepa-ciudad" id="prepa-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
-                                        <input name="prepa-promedioGeneral" id="prepa-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                <div id="prepaSecction">
+                                    <div id="prepaTemplate" class="row">
+                                        <div id="main" class="form-group col-md-12 form-inline">
+                                            <label id="prepa" class="formLabel">Bachillerato:</label>
+                                            <input name="prepa-nombre" id="prepa-nombre" class="form-control" placeholder="Nombre"  type="text" required>
+                                            <input name="prepa-ciudad" id="prepa-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
+                                            <input name="prepa-promedioGeneral" id="prepa-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div id="container">
-                                    <div id="left"></div>
-                                    <div id="middle"></div>
-                                    <div id="right" style="text-align: right; padding-right: 35px; padding-bottom: 30px; padding-top: 10px">
+                                <div class="row">
+                                    <div class="col-md-6" style="text-align: left">
+                                        <button id="removePrepa" class="btn btn-outline-primary">Quitar Bachillerato</button>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right">
                                         <button id="duplicatePrepa" class="btn btn-outline-primary">Agregar Bachillerato</button>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Qué área cursas o cursaste en el último año de bachillerato?</label>
-                                    <input type="text" id="AreaBachillerato" name="AreaBachillerato" style="width: 55%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-5">
-                                    <label class="formLabel">¿Has estudiado en el extranjero?</label>
-                                    <input type="checkbox" id="EstudioEnExtranjero" name="EstudioEnExtranjero" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="EstudioEnExtranjero" name="EstudioEnExtranjero" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                                <div class="col-md-7">
-                                    <label class="formLabel">¿En dónde y por cuánto tiempo?</label>
-                                    <input type="text" id="LugarEstudioExtranjero" name="LugarEstudioExtranjero" style="width: 54%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿En qué materias has obtenido las calificaciones más altas?</label>
-                                    <input type="text" id="MejorMateria" name="MejorMateria" style="width: 56%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿En qué materias has obtenido las calificaciones más bajas?</label>
-                                    <input type="text" id="PeorMateria" name="PeorMateria" style="width: 56%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-6">
-                                    <label class="formLabel">¿Qué materias te gustan más?</label>
-                                    <input type="text" id="MateriaFavorita" name="MateriaFavorita" style="width: 46%" class="form-control" required>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="formLabel">¿Qué materias te gustan menos?</label>
-                                    <input type="text" id="MateriaDisgusto" name="MateriaDisgusto" style="width: 46%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-6">
-                                    <label class="formLabel">¿Has presentado exámenes extraordinarios?</label>
-                                    <input type="checkbox" id="ExamenesExtraordinarios" name="ExamenesExtraordinarios" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="ExamenesExtraordinarios" name="ExamenesExtraordinarios" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="formLabel">¿Cuál(es)?</label>
-                                    <input type="text" id="CualExamenExtraordinario" name="CualExamenExtraordinario" style="width: 76%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Por qué?</label>
-                                    <input type="text" id="RazonExamenExtraordinario" name="RazonExamenExtraordinario" style="width: 89%" class="form-control" required>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-5">
-                                    <label class="formLabel">¿Has reprobado algún año o semestre?</label>
-                                    <input type="checkbox" id="ReprobarSemestre" name="ReprobarSemestre" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="ReprobarSemestre" name="ReprobarSemestre" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                                <div class="col-md-7">
-                                    <label class="formLabel">¿Cuál(es)?</label>
-                                    <input type="text" id="CualReprobarSemestre" name="CualReprobarSemestre" style="width: 80%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Por qué?</label>
-                                    <input type="text" id="RazonReprobarSemestre" name="RazonReprobarSemestre" style="width: 89%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-6">
-                                    <label class="formLabel">¿Has estado inscrito en alguna universidad?</label>
-                                    <input type="checkbox" id="UniversidadPrevia" name="UniversidadPrevia" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="UniversidadPrevia" name="UniversidadPrevia" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Por qué la reprobastes o dejastes?</label>
-                                    <input type="text" id="RazonUniversidadPrevia" name="RazonUniversidadPrevia" style="width: 73%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <!--<div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-5">
-                                    <label class="formLabel">¿Has tenido algún trabajo?</label>
-                                    <input type="checkbox" id="TrabajoPrevio" name="TrabajoPrevio" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="TrabajoPrevio" name="TrabajoPrevio" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                                <div class="col-md-7">
-                                    <label class="formLabel">¿Qué puesto desempeñaste?</label>
-                                    <input type="text" id="PuestoTrabajoPrevio" name="PuestoTrabajoPrevio" style="width: 60%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-8">
-                                    <label class="formLabel">¿Sientes que tu experiencia de trabajo te ayudó a elegir tu carrera?</label>
-                                    <input type="checkbox" id="ExperienciaLaboralElegirCarrera" name="ExperienciaLaboralElegirCarrera" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="ExperienciaLaboralElegirCarrera" name="ExperienciaLaboralElegirCarrera" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Por qué?</label>
-                                    <input type="text" id="RazonExperienciaLaboralElegirCarrera" name="RazonExperienciaLaboralElegirCarrera" style="width: 89%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-5">
-                                    <label class="formLabel">¿Actualmente trabajas?</label>
-                                    <input type="checkbox" id="TrabajoActual" name="TrabajoActual" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="TrabajoActual" name="TrabajoActual" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                                <div class="col-md-7">
-                                    <label class="formLabel">¿Por qué motivo?</label>
-                                    <input type="text" id="RazonTrabajoActual" name="RazonTrabajoActual" style="width: 72%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">Nombre de la organización o empresa:</label>
-                                    <input type="text" id="EmpresaTrabajoActual" name="EmpresaTrabajoActual" style="width: 70%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px; width: 100%;">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Cuánto tiempo tienes trabajando ahí?</label>
-                                    <input name="AñosTrabajoActual" id="AñosTrabajoActual" class="form-control" placeholder="Años"  type="text" required>
-                                    <input name="MesesTrabajoActual" id="MesesTrabajoActual" class="form-control" placeholder="Meses"  type="text" required>
-                                    <input name="HorarioTrabajoActual" id="HorarioTrabajoActual" style="width: 35%" class="form-control" placeholder="Horarios de Trabajo" type="text" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-6">
-                                    <div class="h5 text-center">
-                                        Dominio del idioma inglés
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label class="formLabel">Lee:</label>
-                                            <input type="checkbox" id="LeerIngles" name="LeerIngles"  class="form-control checkbox-inline"> Básico
-                                            <input type="checkbox" id="LeerIngles" name="LeerIngles"  class="form-control checkbox-inline"> Regular
-                                            <input type="checkbox" id="LeerIngles" name="LeerIngles"  class="form-control checkbox-inline"> Avanzado
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="formLabel">Traduce:</label>
-                                            <input type="checkbox" id="TraduceIngles" name="TraduceIngles"  class="form-control checkbox-inline"> Básico
-                                            <input type="checkbox" id="TraduceIngles" name="TraduceIngles"  class="form-control checkbox-inline"> Regular
-                                            <input type="checkbox" id="TraduceIngles" name="TraduceIngles"  class="form-control checkbox-inline"> Avanzado
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="formLabel">Habla:</label>
-                                            <input type="checkbox" id="HablaIngles" name="HablaIngles"  class="form-control checkbox-inline"> Básico
-                                            <input type="checkbox" id="HablaIngles" name="HablaIngles"  class="form-control checkbox-inline"> Regular
-                                            <input type="checkbox" id="HablaIngles" name="HablaIngles"  class="form-control checkbox-inline"> Avanzado
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="formLabel">Escribe:</label>
-                                            <input type="checkbox" id="EscribeIngles" name="EscribeIngles"  class="form-control checkbox-inline"> Básico
-                                            <input type="checkbox" id="EscribeIngles" name="EscribeIngles"  class="form-control checkbox-inline"> Regular
-                                            <input type="checkbox" id="EscribeIngles" name="EscribeIngles"  class="form-control checkbox-inline"> Avanzado
-                                        </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label class="formLabel">¿Qué área cursas o cursaste en el último año de bachillerato?</label>
+                                        <input type="text" id="areaBachillerato" name="areaBachillerato" class="form-control" required value="{{$ov->areaBachillerato}}">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="h5 text-center">
-                                        Dominio de otro idioma(s)
+
+                                <div class="row">
+                                    <div class="form-group col-md-5">
+                                        <label class="formLabel">¿Has estudiado en el extranjero?</label>
+                                        <input type="radio" id="estudioEnExtranjero" name="estudioEnExtranjero" value=1> Sí
+                                        <input type="radio" id="estudioEnExtranjero" name="estudioEnExtranjero" value=0> No
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <label class="formLabel">Lee:</label>
-                                            <input type="checkbox" id="LeerOtroIdioma" name="LeerOtroIdioma"  class="form-control checkbox-inline"> Básico
-                                            <input type="checkbox" id="LeerOtroIdioma" name="LeerOtroIdioma"  class="form-control checkbox-inline"> Regular
-                                            <input type="checkbox" id="LeerOtroIdioma" name="LeerOtroIdioma"  class="form-control checkbox-inline"> Avanzado
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="formLabel">Traduce:</label>
-                                            <input type="checkbox" id="TraduceOtroIdioma" name="TraduceOtroIdioma"  class="form-control checkbox-inline"> Básico
-                                            <input type="checkbox" id="TraduceOtroIdioma" name="TraduceOtroIdioma"  class="form-control checkbox-inline"> Regular
-                                            <input type="checkbox" id="TraduceOtroIdioma" name="TraduceOtroIdioma"  class="form-control checkbox-inline"> Avanzado
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="formLabel">Habla:</label>
-                                            <input type="checkbox" id="HablaOtroIdioma" name="HablaOtroIdioma"  class="form-control checkbox-inline"> Básico
-                                            <input type="checkbox" id="HablaOtroIdioma" name="HablaOtroIdioma"  class="form-control checkbox-inline"> Regular
-                                            <input type="checkbox" id="HablaOtroIdioma" name="HablaOtroIdioma"  class="form-control checkbox-inline"> Avanzado
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label class="formLabel">Escribe:</label>
-                                            <input type="checkbox" id="EscribeOtroIdioma" name="EscribeOtroIdioma"  class="form-control checkbox-inline"> Básico
-                                            <input type="checkbox" id="EscribeOtroIdioma" name="EscribeOtroIdioma"  class="form-control checkbox-inline"> Regular
-                                            <input type="checkbox" id="EscribeOtroIdioma" name="EscribeOtroIdioma"  class="form-control checkbox-inline"> Avanzado
-                                        </div>
+                                    <div class="form-group col-md-7">
+                                        <label class="formLabel">¿En dónde y por cuánto tiempo?</label>
+                                        <input type="text" id="lugarEstudioExtranjero" name="lugarEstudioExtranjero" class="form-control" required value="{{$ov->lugarEstudioExtranjero}}">
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-8">
-                                    <label class="formLabel">¿Te consideras una persona saludable?</label>
-                                    <input type="checkbox" id="ConsiderarSaludable" name="ConsiderarSaludable" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="ConsiderarSaludable" name="ConsiderarSaludable" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Requieres asistencia como uso de rampas y/o elevadores para desplazarte dentro de la Universidad?</label>
-                                    <input type="checkbox" id="NecesitaAsistencia" name="NecesitaAsistencia" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="NecesitaAsistencia" name="NecesitaAsistencia" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Qué tipo de asistencia requieres?</label>
-                                    <input type="text" id="TipoAsistenciaNecesitada" name="TipoAsistenciaNecesitada" style="width: 72%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Requieres realizar exámenes en alguna modalidad que no sea escrita?</label>
-                                    <input type="checkbox" id="NecesitaExamenesNoEscritos" name="NecesitaExamenesNoEscritos" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="NecesitaExamenesNoEscritos" name="NecesitaExamenesNoEscritos" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">Indica qué tipo de modalidad necesitas:</label>
-                                    <input type="text" id="TipoDeExamenNecesitado" name="TipoDeExamenNecesitado" style="width: 68%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Tienes algún problema de salud que requiera atención médica continua?</label>
-                                    <input type="checkbox" id="ProblemaContinuoSalud" name="ProblemaContinuoSalud" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="ProblemaContinuoSalud" name="ProblemaContinuoSalud" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Cuál?</label>
-                                    <input type="text" id="TipoProblemaContinuoSalud" name="TipoProblemaContinuoSalud" style="width: 90%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Has recibido terapia de aprendizaje, de lenguaje, hábitos de estudio, emocional, dislexia, etc.?</label>
-                                    <input type="checkbox" id="TerapiaRecibida" name="TerapiaRecibida" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="TerapiaRecibida" name="TerapiaRecibida" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Qué tipo de terapia has recibido?</label>
-                                    <input type="text" id="TipoDeTerapiaRecibida" name="TipoDeTerapiaRecibida" style="width: 72%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Por qué tuviste que recibir la terapia?</label>
-                                    <input type="text" id="RazonDeTerapiaRecibida" name="RazonDeTerapiaRecibida" style="width: 69%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Cómo describirías a tu familia?
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="formLabel">¿En qué materias has obtenido las calificaciones más altas?</label>
+                                        <input type="text" id="mejorMateria" name="mejorMateria" class="form-control" required  value="{{$ov->mejorMateria}}">
                                     </div>
-                                    <textarea id="DescripcionFamilia" name="DescripcionFamilia" class="form-control" rows="2" cols=65"></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Con quién te llevas mejor?
+                                    <div class="form-group col-md-6">
+                                        <label class="formLabel">¿En qué materias has obtenido las calificaciones más bajas?</label>
+                                        <input type="text" id="peorMateria" name="peorMateria" class="form-control" required  value="{{$ov->peorMateria}}">
                                     </div>
-                                    <textarea id="MejorRelacionFamiliar" name="MejorRelacionFamiliar" class="form-control" rows="2" cols=65"></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Si pudieras cambiar algo de tu familia qué sería?
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="formLabel">¿Qué materias te gustan más?</label>
+                                        <input type="text" id="materiaFavorita" name="materiaFavorita" class="form-control" required value="{{$ov->materiaFavorita}}">
                                     </div>
-                                    <textarea id="CambioEnFamilia" name="CambioEnFamilia" class="form-control" rows="2" cols=65"></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Qué características de personalidad admiras de tu padre?
+                                    <div class="form-group col-md-6">
+                                        <label class="formLabel">¿Qué materias te gustan menos?</label>
+                                        <input type="text" id="materiaDisgusto" name="materiaDisgusto" class="form-control" required value="{{$ov->materiaDisgusto}}">
                                     </div>
-                                    <textarea id="AdmirarPersonalidadPadre" name="AdmirarPersonalidadPadre" class="form-control" rows="2" cols=65"></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Qué defectos observas en él?
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="formLabel">¿Has presentado exámenes extraordinarios?</label>
+                                        <input type="radio" id="examenesExtraordinarios" name="examenesExtraordinarios" value=1> Sí
+                                        <input type="radio" id="examenesExtraordinarios" name="examenesExtraordinarios" value=0> No
                                     </div>
-                                    <textarea id="DefectosPersonalidadPadre" name="DefectosPersonalidadPadre" class="form-control" rows="2" cols=65"></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Platicas tus problemas con él?
+                                    <div class="form-group col-md-6">
+                                        <label class="formLabel">¿Cuál(es)?</label>
+                                        <input type="text" id="cualExamenExtraordinario" name="cualExamenExtraordinario" class="form-control" required value="{{$ov->cualExamenExtraordinario}}">
                                     </div>
-                                    <textarea id="PlaticarProblemasConPadre" name="PlaticarProblemasConPadre" class="form-control" rows="2" cols=65"></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Qué características de personalidad admiras de tu madre?
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label class="formLabel">¿Por qué?</label>
+                                        <input type="text" id="razonExamenExtraordinario" name="razonExamenExtraordinario" class="form-control" required value="{{$ov->razonExamenExtraordinario}}">
                                     </div>
-                                    <textarea id="AdmirarPersonalidadMadre" name="AdmirarPersonalidadMadre" class="form-control" rows="2" cols=65"></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Qué defectos observas en ella?
+
+
+                                <div class="row">
+                                    <div class="form-group col-md-5">
+                                        <label class="formLabel">¿Has reprobado algún año o semestre?</label>
+                                        <input type="radio" id="reprobarSemestre" name="reprobarSemestre" value=1> Sí
+                                        <input type="radio" id="reprobarSemestre" name="reprobarSemestre" value=0> No
                                     </div>
-                                    <textarea id="DefectosPersonalidadMadre" name="DefectosPersonalidadMadre" class="form-control" rows="2" cols=65"></textarea>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Platicas tus problemas con ella?
+                                    <div class="form-group col-md-7">
+                                        <label class="formLabel">¿Cuál(es)?</label>
+                                        <input type="text" id="cualReprobarSemestre" name="cualReprobarSemestre" class="form-control" required value="{{$ov->cualReprobarSemestre}}">
                                     </div>
-                                    <textarea id="PlaticarProblemasConMadre" name="PlaticarProblemasConMadre" class="form-control" rows="2" cols=65"></textarea>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="h6 text-center">
-                                        ¿Cómo es tu relación con tus hermanos?
+
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label class="formLabel">¿Por qué?</label>
+                                        <input type="text" id="razonReprobarSemestre" name="razonReprobarSemestre" class="form-control" required value="{{$ov->razonReprobarSemestre}}">
                                     </div>
-                                    <textarea id="RelacionConHermanos" name="RelacionConHermanos" class="form-control" rows="2" cols=65"></textarea>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Qué haces en tu tiempo libre?</label>
-                                    <input type="text" id="Pasatiempos" name="Pasatiempos" style="width: 75%" class="form-control" required>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="formLabel">¿Has estado inscrito en alguna universidad?</label>
+                                        <input type="radio" id="universidadPrevia" name="universidadPrevia" value=1> Sí
+                                        <input type="radio" id="universidadPrevia" name="universidadPrevia" value=0> No
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-5">
-                                    <label class="formLabel">¿Practicas algún deporte? </label>
-                                    <input type="checkbox" id="PracticaDeporte" name="PracticaDeporte" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="PracticaDeporte" name="PracticaDeporte" style="width: 5%" class="form-control checkbox-inline"> No
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label class="formLabel">¿Por qué la reprobastes o dejastes?</label>
+                                        <input type="text" id="razonUniversidadPrevia" name="razonUniversidadPrevia" class="form-control" required value="{{$ov->razonUniversidadPrevia}}">
+                                    </div>
                                 </div>
-                                <div class="col-md-7">
-                                    <label class="formLabel">¿Cuál(es)?</label>
-                                    <input type="text" id="CualPracticaDeporte" name="CualPracticaDeporte" style="width: 80%" class="form-control" required>
-                                </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-8">
-                                    <label class="formLabel">¿Participas en alguna organización que realice ayuda social?</label>
-                                    <input type="checkbox" id="OrganizacionAyudaSocial" name="OrganizacionAyudaSocial" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="OrganizacionAyudaSocial" name="OrganizacionAyudaSocial" style="width: 5%" class="form-control checkbox-inline"> No
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: right">
+                                        <button id="saveASD" class="btn btn-outline-primary">Guardar</button>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Cuál(es)?</label>
-                                    <input type="text" id="CualOrganizacionAyudaSocial" name="CualOrganizacionAyudaSocial" style="width: 89%" class="form-control" required>
-                                </div>
-                            </div>
+                                <button id="saveB" type="submit" class="form-check " hidden="hidden"> Guardar </button>
+                            </form>
+                        </div>
 
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-8">
-                                    <label class="formLabel">¿Has sido jefe o directivo de algún grupo o asociación?</label>
-                                    <input type="checkbox" id="DirectivoGrupo" name="DirectivoGrupo" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="DirectivoGrupo" name="DirectivoGrupo" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿De cuál(es)?</label>
-                                    <input type="text" id="CualDirectivoGrupo" name="CualDirectivoGrupo" style="width: 87%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-8">
-                                    <label class="formLabel">¿Realizas alguna actividad cultural?</label>
-                                    <input type="checkbox" id="ActividadCultural" name="ActividadCultural" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="ActividadCultural" name="ActividadCultural" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Cuál(es)?</label>
-                                    <input type="text" id="CualActividadCultural" name="CualActividadCultural" style="width: 89%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-5">
-                                    <label class="formLabel">¿Te gusta leer?</label>
-                                    <input type="checkbox" id="GustoLectura" name="GustoLectura" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="GustoLectura" name="GustoLectura" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                                <div class="col-md-7">
-                                    <label class="formLabel">¿Con qué frecuencia lees?</label>
-                                    <input type="text" id="FrecuenciaLectura" name="FrecuenciaLectura" style="width: 63%" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Qué tipo de lectura prefieres?  </label>
-                                    <input type="text" id="CualActividadCultural" name="CualActividadCultural" style="width: 76%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-5">
-                                    <label class="formLabel">¿Utilizas Redes Sociales? </label>
-                                    <input type="checkbox" id="UsaRedesSociales" name="UsaRedesSociales" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="UsaRedesSociales" name="UsaRedesSociales" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                                <div class="col-md-7">
-                                    <label class="formLabel">¿Cuál(es)?</label>
-                                    <input type="text" id="FrecuenciaLectura" name="FrecuenciaLectura" style="width: 81%" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Perteneces o has pertenecido a alguna organización de tipo social, deportivo, cultural, religioso, etc.?  </label>
-                                    <input type="checkbox" id="ExperienciaOrganizaciones" name="ExperienciaOrganizaciones" style="width: 5%" class="form-control checkbox-inline"> Sí
-                                    <input type="checkbox" id="ExperienciaOrganizaciones" name="ExperienciaOrganizaciones" style="width: 5%" class="form-control checkbox-inline"> No
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12" style="padding-top: 10px; padding-bottom: 10px">
-                                <div class="col-md-12">
-                                    <label class="formLabel">¿Cuál(es)?</label>
-                                    <input type="text" id="CualExperienciaOrganizaciones" name="CualExperienciaOrganizaciones" style="width: 89%" class="form-control" required>
-                                </div>
-                            </div>-->
-
-                            <div id="container">
-                                <div id="left"></div>
-                                <div id="middle"></div>
-                                <div id="right" style="text-align: right; padding-right: 35px; padding-bottom: 30px; padding-top: 10px">
-                                    <button id="saveASD" class="btn btn-outline-primary">Guardar</button>
-                                </div>
-                            </div>
-
-                            <button id="saveB" type="submit" class="form-check " hidden="hidden"> Guardar </button>
-                        </form>
                     </div>
                 </div>
             </div>

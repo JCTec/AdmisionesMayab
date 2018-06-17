@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Carrera;
 use App\familiar;
 use App\Fileentries;
+use App\OrientacionVocacional;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Alumno;
@@ -116,19 +117,15 @@ class HomeController extends Controller
 
     }
 
-    public function completed(){
-        if($this->isFinnishedBool()){
-            return view('Alumno.completed');
-        }else{
-            return view('home');
-        }
-    }
-
     public function uploadFiles(){
         $user = Auth::user();
 
         if ($user) {
-            return view('Alumno.uploadFiles');
+            $acta = Fileentries::where('idUser','=',$user->id)->where('type','=',1)->first();
+            $prepa = Fileentries::where('idUser','=',$user->id)->where('type','=',2)->first();
+            $image = Fileentries::where('idUser','=',$user->id)->where('type','=',3)->first();
+
+            return view('Alumno.uploadFiles')->with(['acta' => $acta, 'prepa' => $prepa, 'image' => $image]);
         }
     }
 
@@ -142,6 +139,12 @@ class HomeController extends Controller
 
             $alumno = Alumno::where('idUser','=',$user->id)->first();
 
+            $ov = OrientacionVocacional::where('idUser','=', $user->id)->first();
+
+
+            if(!$ov){
+                $ov = new OrientacionVocacional();
+            }
 
             if(!$padre || !$madre || !$alumno){
                 return redirect()->route('home');
@@ -149,23 +152,23 @@ class HomeController extends Controller
 
                 if($tutor){
                     if($user->step2 == 1){
-                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno]);
+                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
                     }elseif ($user->step2 == 2){
-                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno]);
+                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
                     }elseif ($user->step2 == 3){
-                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno]);
+                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
                     }elseif ($user->step2 == 4){
-                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno]);
+                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
                     }
                 }else {
                     if($user->step2 == 1){
-                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno]);
+                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
                     }elseif ($user->step2 == 2){
-                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno]);
+                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
                     }elseif ($user->step2 == 3){
-                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno]);
+                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
                     }elseif ($user->step2 == 4){
-                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno]);
+                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
                     }
                 }
 
@@ -224,92 +227,10 @@ class HomeController extends Controller
 
     }
 
-
-
-    private function isFinnishedBool(){
-        $user = Auth::user();
-
-        if ($user) {
-
-            $alumno = Alumno::where('idUser','=',$user->id)->first();
-
-            if(!$alumno){
-                return false;
-            }
-
-            if(!$alumno->firstName){
-                return false;
-            }
-
-            if(!$alumno->firstLastName){
-                return false;
-            }
-
-            if(!$alumno->secondLastName){
-                return false;
-            }
-
-            if(!$alumno->finalEmail){
-                return false;
-            }
-
-            if(!$alumno->year){
-                return false;
-            }
-
-            if(!$alumno->month){
-                return false;
-            }
-
-            if(!$alumno->day){
-                return false;
-            }
-
-            if(!$alumno->sex){
-                return false;
-            }
-
-            if($alumno->preparatoria == 159){
-                if(!$alumno->otraPreparatoria){
-                    return false;
-                }
-            }
-
-            if(!$alumno->carrera){
-                return false;
-            }
-
-            if(!$alumno->telefono){
-                return false;
-            }
-
-            if(!$alumno->celular){
-                return false;
-            }
-
-            if(!$alumno->postal){
-                return false;
-            }
-
-            if(!$alumno->direccion){
-                return false;
-            }
-
-            if(!$alumno->city){
-                return false;
-            }
-
-            $files =  Fileentries::where('idUser','=',$alumno->idUser)->where('aprobado','=',True)->count();
-
-            if($files != 3){
-                return false;
-            }
-
-            //Agregar OrientacionVocacional
-
-            return true;
-        }
+    public function postHelper(Request $request){
+        return $request;
     }
+
 
     private function getState(){
         $user = Auth::user();
@@ -508,7 +429,7 @@ class HomeController extends Controller
                 return 3;
             }
 
-            //Agregar OrientacionVocacional -> 3
+
 
             return 4;
         }

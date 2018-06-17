@@ -14,10 +14,12 @@
                             <script>
                                 $(document).ready(function () {
 
-                                    @if($Alumno->preparatoria == 159)
+                                    @if(!isset($Alumno->preparatoria) || $Alumno->preparatoria == 159)
                                         $('#otraPrepa').show();
+                                        $('#otraPrepa').attr('required', true)
                                     @else
                                         $('#otraPrepa').hide();
+                                        $('#otraPrepa').attr('required', false)
                                     @endif
 
                                     $('#preparatoria').change(function(){
@@ -25,10 +27,16 @@
 
                                         if($.trim(option).toLowerCase() == "otro"){
                                             $('#otraPrepa').show(500);
+                                            $('#otraPrepa').attr('required', true);
                                         }else{
                                             $('#otraPrepa').hide(500);
+                                            $('#otraPrepa').attr('required', false);
                                         }
 
+                                    });
+
+                                    $('.required').prop('required', function(){
+                                        return  $(this).is(':visible');
                                     });
 
                                     $('form :input').change(function() {
@@ -61,10 +69,7 @@
                                     });
 
                                     $('#saveASD').on('click', function (e) {
-                                        e.preventDefault();
-                                        if($('#finalEmail').val() == $('#finalEmail2').val()){
-                                            $('#basicData').submit();
-                                        }
+                                        $('#basicData').submit();
                                     });
                                 });
                             </script>
@@ -89,7 +94,7 @@
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label class="formLabel">Segundo apellido:</label>
-                                        <input name="secondLastName" id="secondLastName" class="form-control" placeholder="Segundo Apellido" type="text" value="{{$Alumno->secondLastName}}" >
+                                        <input name="secondLastName" id="secondLastName" class="form-control" placeholder="Segundo Apellido" type="text" value="{{$Alumno->secondLastName}}" required>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -131,7 +136,7 @@
                                 <div id="otraPrepa" class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">Otra Preparatoria:</label>
-                                        <input name="otraPreparatoria" id="otraPreparatoria" class="form-control" type="text" placeholder="Nombre de la preparatoria" value="{{$Alumno->otraPreparatoria}}" required>
+                                        <input name="otraPreparatoria" id="otraPreparatoria" class="form-control" type="text" placeholder="Nombre de la preparatoria" value="{{$Alumno->otraPreparatoria}}">
                                     </div>
                                 </div>
                                 <div class="row">

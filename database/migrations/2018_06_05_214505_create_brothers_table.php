@@ -15,12 +15,13 @@ class CreateBrothersTable extends Migration
     {
         Schema::create('brothers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idUser')->unsigned()->unique();
+            $table->integer('idUser')->unsigned();
             $table->boolean('active')->default(true);
             $table->foreign('idUser')->references('id')->on('users');
             $table->string('nombre');
             $table->char('sex');
-            $table->double('promedioGeneral');
+            $table->integer('edad');
+            $table->string('trabajoEstudio');
             $table->timestamps();
         });
     }

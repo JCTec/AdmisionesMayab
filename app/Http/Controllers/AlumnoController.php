@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Alumno;
+use App\Brother;
 use App\familiar;
+use App\OrientacionVocacional;
 use Illuminate\Http\Request;
 use App\User;
 use App\security;
@@ -191,80 +193,6 @@ class AlumnoController extends Controller
     }
 
 
-    public function isFinnished(){
-        $user = Auth::user();
-
-        if ($user) {
-
-            $alumno = Alumno::where('idUser','=',$user->id)->first();
-
-            if(!$alumno){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->firstName){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->firstLastName){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->finalEmail){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->year){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->month){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->day){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->sex){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if($alumno->preparatoria == 159){
-                if(!$alumno->otraPreparatoria){
-                    return response()->json(['message' => 'Not Finnished']);
-                }
-            }
-
-
-            if(!$alumno->carrera){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->telefono){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->celular){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->postal){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->direccion){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            if(!$alumno->city){
-                return response()->json(['message' => 'Not Finnished']);
-            }
-
-            return redirect()->route('home');
-        }
-    }
-
     public function getFiles(){
         $user = Auth::user();
 
@@ -310,6 +238,65 @@ class AlumnoController extends Controller
                 return redirect()->route('familiar');
 
             }
+        }
+    }
+
+    public function createOV(Request $request){
+        $user = Auth::user();
+
+        if ($user) {
+
+            $step = $user->step2;
+
+            $info = array_merge($request->except('_token', 'id'), ['idUser' => $user->id]);
+
+            $brothers = array();
+            $priamrias = array();
+            $secundarias = array();
+            $preparatorias = array();
+
+
+            foreach ($info as $key => $value){
+
+                $keyF = explode("-", $key);
+
+                if ($keyF[0] == "Brother"){
+                    array_push($brothers, $value);
+                }elseif ($keyF[0] == "Primaria"){
+                    array_push($priamrias, $value);
+                }elseif ($keyF[0] == "Secundaria"){
+                    array_push($secundarias, $value);
+                }elseif ($keyF[0] == "Preparatoria"){
+                    array_push($preparatorias, $value);
+                }
+            }
+
+            $myBrothers = Brother::where('idUser','=', $user->id)->get();
+
+            foreach ($myBrothers as $bro){
+                $bro->forceDelete();
+            }
+
+            foreach ($brothers as $bro){
+                Brother::create(array_merge($bro, ['idUser' => $user->id]));
+            }
+
+
+            $ov = OrientacionVocacional::where('idUser','=', $user->id)->first();
+
+            if($ov){
+                $ov->update($info);
+            }else{
+                OrientacionVocacional::create($info);
+            }
+
+            $rStep = ($step + 1);
+
+            $user->step = $rStep;
+
+            $user->saveOrFail();
+
+            return redirect()->route('orientacionVocacional');
         }
     }
 

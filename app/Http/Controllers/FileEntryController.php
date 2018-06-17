@@ -15,7 +15,7 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class FileEntryController extends Controller
 {
-    public function add($type) {
+    public function add() {
 
         $token = Auth::user();
 
@@ -23,27 +23,113 @@ class FileEntryController extends Controller
 
             $types = array('Acta de Nacimiento','Certificado de Preparatoria','Foto');
 
-            $file = Request::file('file');
+            $acta = Request::file('actaDeNacimiento');
+            $prepa = Request::file('certificadoDePrepa');
+            $image = Request::file('imagenDePerfil');
 
-            if($file == null){
-                return API::response()->array(['status' => 'Error', 'message' => 'file is null']);
+            if(!$acta && !$prepa && !$image){
+                return redirect()->route('home');
             }
 
-            $extension = $file->getClientOriginalExtension();
-            Storage::disk('local')->put('/public/'. $token->id .'/'. $file->getFilename().'.'.$extension,  File::get($file));
-            $entry = new Fileentry();
-            $entry->type = $type;
-            $entry->idUser = $token->id;
-            $entry->mime = $file->getClientMimeType();
-            $entry->original_filename = $file->getClientOriginalName();
-            $name = $token->id.'_'.$token->name.'_'.$types[$type].'.'.$extension;
-            $entry->filename = $name;
+            if($acta){
 
-            $entry->save();
+                $fileEntry = Fileentry::where('idUser','=',$token->id)->where('type','=',1)->first();
 
-            $fileName = $name;
+                if($fileEntry){
 
-            return API::response()->array(['FileName' => $fileName]);
+                    Storage::disk('local')->delete($token->id .'/'.$fileEntry->filename);
+
+                    $entry = $fileEntry;
+                }else{
+                    $entry = new Fileentry();
+                }
+
+                $type = 0;
+
+                $fileName = $acta->getFilename();
+
+                $extension = $acta->getClientOriginalExtension();
+                Storage::disk('local')->put('/'.$token->id .'/'. $fileName .'.'.$extension,  File::get($acta));
+                $entry->type = $type+1;
+                $entry->idUser = $token->id;
+                $entry->mime = $acta->getClientMimeType();
+                $entry->original_filename = $acta->getClientOriginalName();
+                $name = $types[$type].', '.$token->name;
+                $entry->descripcion = $name;
+                $entry->filename = $fileName.'.'.$extension;
+                $entry->aprobado = null;
+
+                $entry->base64 = "data:image/". $extension . ";base64," . base64_encode(file_get_contents($acta));
+
+                $entry->saveOrFail();
+            }
+
+            if($prepa){
+                $type = 1;
+
+                $fileEntry = Fileentry::where('idUser','=',$token->id)->where('type','=',2)->first();
+
+                if($fileEntry){
+
+                    Storage::disk('local')->delete($token->id .'/'.$fileEntry->filename);
+
+                    $entry = $fileEntry;
+                }else{
+                    $entry = new Fileentry();
+                }
+
+                $fileName = $prepa->getFilename();
+
+                $extension = $prepa->getClientOriginalExtension();
+                Storage::disk('local')->put('/'.$token->id .'/'. $fileName .'.'.$extension,  File::get($prepa));
+                $entry->type = $type+1;
+                $entry->idUser = $token->id;
+                $entry->mime = $prepa->getClientMimeType();
+                $entry->original_filename = $prepa->getClientOriginalName();
+                $name = $types[$type].', '.$token->name;
+                $entry->descripcion = $name;
+                $entry->filename = $fileName.'.'.$extension;
+                $entry->aprobado = null;
+
+                $entry->base64 = "data:image/". $extension . ";base64," . base64_encode(file_get_contents($prepa));
+
+                $entry->saveOrFail();
+            }
+
+            if($image){
+                $type = 2;
+
+                $fileEntry = Fileentry::where('idUser','=',$token->id)->where('type','=',3)->first();
+
+                if($fileEntry){
+
+                    Storage::disk('local')->delete($token->id .'/'.$fileEntry->filename);
+
+                    $entry = $fileEntry;
+                }else{
+                    $entry = new Fileentry();
+                }
+
+                $fileName = $image->getFilename();
+
+                $extension = $image->getClientOriginalExtension();
+                Storage::disk('local')->put('/'.$token->id .'/'. $fileName .'.'.$extension,  File::get($image));
+                $entry->type = $type+1;
+                $entry->idUser = $token->id;
+                $entry->mime = $image->getClientMimeType();
+                $entry->original_filename = $image->getClientOriginalName();
+                $name = $types[$type].', '.$token->name;
+                $entry->descripcion = $name;
+                $entry->filename = $fileName.'.'.$extension;
+                $entry->aprobado = null;
+
+                $entry->base64 = "data:image/". $extension . ";base64," . base64_encode(file_get_contents($image));
+
+                $entry->saveOrFail();
+            }
+
+            return redirect()->route('home');
+
         }
 
     }
@@ -54,7 +140,7 @@ class FileEntryController extends Controller
 
         if($user){
             $entry = Fileentry::where('filename', '=', $filename)->firstOrFail();
-            $file = Storage::disk('local')->get('/public/'. $user->id .'/'.$entry->filename);
+            $file = Storage::disk('local')->get('/'. $user->id .'/'.$entry->filename);
 
             return (new Response($file, 200))
                 ->header('Content-Type', $entry->mime);

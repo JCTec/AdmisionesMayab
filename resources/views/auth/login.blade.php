@@ -1,7 +1,7 @@
 @extends('layouts.napp')
 
 @section('content')
-<body class="bg-animated">
+<body>
 <div class="container justify-content-start py-5">
     <div class="row justify-content-center">
         <div class="col-md-8">

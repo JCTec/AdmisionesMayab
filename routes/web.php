@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
 Auth::routes();
@@ -20,7 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/subirArchivos', 'HomeController@uploadFiles')->name('uploadFiles');
 Route::get('/cuestionario', 'HomeController@cuestionario')->name('cuestionario');
-Route::get('/completed', 'HomeController@completed')->name('completed');
 Route::get('/orientacionVocacional', 'HomeController@orientacionVocacional')->name('orientacionVocacional');
 Route::get('/familiar', 'HomeController@familiar')->name('familiar');
 Route::get('/familiar/settings/back', 'AlumnoController@back')->name('back');
@@ -48,10 +47,15 @@ Route::post('createFamiliar',array(
     'as'   => 'user.createFamiliar'
 ));
 
+Route::post('createOV',array(
+    'uses' => 'AlumnoController@createOV',
+    'as'   => 'user.createOV'
+));
+
 Route::get('email','AlumnoController@emailAB')->name('emailAB');
 
 Route::get('search/{data}','AlumnoController@search')->name('search/{data}');
-Route::post('addFile/{type}','FileEntryController@add')->name('addFile');
+Route::post('addFiles','FileEntryController@add')->name('addFiles');
 Route::get('get/{filename}','FileEntryController@get')->name('get/{filename}');
 Route::get('userSetPP','AlumnoController@setPP')->name('userSetPP');
 Route::get('getMyInfo','AlumnoController@getMyInfo')->name('getMyInfo');

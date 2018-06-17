@@ -11,7 +11,10 @@ class OrientacionVocacional extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'idUser',
+        'idUser', 'conQuienVives','quienPagaTusEstudios','situacionPadres','areaBachillerato','estudioEnExtranjero',
+        'lugarEstudioExtranjero','mejorMateria','peorMateria','materiaFavorita','materiaDisgusto','examenesExtraordinarios',
+        'cualExamenExtraordinario','razonExamenExtraordinario','reprobarSemestre','cualReprobarSemestre','razonReprobarSemestre',
+        'universidadPrevia','razonUniversidadPrevia',
     ];
 
     public $incrementing = true;

@@ -23,7 +23,7 @@
                             e.preventDefault();
                         });
 
-                        $('#full').on('click', function (e) {
+                        $('#subirArchivos').on('click', function (e) {
                             e.preventDefault();
                         });
 
@@ -33,7 +33,7 @@
 
                         $('#pago').css('background-color','#806255');
 
-                        $('#full').css('background-color','#806255');
+                        $('#subirArchivos').css('background-color','#806255');
 
                         $('#familia').css('color','#d7d7d6');
 
@@ -41,7 +41,7 @@
 
                         $('#pago').css('color','#d7d7d6');
 
-                        $('#full').css('color','#d7d7d6');
+                        $('#subirArchivos').css('color','#d7d7d6');
 
                         $('#familia').css('cursor','default');
 
@@ -49,7 +49,7 @@
 
                         $('#pago').css('cursor','default');
 
-                        $('#full').css('cursor','default');
+                        $('#subirArchivos').css('cursor','default');
 
 
                     }else if (state == 2){
@@ -62,7 +62,7 @@
                             e.preventDefault();
                         });
 
-                        $('#full').on('click', function (e) {
+                        $('#subirArchivos').on('click', function (e) {
                             e.preventDefault();
                         });
 
@@ -70,19 +70,19 @@
 
                         $('#pago').css('background-color','#806255');
 
-                        $('#full').css('background-color','#806255');
+                        $('#subirArchivos').css('background-color','#806255');
 
                         $('#ov').css('color','#d7d7d6');
 
                         $('#pago').css('color','#d7d7d6');
 
-                        $('#full').css('color','#d7d7d6');
+                        $('#subirArchivos').css('color','#d7d7d6');
 
                         $('#ov').css('cursor','default');
 
                         $('#pago').css('cursor','default');
 
-                        $('#full').css('cursor','default');
+                        $('#subirArchivos').css('cursor','default');
 
                     }else if(state == 3){
 
@@ -90,21 +90,21 @@
                             e.preventDefault();
                         });
 
-                        $('#full').on('click', function (e) {
+                        $('#subirArchivos').on('click', function (e) {
                             e.preventDefault();
                         });
 
                         $('#pago').css('background-color','#806255');
 
-                        $('#full').css('background-color','#806255');
+                        $('#subirArchivos').css('background-color','#806255');
 
                         $('#pago').css('color','#d7d7d6');
 
-                        $('#full').css('color','#d7d7d6');
+                        $('#subirArchivos').css('color','#d7d7d6');
 
                         $('#pago').css('cursor','default');
 
-                        $('#full').css('cursor','default');
+                        $('#subirArchivos').css('cursor','default');
 
                     }else {
 
@@ -135,7 +135,7 @@
                     </li>
                     <li><a id="pago" href="{{ route('payment') }}">Pago</a>
                     </li>
-                    <li><a id="full" href="{{ route('completed') }}">Full</a>
+                    <li><a id="subirArchivos" href="{{ route('uploadFiles') }}">Archivos</a>
                     </li>
                 </ul>
             </div>
