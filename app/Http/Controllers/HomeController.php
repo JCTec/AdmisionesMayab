@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Brother;
 use App\Carrera;
 use App\familiar;
 use App\Fileentries;
+use App\HistorialAcademico;
+use App\Idioma;
 use App\OrientacionVocacional;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -57,7 +60,12 @@ class HomeController extends Controller
                 'timeout'  => 2.0,
             ]);
 
-            $response = $client->request('GET', 'Programa/getProgramasActualesLC');
+            try{
+                $response = $client->request('GET', 'Programa/getProgramasActualesLC');
+            }catch (ConnectException $e){
+                return abort(404);
+
+            }
 
             if($response->getStatusCode() == 404){
                 return abort(404);
@@ -152,21 +160,37 @@ class HomeController extends Controller
 
                 if($tutor){
                     if($user->step2 == 1){
-                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
+                        $brothers = Brother::where('idUser','=',$user->id)->get();
+                        $historialAcademico = HistorialAcademico::where('idUser','=',$user->id)->get();
+
+                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov, 'brothers' => $brothers, 'HA' => $historialAcademico]);
                     }elseif ($user->step2 == 2){
                         return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
                     }elseif ($user->step2 == 3){
-                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
+                        $string = file_get_contents(storage_path("json/languages.json"));
+                        $languages = json_decode($string, true);
+
+                        $idiomas = Idioma::where('idUser','=',$user->id)->get();
+
+                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov, 'languages' => $languages, 'idiomas' => $idiomas]);
                     }elseif ($user->step2 == 4){
                         return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
                     }
                 }else {
                     if($user->step2 == 1){
-                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
+                        $brothers = Brother::where('idUser','=',$user->id)->get();
+                        $historialAcademico = HistorialAcademico::where('idUser','=',$user->id)->get();
+
+                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov, 'brothers' => $brothers, 'HA' => $historialAcademico]);
                     }elseif ($user->step2 == 2){
                         return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
                     }elseif ($user->step2 == 3){
-                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
+                        $string = file_get_contents(storage_path("json/languages.json"));
+                        $languages = json_decode($string, true);
+
+                        $idiomas = Idioma::where('idUser','=',$user->id)->get();
+
+                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov, 'languages' => $languages, 'idiomas' => $idiomas]);
                     }elseif ($user->step2 == 4){
                         return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
                     }

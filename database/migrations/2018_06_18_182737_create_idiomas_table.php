@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHistorialAcademicoTable extends Migration
+class CreateIdiomasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateHistorialAcademicoTable extends Migration
      */
     public function up()
     {
-        Schema::create('historial_academico', function (Blueprint $table) {
+        Schema::create('idiomas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idUser')->unsigned();
             $table->boolean('active')->default(true);
             $table->foreign('idUser')->references('id')->on('users');
-            $table->integer('grado');
-            $table->string('nombre');
-            $table->string('ciudad');
-            $table->integer('promedio');
+            $table->string('idioma');
+            $table->string('leer');
+            $table->string('traduce');
+            $table->string('habla');
+            $table->string('escribe');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateHistorialAcademicoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('historial_academico');
+        Schema::dropIfExists('idiomas');
     }
 }

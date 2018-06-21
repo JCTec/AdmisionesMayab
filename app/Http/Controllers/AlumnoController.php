@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Alumno;
 use App\Brother;
 use App\familiar;
+use App\HistorialAcademico;
+use App\Idioma;
 use App\OrientacionVocacional;
 use Illuminate\Http\Request;
 use App\User;
@@ -241,6 +243,50 @@ class AlumnoController extends Controller
         }
     }
 
+    public function createIdiomas(Request $request){
+        $user = Auth::user();
+
+        if ($user) {
+
+            $step = $user->step2;
+
+            if($request["idiomaChange"] == "1"){
+                return "idiomaChange";
+
+                $info = $request->except('_token');
+
+                $idiomas = array();
+
+                foreach ($info as $key => $value){
+
+                    $keyF = explode("-", $key);
+
+                    if ($keyF[0] == "Idioma"){
+                        array_push($idiomas, $value);
+                    }
+                }
+
+                $myIdiomas = Idioma::where('idUser','=', $user->id)->get();
+
+                foreach ($myIdiomas as $idioma){
+                    $idioma->forceDelete();
+                }
+
+                foreach ($idiomas as $idioma){
+                    Idioma::create(array_merge($idioma, ['idUser' => $user->id]));
+                }
+            }
+
+            $rStep = ($step + 1);
+
+            $user->step2 = $rStep;
+
+            $user->saveOrFail();
+
+            return redirect()->route('orientacionVocacional');
+        }
+    }
+
     public function createOV(Request $request){
         $user = Auth::user();
 
@@ -248,7 +294,7 @@ class AlumnoController extends Controller
 
             $step = $user->step2;
 
-            $info = array_merge($request->except('_token', 'id'), ['idUser' => $user->id]);
+            $info = array_merge($request->except('_token', 'id', 'academicoChange'), ['idUser' => $user->id]);
 
             $brothers = array();
             $priamrias = array();
@@ -271,16 +317,38 @@ class AlumnoController extends Controller
                 }
             }
 
-            $myBrothers = Brother::where('idUser','=', $user->id)->get();
+            if($request['brotherChange'] == 1) {
+                $myBrothers = Brother::where('idUser','=', $user->id)->get();
 
-            foreach ($myBrothers as $bro){
-                $bro->forceDelete();
+                foreach ($myBrothers as $bro){
+                    $bro->forceDelete();
+                }
+
+                foreach ($brothers as $bro){
+                    Brother::create(array_merge($bro, ['idUser' => $user->id]));
+                }
             }
 
-            foreach ($brothers as $bro){
-                Brother::create(array_merge($bro, ['idUser' => $user->id]));
-            }
+            if($request['academicoChange'] == 1){
 
+                $mySchools = HistorialAcademico::where('idUser','=', $user->id)->get();
+
+                foreach ($mySchools as $school){
+                    $school->forceDelete();
+                }
+
+                foreach ($priamrias as $primaria){
+                    HistorialAcademico::create(array_merge($primaria, ['idUser' => $user->id, 'grado' => 1]));
+                }
+
+                foreach ($secundarias as $secundaria){
+                    HistorialAcademico::create(array_merge($secundaria, ['idUser' => $user->id, 'grado' => 2]));
+                }
+
+                foreach ($preparatorias as $preparatoria){
+                    HistorialAcademico::create(array_merge($preparatoria, ['idUser' => $user->id, 'grado' => 3]));
+                }
+            }
 
             $ov = OrientacionVocacional::where('idUser','=', $user->id)->first();
 
@@ -292,7 +360,7 @@ class AlumnoController extends Controller
 
             $rStep = ($step + 1);
 
-            $user->step = $rStep;
+            $user->step2 = $rStep;
 
             $user->saveOrFail();
 

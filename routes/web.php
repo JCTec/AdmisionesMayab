@@ -52,6 +52,11 @@ Route::post('createOV',array(
     'as'   => 'user.createOV'
 ));
 
+Route::post('createIdiomas',array(
+    'uses' => 'AlumnoController@createIdiomas',
+    'as'   => 'user.createIdiomas'
+));
+
 Route::get('email','AlumnoController@emailAB')->name('emailAB');
 
 Route::get('search/{data}','AlumnoController@search')->name('search/{data}');

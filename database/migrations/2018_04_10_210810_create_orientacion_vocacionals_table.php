@@ -36,6 +36,26 @@ class CreateOrientacionVocacionalsTable extends Migration
             $table->string('razonReprobarSemestre')->nullable();
             $table->boolean('universidadPrevia')->nullable();
             $table->string('razonUniversidadPrevia')->nullable();
+            $table->boolean('trabajoPrevio')->nullable();
+            $table->string('puestoTrabajoPrevio')->nullable();
+            $table->boolean('experienciaLaboralElegirCarrera')->nullable();
+            $table->string('razonExperienciaLaboralElegirCarrera')->nullable();
+            $table->boolean('trabajoActual')->nullable();
+            $table->string('razonTrabajoActual')->nullable();
+            $table->string('empresaTrabajoActual')->nullable();
+            $table->string('añosTrabajoActual')->nullable();
+            $table->string('mesesTrabajoActual')->nullable();
+            $table->string('horarioTrabajoActual')->nullable();
+            $table->boolean('considerarSaludable')->nullable();
+            $table->boolean('necesitaAsistencia')->nullable();
+            $table->string('tipoAsistenciaNecesitada')->nullable();
+            $table->boolean('necesitaExamenesNoEscritos')->nullable();
+            $table->string('tipoDeExamenNecesitado')->nullable();
+            $table->boolean('problemaContinuoSalud')->nullable();
+            $table->string('tipoProblemaContinuoSalud')->nullable();
+            $table->boolean('terapiaRecibida')->nullable();
+            $table->string('tipoDeTerapiaRecibida')->nullable();
+            $table->string('razonDeTerapiaRecibida')->nullable();
             $table->timestamps();
         });
     }

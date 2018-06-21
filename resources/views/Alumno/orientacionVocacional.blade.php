@@ -10,6 +10,15 @@
                             Cuestionario de Orientación Vocacional
                         </div>
                         <script>
+                            $(document).on('change', '.academico', function (e) {
+                                $('#academicoChange').val(1);
+                            });
+
+                            $(document).on('click', '.removeB', function (e) {
+                                e.preventDefault();
+
+                                $(this).parent().parent().remove();
+                            });
                             $(document).ready(function () {
 
                                 var conQuienVives = parseInt("{{$ov->conQuienVives}}");
@@ -34,16 +43,23 @@
                                 var universidadPrevia = parseInt("{{$ov->universidadPrevia}}");
 
                                 if(estudioEnExtranjero == 1){
+                                    $('#lugarEstudioExtranjero').attr('required', true);
+
                                     var $radios = $('input:radio[name=estudioEnExtranjero]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=1]').prop('checked', true);
                                     }
                                 }else if (estudioEnExtranjero == 0){
+                                    $('#lugarEstudioExtranjero').attr('required', false);
+                                    $('#lugarEstudioExtranjero').hide(200);
+
                                     var $radios = $('input:radio[name=estudioEnExtranjero]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=0]').prop('checked', true);
                                     }
                                 }else{
+                                    $('#lugarEstudioExtranjero').attr('required', true);
+
                                     var $radios = $('input:radio[name=estudioEnExtranjero]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=1]').prop('checked', true);
@@ -51,16 +67,28 @@
                                 }
 
                                 if(examenesExtraordinarios == 1){
+                                    $('#cualExamenExtraordinario').attr('required', true);
+                                    $('#razonExamenExtraordinario').attr('required', true);
+
                                     var $radios = $('input:radio[name=examenesExtraordinarios]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=1]').prop('checked', true);
                                     }
                                 }else if (examenesExtraordinarios == 0){
+                                    $('#cualExamenExtraordinario').attr('required', false);
+                                    $('#razonExamenExtraordinario').attr('required', false);
+                                    $('#cualExamenExtraordinario').hide(200);
+                                    $('#razonExamenExtraordinario').hide(200);
+
+
                                     var $radios = $('input:radio[name=examenesExtraordinarios]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=0]').prop('checked', true);
                                     }
                                 }else{
+                                    $('#cualExamenExtraordinario').attr('required', true);
+                                    $('#razonExamenExtraordinario').attr('required', true);
+
                                     var $radios = $('input:radio[name=examenesExtraordinarios]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=1]').prop('checked', true);
@@ -68,16 +96,28 @@
                                 }
 
                                 if(reprobarSemestre == 1){
+                                    $('#cualReprobarSemestre').attr('required', true);
+                                    $('#razonReprobarSemestre').attr('required', true);
+
                                     var $radios = $('input:radio[name=reprobarSemestre]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=1]').prop('checked', true);
                                     }
                                 }else if (reprobarSemestre == 0){
+                                    $('#cualReprobarSemestre').attr('required', false);
+                                    $('#razonReprobarSemestre').attr('required', false);
+                                    $('#cualReprobarSemestre').hide(200);
+                                    $('#razonReprobarSemestre').hide(200);
+
+
                                     var $radios = $('input:radio[name=reprobarSemestre]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=0]').prop('checked', true);
                                     }
                                 }else{
+                                    $('#cualReprobarSemestre').attr('required', true);
+                                    $('#razonReprobarSemestre').attr('required', true);
+
                                     var $radios = $('input:radio[name=reprobarSemestre]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=1]').prop('checked', true);
@@ -85,16 +125,23 @@
                                 }
 
                                 if(universidadPrevia == 1){
+                                    $('#razonUniversidadPrevia').attr('required', true);
+
                                     var $radios = $('input:radio[name=universidadPrevia]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=1]').prop('checked', true);
                                     }
                                 }else if (universidadPrevia == 0){
+                                    $('#razonUniversidadPrevia').attr('required', false);
+                                    $('#razonUniversidadPrevia').hide(200);
+
                                     var $radios = $('input:radio[name=universidadPrevia]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=0]').prop('checked', true);
                                     }
                                 }else{
+                                    $('#razonUniversidadPrevia').attr('required', true);
+
                                     var $radios = $('input:radio[name=universidadPrevia]');
                                     if($radios.is(':checked') === false) {
                                         $radios.filter('[value=1]').prop('checked', true);
@@ -116,47 +163,108 @@
                                 var secundaria = $('#secundariaTemplate').clone();
                                 var prepa = $('#prepaTemplate').clone();
 
-                                $('#brotherSecction').children().last().remove();
+                                @if(isset($HA) && count($HA) != 0)
+                                    $('#primariaSecction').children().last().remove();
+                                    $('#secundariaSecction').children().last().remove();
+                                    $('#prepaSecction').children().last().remove();
 
-                                var section = template.clone();
+                                    $('#removeP').show();
+                                    $('#removeS').show();
+                                    $('#removePrepa').show();
 
-                                section.find('#Brother-nombre').attr('id', 'Brother-' + sectionsCount + '[nombre]').attr('name', 'Brother-' + sectionsCount + '[nombre]');
-                                section.find('#Brother-sex').attr('id', 'Brother-' + sectionsCount + '[sex]').attr('name', 'Brother-' + sectionsCount + '[sex]');
-                                section.find('#Brother-edad').attr('id', 'Brother-' + sectionsCount + '[edad]').attr('name', 'Brother-' + sectionsCount + '[edad]');
-                                section.find('#Brother-trabajoEstudio').attr('id', 'Brother-' + sectionsCount + '[trabajoEstudio]').attr('name', 'Brother-' + sectionsCount + '[trabajoEstudio]');
+                                    @foreach($HA as $item)
+                                        @if($item->grado == 1)
+                                            primariaCount += 1;
 
-                                section.appendTo('#brotherSecction');
+                                            var section = primaria.clone();
 
-                                $('#primariaSecction').children().last().remove();
+                                            section.find('#primaria-nombre').attr('id', 'Primaria-' + primariaCount + '[nombre]').attr('name', 'Primaria-' + primariaCount + '[nombre]').val("{{$item->nombre}}");
+                                            section.find('#primaria-ciudad').attr('id', 'Primaria-' + primariaCount + '[ciudad]').attr('name', 'Primaria-' + primariaCount + '[ciudad]').val("{{$item->ciudad}}");
+                                            section.find('#primaria-promedio').attr('id', 'Primaria-' + primariaCount + '[promedio]').attr('name', 'Primaria-' + primariaCount + '[promedio]').val("{{$item->promedio}}");
 
-                                var section = primaria.clone();
+                                            section.appendTo('#primariaSecction');
 
-                                section.find('#primaria-nombre').attr('id', 'Primaria-' + primariaCount + '[nombre]').attr('name', 'Primaria-' + primariaCount + '[nombre]');
-                                section.find('#primaria-ciudad').attr('id', 'Primaria-' + primariaCount + '[ciudad]').attr('name', 'Primaria-' + primariaCount + '[ciudad]');
-                                section.find('#primaria-promedioGeneral').attr('id', 'Primaria-' + primariaCount + '[promedioGeneral]').attr('name', 'Primaria-' + primariaCount + '[promedioGeneral]');
+                                        @elseif ($item->grado == 2)
+                                            primariaCount += 1;
 
-                                section.appendTo('#primariaSecction');
+                                            var section = secundaria.clone();
 
-                                $('#secundariaSecction').children().last().remove();
+                                            section.find('#secundaria-nombre').attr('id', 'Secundaria-' + secundariaCount + '[nombre]').attr('name', 'Secundaria-' + secundariaCount + '[nombre]').val("{{$item->nombre}}");
+                                            section.find('#secundaria-ciudad').attr('id', 'Secundaria-' + secundariaCount + '[ciudad]').attr('name', 'Secundaria-' + secundariaCount + '[ciudad]').val("{{$item->ciudad}}");
+                                            section.find('#secundaria-promedio').attr('id', 'Secundaria-' + secundariaCount + '[promedio]').attr('name', 'Secundaria-' + secundariaCount + '[promedio]').val("{{$item->promedio}}");
 
-                                var section = secundaria.clone();
+                                            section.appendTo('#secundariaSecction');
 
-                                section.find('#secundaria-nombre').attr('id', 'Secundaria-' + secundariaCount + '[nombre]').attr('name', 'Secundaria-' + secundariaCount + '[nombre]');
-                                section.find('#secundaria-ciudad').attr('id', 'Secundaria-' + secundariaCount + '[ciudad]').attr('name', 'Secundaria-' + secundariaCount + '[ciudad]');
-                                section.find('#secundaria-promedioGeneral').attr('id', 'Secundaria-' + secundariaCount + '[promedioGeneral]').attr('name', 'Secundaria-' + secundariaCount + '[promedioGeneral]');
+                                        @elseif ($item->grado == 3)
+                                            var section = prepa.clone();
 
-                                section.appendTo('#secundariaSecction');
+                                            section.find('#prepa-nombre').attr('id', 'Preparatoria-' + prepaCount + '[nombre]').attr('name', 'Preparatoria-' + prepaCount + '[nombre]').val("{{$item->nombre}}");
+                                            section.find('#prepa-ciudad').attr('id', 'Preparatoria-' + prepaCount + '[ciudad]').attr('name', 'Preparatoria-' + prepaCount + '[ciudad]').val("{{$item->ciudad}}");
+                                            section.find('#prepa-promedio').attr('id', 'Preparatoria-' + prepaCount + '[promedio]').attr('name', 'Preparatoria-' + prepaCount + '[promedio]').val("{{$item->promedio}}");
 
-                                $('#prepaSecction').children().last().remove();
+                                            section.appendTo('#prepaSecction');
 
-                                var section = prepa.clone();
+                                        @endif
+                                    @endforeach
 
-                                section.find('#prepa-nombre').attr('id', 'Preparatoria-' + prepaCount + '[nombre]').attr('name', 'Preparatoria-' + prepaCount + '[nombre]');
-                                section.find('#prepa-ciudad').attr('id', 'Preparatoria-' + prepaCount + '[ciudad]').attr('name', 'Preparatoria-' + prepaCount + '[ciudad]');
-                                section.find('#prepa-promedioGeneral').attr('id', 'Preparatoria-' + prepaCount + '[promedioGeneral]').attr('name', 'Preparatoria-' + prepaCount + '[promedioGeneral]');
+                                @else
 
-                                section.appendTo('#prepaSecction');
+                                    $('#primariaSecction').children().last().remove();
 
+                                    var section = primaria.clone();
+
+                                    section.find('#primaria-nombre').attr('id', 'Primaria-' + primariaCount + '[nombre]').attr('name', 'Primaria-' + primariaCount + '[nombre]');
+                                    section.find('#primaria-ciudad').attr('id', 'Primaria-' + primariaCount + '[ciudad]').attr('name', 'Primaria-' + primariaCount + '[ciudad]');
+                                    section.find('#primaria-promedio').attr('id', 'Primaria-' + primariaCount + '[promedio]').attr('name', 'Primaria-' + primariaCount + '[promedio]');
+
+                                    section.appendTo('#primariaSecction');
+
+                                    $('#secundariaSecction').children().last().remove();
+
+                                    var section = secundaria.clone();
+
+                                    section.find('#secundaria-nombre').attr('id', 'Secundaria-' + secundariaCount + '[nombre]').attr('name', 'Secundaria-' + secundariaCount + '[nombre]');
+                                    section.find('#secundaria-ciudad').attr('id', 'Secundaria-' + secundariaCount + '[ciudad]').attr('name', 'Secundaria-' + secundariaCount + '[ciudad]');
+                                    section.find('#secundaria-promedio').attr('id', 'Secundaria-' + secundariaCount + '[promedio]').attr('name', 'Secundaria-' + secundariaCount + '[promedio]');
+
+                                    section.appendTo('#secundariaSecction');
+
+                                    $('#prepaSecction').children().last().remove();
+
+                                    var section = prepa.clone();
+
+                                    section.find('#prepa-nombre').attr('id', 'Preparatoria-' + prepaCount + '[nombre]').attr('name', 'Preparatoria-' + prepaCount + '[nombre]');
+                                    section.find('#prepa-ciudad').attr('id', 'Preparatoria-' + prepaCount + '[ciudad]').attr('name', 'Preparatoria-' + prepaCount + '[ciudad]');
+                                    section.find('#prepa-promedio').attr('id', 'Preparatoria-' + prepaCount + '[promedio]').attr('name', 'Preparatoria-' + prepaCount + '[promedio]');
+
+                                    section.appendTo('#prepaSecction');
+                                @endif
+
+                                @if(isset($brothers) && count($brothers) != 0)
+                                    $('#brotherSecction').children().last().remove();
+
+                                    @foreach($brothers as $item)
+                                        var section = template.clone();
+
+                                        section.find('#Brother-nombre').attr('id', 'Brother-' + sectionsCount + '[nombre]').attr('name', 'Brother-' + sectionsCount + '[nombre]').val("{{$item->nombre}}");
+                                        section.find('#Brother-sex').attr('id', 'Brother-' + sectionsCount + '[sex]').attr('name', 'Brother-' + sectionsCount + '[sex]').val("{{$item->sex}}");
+                                        section.find('#Brother-edad').attr('id', 'Brother-' + sectionsCount + '[edad]').attr('name', 'Brother-' + sectionsCount + '[edad]').val("{{$item->edad}}");
+                                        section.find('#Brother-trabajoEstudio').attr('id', 'Brother-' + sectionsCount + '[trabajoEstudio]').attr('name', 'Brother-' + sectionsCount + '[trabajoEstudio]').val("{{$item->trabajoEstudio}}");
+
+                                        section.appendTo('#brotherSecction');
+                                    @endforeach
+                                @else
+                                    $('#brotherSecction').children().last().remove();
+
+                                    var section = template.clone();
+
+                                    section.find('#Brother-nombre').attr('id', 'Brother-' + sectionsCount + '[nombre]').attr('name', 'Brother-' + sectionsCount + '[nombre]');
+                                    section.find('#Brother-sex').attr('id', 'Brother-' + sectionsCount + '[sex]').attr('name', 'Brother-' + sectionsCount + '[sex]');
+                                    section.find('#Brother-edad').attr('id', 'Brother-' + sectionsCount + '[edad]').attr('name', 'Brother-' + sectionsCount + '[edad]');
+                                    section.find('#Brother-trabajoEstudio').attr('id', 'Brother-' + sectionsCount + '[trabajoEstudio]').attr('name', 'Brother-' + sectionsCount + '[trabajoEstudio]');
+
+                                    section.appendTo('#brotherSecction');
+                                @endif
 
 
                                 $('#back').on('click', function (e) {
@@ -166,9 +274,7 @@
 
                                 $('#saveASD').on('click', function (e) {
                                     e.preventDefault();
-                                    if($('#finalEmail').val() == $('#finalEmail2').val()){
-                                        $('#saveB').click();
-                                    }
+                                    $('#saveB').click();
                                 });
 
                                 $('#duplicateB').on('click', function (e) {
@@ -182,7 +288,6 @@
                                     section.find('#Brother-sex').attr('id', 'Brother-' + sectionsCount + '[sex]').attr('name', 'Brother-' + sectionsCount + '[sex]');
                                     section.find('#Brother-edad').attr('id', 'Brother-' + sectionsCount + '[edad]').attr('name', 'Brother-' + sectionsCount + '[edad]');
                                     section.find('#Brother-trabajoEstudio').attr('id', 'Brother-' + sectionsCount + '[trabajoEstudio]').attr('name', 'Brother-' + sectionsCount + '[trabajoEstudio]');
-
 
                                     section.appendTo('#brotherSecction');
 
@@ -199,7 +304,7 @@
 
                                     section.find('#primaria-nombre').attr('id', 'Primaria-' + primariaCount + '[nombre]').attr('name', 'Primaria-' + primariaCount + '[nombre]');
                                     section.find('#primaria-ciudad').attr('id', 'Primaria-' + primariaCount + '[ciudad]').attr('name', 'Primaria-' + primariaCount + '[ciudad]');
-                                    section.find('#primaria-promedioGeneral').attr('id', 'Primaria-' + primariaCount + '[promedioGeneral]').attr('name', 'Primaria-' + primariaCount + '[promedioGeneral]');
+                                    section.find('#primaria-promedio').attr('id', 'Primaria-' + primariaCount + '[promedio]').attr('name', 'Primaria-' + primariaCount + '[promedio]');
 
                                     section.appendTo('#primariaSecction');
 
@@ -216,7 +321,7 @@
 
                                     section.find('#secundaria-nombre').attr('id', 'Secundaria-' + secundariaCount + '[nombre]').attr('name', 'Secundaria-' + secundariaCount + '[nombre]');
                                     section.find('#secundaria-ciudad').attr('id', 'Secundaria-' + secundariaCount + '[ciudad]').attr('name', 'Secundaria-' + secundariaCount + '[ciudad]');
-                                    section.find('#secundaria-promedioGeneral').attr('id', 'Secundaria-' + secundariaCount + '[promedioGeneral]').attr('name', 'Secundaria-' + secundariaCount + '[promedioGeneral]');
+                                    section.find('#secundaria-promedio').attr('id', 'Secundaria-' + secundariaCount + '[promedio]').attr('name', 'Secundaria-' + secundariaCount + '[promedio]');
 
                                     section.appendTo('#secundariaSecction');
 
@@ -234,7 +339,7 @@
 
                                     section.find('#prepa-nombre').attr('id', 'Preparatoria-' + prepaCount + '[nombre]').attr('name', 'Preparatoria-' + prepaCount + '[nombre]');
                                     section.find('#prepa-ciudad').attr('id', 'Preparatoria-' + prepaCount + '[ciudad]').attr('name', 'Preparatoria-' + prepaCount + '[ciudad]');
-                                    section.find('#prepa-promedioGeneral').attr('id', 'Preparatoria-' + prepaCount + '[promedioGeneral]').attr('name', 'Preparatoria-' + prepaCount + '[promedioGeneral]');
+                                    section.find('#prepa-promedio').attr('id', 'Preparatoria-' + prepaCount + '[promedio]').attr('name', 'Preparatoria-' + prepaCount + '[promedio]');
 
                                     section.appendTo('#prepaSecction');
 
@@ -242,27 +347,12 @@
 
                                 });
 
-                                $('#removeB').on('click', function (e) {
-                                    e.preventDefault();
-
-                                    if(sectionsCount > 0){
-                                        sectionsCount -= 1;
-
-                                        $('#brotherSecction').children().last().remove();
-                                    }
-
-                                    if(sectionsCount == 0){
-                                        $('#removeB').hide(200);
-                                    }
-
-                                });
-
                                 $('#removeP').on('click', function (e) {
                                     e.preventDefault();
 
-                                    if(primariaCount > 1){
-                                        primariaCount -= 1;
+                                    $('#academicoChange').val(1);
 
+                                    if(primariaCount > 1){
                                         $('#primariaSecction').children().last().remove();
                                     }
 
@@ -275,9 +365,9 @@
                                 $('#removeS').on('click', function (e) {
                                     e.preventDefault();
 
-                                    if(secundariaCount > 1){
-                                        secundariaCount -= 1;
+                                    $('#academicoChange').val(1);
 
+                                    if(secundariaCount > 1){
                                         $('#secundariaSecction').children().last().remove();
                                     }
 
@@ -290,9 +380,9 @@
                                 $('#removePrepa').on('click', function (e) {
                                     e.preventDefault();
 
-                                    if(prepaCount > 1){
-                                        prepaCount -= 1;
+                                    $('#academicoChange').val(1);
 
+                                    if(prepaCount > 1){
                                         $('#prepaSecction').children().last().remove();
                                     }
 
@@ -302,12 +392,70 @@
 
                                 });
 
+                                $('input[type=radio][name=examenesExtraordinarios]').change(function() {
+                                    if (this.value == 1) {
+                                        $('#cualExamenExtraordinario').attr('required', true);
+                                        $('#razonExamenExtraordinario').attr('required', true);
+                                        $('#cualExamenExtraordinario').show(200);
+                                        $('#razonExamenExtraordinario').show(200);
+                                    }
+                                    else if (this.value == 0) {
+                                        $('#cualExamenExtraordinario').attr('required', false);
+                                        $('#razonExamenExtraordinario').attr('required', false);
+                                        $('#cualExamenExtraordinario').hide(200);
+                                        $('#razonExamenExtraordinario').hide(200);
+                                    }
+                                });
+
+                                $('input[type=radio][name=estudioEnExtranjero]').change(function() {
+                                    if (this.value == 1) {
+                                        $('#lugarEstudioExtranjero').attr('required', true);
+                                        $('#lugarEstudioExtranjero').show(200);
+                                    }
+                                    else if (this.value == 0) {
+                                        $('#lugarEstudioExtranjero').attr('required', false);
+                                        $('#lugarEstudioExtranjero').hide(200);
+
+                                    }
+                                });
+
+                                $('input[type=radio][name=reprobarSemestre]').change(function() {
+                                    if (this.value == 1) {
+                                        $('#cualReprobarSemestre').attr('required', true);
+                                        $('#razonReprobarSemestre').attr('required', true);
+                                        $('#cualReprobarSemestre').show(200);
+                                        $('#razonReprobarSemestre').show(200);
+
+                                    }
+                                    else if (this.value == 0) {
+                                        $('#cualReprobarSemestre').attr('required', false);
+                                        $('#razonReprobarSemestre').attr('required', false);
+                                        $('#cualReprobarSemestre').hide(200);
+                                        $('#razonReprobarSemestre').hide(200);
+                                    }
+                                });
+
+                                $('input[type=radio][name=universidadPrevia]').change(function() {
+                                    if (this.value == 1) {
+                                        $('#razonUniversidadPrevia').attr('required', true);
+                                        $('#razonUniversidadPrevia').show(200);
+
+                                    }
+                                    else if (this.value == 0) {
+                                        $('#razonUniversidadPrevia').attr('required', false);
+                                        $('#razonUniversidadPrevia').hide(200);
+                                    }
+                                });
+
                             });
                         </script>
 
                         <div class="card-body">
                             <form role="form" method="POST" action="{{ route('user.createOV') }}" accept-charset="UTF-8" id="login-nav">
                                 @csrf
+
+                                <input type="hidden" id="brotherChange" name="brotherChange" value=0>
+                                <input type="hidden" id="academicoChange" name="academicoChange" value=0>
 
                                 <div class="row">
                                     <div class="col-md-6 form-group">
@@ -361,91 +509,95 @@
                                     </div>
                                 </div>
 
-                                <div id="brotherSecction">
-                                    <div id="brotherTemplate" class="row">
-                                        <div id="main" class="col-md-12 form-group form-inline">
-                                            <label id="hermano" class="formLabel">Hermano:</label>
-                                            <input name="Brother-nombre" id="Brother-nombre" class="form-control" placeholder="Nombre"  type="text" required>
-                                            <select name="Brother-sex" id="Brother-sex" class="form-control" required>
-                                                <option value="m">Masculino</option>
-                                                <option value="f">Femenino</option>
-                                            </select>
-                                            <input name="Brother-edad" id="Brother-edad" class="form-control" placeholder="Edad" type="text" required>
-                                            <input name="Brother-trabajoEstudio" id="Brother-trabajoEstudio" class="form-control" placeholder="Lugar donde trabaja o estudia" type="text" required>
+                                <fieldset>
+                                    <legend>Hermanos:</legend>
+                                    <div id="brotherSecction">
+                                        <div id="brotherTemplate" class="row">
+                                            <div id="main" class="col-md-12 form-group form-inline">
+                                                <label id="hermano" class="formLabel">Hermano:</label>
+                                                <input name="Brother-nombre" id="Brother-nombre" class="form-control" placeholder="Nombre"  type="text" required>
+                                                <select name="Brother-sex" id="Brother-sex" class="form-control" required>
+                                                    <option value="m">Masculino</option>
+                                                    <option value="f">Femenino</option>
+                                                </select>
+                                                <input name="Brother-edad" id="Brother-edad" class="form-control" placeholder="Edad" type="text" required>
+                                                <input name="Brother-trabajoEstudio" id="Brother-trabajoEstudio" class="form-control" placeholder="Lugar donde trabaja o estudia" type="text" required>
+                                                <button class="removeB btn btn-outline-primary">Quitar Hermano</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <button id="removeB" class="btn btn-outline-primary">Quitar Hermano</button>
-                                    </div>
-                                    <div class="col-md-6" style="text-align: right">
-                                        <button id="duplicateB" class="btn btn-outline-primary">Agregar Hermano</button>
-                                    </div>
-                                </div>
-
-                                <div id="primariaSecction">
-                                    <div id="primariaTemplate" class="row">
-                                        <div id="main" class="form-group col-md-12 form-inline">
-                                            <label id="primaria" class="formLabel">Primaria:</label>
-                                            <input name="primaria-nombre" id="primaria-nombre" class="form-control" placeholder="Nombre"  type="text" required>
-                                            <input name="primaria-ciudad" id="primaria-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
-                                            <input name="primaria-promedioGeneral" id="primaria-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                    <div class="row" style="padding-bottom: 10px">
+                                        <div class="col-md-12" style="text-align: right">
+                                            <button id="duplicateB" class="btn btn-outline-primary">Agregar Hermano</button>
                                         </div>
                                     </div>
-                                </div>
+                                </fieldset>
 
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <button id="removeP" class="btn btn-outline-primary">Quitar Primaria</button>
-                                    </div>
-                                    <div class="col-md-6" style="text-align: right">
-                                        <button id="duplicateP" class="btn btn-outline-primary">Agregar Primaria</button>
-                                    </div>
-                                </div>
+                                <fieldset >
+                                    <legend style="padding-top: 20px">Escolaridad:</legend>
 
-                                <div id="secundariaSecction">
-                                    <div id="secundariaTemplate" class="row">
-                                        <div id="main" class="form-group col-md-12 form-inline">
-                                            <label id="secundaria" class="formLabel">Secundaria:</label>
-                                            <input name="secundaria-nombre" id="secundaria-nombre" class="form-control" placeholder="Nombre"  type="text" required>
-                                            <input name="secundaria-ciudad" id="secundaria-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
-                                            <input name="secundaria-promedioGeneral" id="secundaria-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                    <div id="primariaSecction">
+                                        <div id="primariaTemplate" class="row">
+                                            <div id="main" class="form-group col-md-12 form-inline">
+                                                <label id="primaria" class="formLabel">Primaria:</label>
+                                                <input name="primaria-nombre" id="primaria-nombre" class="form-control academico" placeholder="Nombre"  type="text" required>
+                                                <input name="primaria-ciudad" id="primaria-ciudad" class="form-control academico" placeholder="Ciudad" type="text" required>
+                                                <input name="primaria-promedio" id="primaria-promedio" class="form-control academico" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <button id="removeS" class="btn btn-outline-primary">Quitar Secundaria</button>
-                                    </div>
-                                    <div class="col-md-6" style="text-align: right">
-                                        <button id="duplicateS" class="btn btn-outline-primary">Agregar Secundaria</button>
-                                    </div>
-                                </div>
-
-                                <div id="prepaSecction">
-                                    <div id="prepaTemplate" class="row">
-                                        <div id="main" class="form-group col-md-12 form-inline">
-                                            <label id="prepa" class="formLabel">Bachillerato:</label>
-                                            <input name="prepa-nombre" id="prepa-nombre" class="form-control" placeholder="Nombre"  type="text" required>
-                                            <input name="prepa-ciudad" id="prepa-ciudad" class="form-control" placeholder="Ciudad" type="text" required>
-                                            <input name="prepa-promedioGeneral" id="prepa-promedioGeneral" class="form-control" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                    <div class="row" style="padding-bottom: 10px">
+                                        <div class="col-md-6" style="text-align: left">
+                                            <button id="removeP" class="btn btn-outline-primary">Quitar Primaria</button>
+                                        </div>
+                                        <div class="col-md-6" style="text-align: right">
+                                            <button id="duplicateP" class="btn btn-outline-primary">Agregar Primaria</button>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: left">
-                                        <button id="removePrepa" class="btn btn-outline-primary">Quitar Bachillerato</button>
+                                    <div id="secundariaSecction">
+                                        <div id="secundariaTemplate" class="row">
+                                            <div id="main" class="form-group col-md-12 form-inline">
+                                                <label id="secundaria" class="formLabel">Secundaria:</label>
+                                                <input name="secundaria-nombre" id="secundaria-nombre" class="form-control academico" placeholder="Nombre"  type="text" required>
+                                                <input name="secundaria-ciudad" id="secundaria-ciudad" class="form-control academico" placeholder="Ciudad" type="text" required>
+                                                <input name="secundaria-promedio" id="secundaria-promedio" class="form-control academico" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6" style="text-align: right">
-                                        <button id="duplicatePrepa" class="btn btn-outline-primary">Agregar Bachillerato</button>
-                                    </div>
-                                </div>
 
-                                <div class="row">
+                                    <div class="row" style="padding-bottom: 10px">
+                                        <div class="col-md-6" style="text-align: left">
+                                            <button id="removeS" class="btn btn-outline-primary">Quitar Secundaria</button>
+                                        </div>
+                                        <div class="col-md-6" style="text-align: right">
+                                            <button id="duplicateS" class="btn btn-outline-primary">Agregar Secundaria</button>
+                                        </div>
+                                    </div>
+
+                                    <div id="prepaSecction">
+                                        <div id="prepaTemplate" class="row">
+                                            <div id="main" class="form-group col-md-12 form-inline">
+                                                <label id="prepa" class="formLabel">Bachillerato:</label>
+                                                <input name="prepa-nombre" id="prepa-nombre" class="form-control academico" placeholder="Nombre"  type="text" required>
+                                                <input name="prepa-ciudad" id="prepa-ciudad" class="form-control academico" placeholder="Ciudad" type="text" required>
+                                                <input name="prepa-promedio" id="prepa-promedio" class="form-control academico" placeholder="Promedio, Ejemplo 85" type="text" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-bottom: 10px">
+                                        <div class="col-md-6" style="text-align: left">
+                                            <button id="removePrepa" class="btn btn-outline-primary">Quitar Bachillerato</button>
+                                        </div>
+                                        <div class="col-md-6" style="text-align: right">
+                                            <button id="duplicatePrepa" class="btn btn-outline-primary">Agregar Bachillerato</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="row" style="padding-top: 20px">
                                     <div class="form-group col-md-12">
                                         <label class="formLabel">¿Qué área cursas o cursaste en el último año de bachillerato?</label>
                                         <input type="text" id="areaBachillerato" name="areaBachillerato" class="form-control" required value="{{$ov->areaBachillerato}}">
@@ -460,7 +612,7 @@
                                     </div>
                                     <div class="form-group col-md-7">
                                         <label class="formLabel">¿En dónde y por cuánto tiempo?</label>
-                                        <input type="text" id="lugarEstudioExtranjero" name="lugarEstudioExtranjero" class="form-control" required value="{{$ov->lugarEstudioExtranjero}}">
+                                        <input type="text" id="lugarEstudioExtranjero" name="lugarEstudioExtranjero" class="form-control" value="{{$ov->lugarEstudioExtranjero}}">
                                     </div>
                                 </div>
 
@@ -494,14 +646,14 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualExamenExtraordinario" name="cualExamenExtraordinario" class="form-control" required value="{{$ov->cualExamenExtraordinario}}">
+                                        <input type="text" id="cualExamenExtraordinario" name="cualExamenExtraordinario" class="form-control" value="{{$ov->cualExamenExtraordinario}}">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label class="formLabel">¿Por qué?</label>
-                                        <input type="text" id="razonExamenExtraordinario" name="razonExamenExtraordinario" class="form-control" required value="{{$ov->razonExamenExtraordinario}}">
+                                        <input type="text" id="razonExamenExtraordinario" name="razonExamenExtraordinario" class="form-control" value="{{$ov->razonExamenExtraordinario}}">
                                     </div>
                                 </div>
 
@@ -514,14 +666,14 @@
                                     </div>
                                     <div class="form-group col-md-7">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualReprobarSemestre" name="cualReprobarSemestre" class="form-control" required value="{{$ov->cualReprobarSemestre}}">
+                                        <input type="text" id="cualReprobarSemestre" name="cualReprobarSemestre" class="form-control" value="{{$ov->cualReprobarSemestre}}">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label class="formLabel">¿Por qué?</label>
-                                        <input type="text" id="razonReprobarSemestre" name="razonReprobarSemestre" class="form-control" required value="{{$ov->razonReprobarSemestre}}">
+                                        <input type="text" id="razonReprobarSemestre" name="razonReprobarSemestre" class="form-control" value="{{$ov->razonReprobarSemestre}}">
                                     </div>
                                 </div>
 
