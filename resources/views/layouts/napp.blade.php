@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Admisiones') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @if(Request::url() != route('cuestionario') && Request::url() != route('familiar'))
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    @endif
 
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
@@ -31,8 +33,17 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
 
-    <style>
+    <link href="{{ asset('css/intlTelInput.css') }}" rel="stylesheet">
 
+    <style>
+        .iti-flag {background-image: url("{{asset('img/flags.png')}}");}
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+            .iti-flag {background-image: url("{{asset('img/flags@2x.png')}}");}
+        }
+    </style>
+
+    <style>
 
         html {
             height: 100%;
@@ -106,10 +117,8 @@
         }
 
         .box {
-            width: 900px;
+            width: 100%;
             border: 2px solid #4c2f1e;
-            padding: 25px;
-            margin: 25px;
             background-color: #613b25;
             border-radius: 25px;
             font-family: Roboto;
@@ -160,18 +169,10 @@
         #middle {width: 50%; }
         #right {width: 25%; }
 
+        .intl-tel-input {width: 100%;}
+
     </style>
 
-    <script>
-        $(document).ready(function () {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content');
-                }
-            });
-
-        });
-    </script>
     <script type="text/javascript">
         function toggle_visibility(id) {
             var e = document.getElementById(id);

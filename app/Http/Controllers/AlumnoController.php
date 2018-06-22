@@ -35,7 +35,7 @@ class AlumnoController extends Controller
     public function back(){
         $user = Auth::user();
 
-        if ($user) {
+        if ($user && $user->step != 1) {
 
             $step = $user->step;
 
@@ -44,13 +44,17 @@ class AlumnoController extends Controller
             $user->saveOrFail();
 
             return redirect()->route('familiar');
+        }else{
+            if($user->step == 1){
+                return redirect()->route('familiar');
+            }
         }
     }
 
     public function backOV(){
         $user = Auth::user();
 
-        if ($user) {
+        if ($user && $user->step2 != 1) {
 
             $step = $user->step2;
 
@@ -59,6 +63,10 @@ class AlumnoController extends Controller
             $user->saveOrFail();
 
             return redirect()->route('orientacionVocacional');
+        }else{
+            if($user->step2 == 1){
+                return redirect()->route('orientacionVocacional');
+            }
         }
     }
 
@@ -126,6 +134,14 @@ class AlumnoController extends Controller
 
             if($request->has('telefono')){
                 $alumno->telefono = $request->telefono;
+            }
+
+            if($request->has('celularInt')){
+                $alumno->celularInt = $request->celularInt;
+            }
+
+            if($request->has('telefonoInt')){
+                $alumno->telefonoInt = $request->telefonoInt;
             }
 
             if($request->has('celular')){
@@ -359,6 +375,16 @@ class AlumnoController extends Controller
             }
 
             $rStep = ($step + 1);
+
+            if($rStep == 5){
+                $rStep = 1;
+                $ov = OrientacionVocacional::where('idUser','=', $user->id)->first();
+
+                if($ov){
+                    $ov->finished = true;
+                    $ov->saveOrFail();
+                }
+            }
 
             $user->step2 = $rStep;
 

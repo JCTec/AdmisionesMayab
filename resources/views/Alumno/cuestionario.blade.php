@@ -10,9 +10,24 @@
                             Datos Generales
                         </div>
 
-                        <div style="padding-left: 10px; padding-right: 10px;">
+                        <div class="card-body">
                             <script>
                                 $(document).ready(function () {
+
+                                    $('#navbarDropdown').on('click', function (event) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+
+                                        if($(this).attr('aria-expanded') == "true"){
+                                            $('#nav').find('li').removeClass('show');
+                                            $(this).attr('aria-expanded', false);
+                                            $(this).next().removeClass('show');
+                                        }else{
+                                            $('#nav').find('li').addClass('show');
+                                            $(this).attr('aria-expanded', true);
+                                            $(this).next().addClass('show');
+                                        }
+                                    });
 
                                     @if(!isset($Alumno->preparatoria) || $Alumno->preparatoria == 159)
                                         $('#otraPrepa').show();
@@ -166,12 +181,54 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label class="formLabel">Teléfono:</label>
-                                        <input name="telefono" id="telefono" class="form-control" placeholder="Teléfono" type="text" value="{{$Alumno->telefono}}" required>
+                                        <input name="telefono" id="telefono" class="form-control" type="tel" required>
+                                        <input name="telefonoInt" id="telefonoInt" class="form-control" type="text" value="{{$Alumno->telefonoInt}}" hidden required>
+
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label class="formLabel">Celular:</label>
-                                        <input name="celular" id="celular" class="form-control" placeholder="Celular" type="text" value="{{$Alumno->celular}}" required>
+                                        <input name="celular" id="celular" class="form-control" type="tel" required>
+                                        <input name="celularInt" id="celularInt" class="form-control" type="text" value="{{$Alumno->celularInt}}" hidden required>
                                     </div>
+                                    <script src="{{asset('js/intlTelInput.js')}}"></script>
+                                    <script>
+
+                                        $('#telefono').intlTelInput({
+                                            allowDropdown: true,
+                                            utilsScript: "{{asset('js/utils.js')}}",
+                                            preferredCountries: ["mx", "sv"],
+                                            initialCountry: "mx"
+                                        });
+
+                                        @if(isset($Alumno->telefono))
+                                            $("#telefono").intlTelInput("setNumber", "{{$Alumno->telefonoInt}}{{$Alumno->telefono}}");
+                                        @else
+                                            $('#telefonoInt').val("+52");
+                                        @endif
+
+                                        $('#celular').intlTelInput({
+                                            allowDropdown: true,
+                                            utilsScript: "{{asset('js/utils.js')}}",
+                                            preferredCountries: ["mx", "sv"],
+                                            initialCountry: "mx"
+                                        });
+
+                                        @if(isset($Alumno->celular))
+                                            $("#celular").intlTelInput("setNumber", "{{$Alumno->celularInt}}{{$Alumno->celular}}");
+                                        @else
+                                            $('#celularInt').val("+52");
+                                        @endif
+
+                                        $('#telefono').on('countrychange', function (e, countrychange) {
+                                            var code = ('+' + countrychange.dialCode);
+                                            $('#telefonoInt').val(code);
+                                        });
+
+                                        $('#celular').on('countrychange', function (e, countrychange) {
+                                            var code = ('+' + countrychange.dialCode);
+                                            $('#celularInt').val(code);
+                                        });
+                                    </script>
                                 </div>
 
                                 <div class="row">
@@ -191,13 +248,12 @@
                                     </div>
                                 </div>
 
-                                <div id="container">
-                                    <div id="left"></div>
-                                    <div id="middle"></div>
-                                    <div id="right" style="padding-left: 150px; padding-bottom: 30px; padding-top: 10px">
+                                <div class="row">
+                                    <div class="col-sm-12" style="text-align: right">
                                         <button id="saveASD" class="btn btn-outline-primary">Guardar</button>
                                     </div>
                                 </div>
+
                             </form>
                         </div>
 

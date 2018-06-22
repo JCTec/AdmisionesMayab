@@ -25,6 +25,8 @@ class CreateFamiliarsTable extends Migration
             $table->string('secondLastName');
             $table->string('telefono');
             $table->string('celular');
+            $table->string('telefonoInt');
+            $table->string('celularInt');
             $table->string('direccion');
             $table->string('email');
             $table->string('giro');

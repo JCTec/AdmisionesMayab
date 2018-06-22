@@ -9,6 +9,7 @@ use App\Fileentries;
 use App\HistorialAcademico;
 use App\Idioma;
 use App\OrientacionVocacional;
+use App\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Alumno;
@@ -329,122 +330,10 @@ class HomeController extends Controller
                 return 1;
             }
 
-
-            $familiar = familiar::where('idUser','=',$user->id)->where('relacion','=',1)->first();
-
-            $familiar2 = familiar::where('idUser','=',$user->id)->where('relacion','=',2)->first();
-
-            if($familiar && $familiar2){
-                if(!$familiar->titulo){
-                    return 2;
-                }
-
-                if(!$familiar->firstName){
-                    return 2;
-                }
-
-
-                if(!$familiar->telefono){
-                    return 2;
-                }
-
-                if(!$familiar->celular){
-                    return 2;
-                }
-
-                if(!$familiar->email){
-                    return 2;
-                }
-
-                if(!$familiar->giro){
-                    return 2;
-                }
-
-                if(!$familiar->puesto){
-                    return 2;
-                }
-
-                if($familiar->empresa == null){
-                    return 2;
-                }
-
-                if(!$familiar2->titulo){
-                    return 2;
-                }
-
-                if(!$familiar2->firstName){
-                    return 2;
-                }
-
-
-                if(!$familiar2->telefono){
-                    return 2;
-                }
-
-                if(!$familiar2->celular){
-                    return 2;
-                }
-
-                if(!$familiar2->email){
-                    return 2;
-                }
-
-
-                if(!$familiar2->giro){
-                    return 2;
-                }
-
-                if(!$familiar2->puesto){
-                    return 2;
-                }
-
-                if($familiar2->empresa == null){
-                    return 2;
-                }
-            }else{
+            $payment = Transaction::where('idUser','=',$user->id)->first();
+            
+            if(!$payment){
                 return 2;
-            }
-
-
-            if(!$alumno->tutor){
-                $familiar3 = familiar::where('idUser','=',$user->id)->where('relacion','=',3)->first();
-
-                if($familiar3){
-                    if(!$familiar3->titulo){
-                        return 2;
-                    }
-
-                    if(!$familiar3->firstName){
-                        return 2;
-                    }
-
-                    if(!$familiar3->telefono){
-                        return 2;
-                    }
-
-                    if(!$familiar3->celular){
-                        return 2;
-                    }
-
-                    if(!$familiar3->email){
-                        return 2;
-                    }
-
-                    if(!$familiar3->giro){
-                        return 2;
-                    }
-
-                    if(!$familiar3->puesto){
-                        return 2;
-                    }
-
-                    if($familiar3->empresa == null){
-                        return 2;
-                    }
-                }else{
-                    return 2;
-                }
-
             }
 
             $files =  Fileentries::where('idUser','=',$alumno->idUser)->count();
@@ -454,8 +343,134 @@ class HomeController extends Controller
             }
 
 
+            $familiar = familiar::where('idUser','=',$user->id)->where('relacion','=',1)->first();
 
-            return 4;
+            $familiar2 = familiar::where('idUser','=',$user->id)->where('relacion','=',2)->first();
+
+            if($familiar && $familiar2){
+                if(!$familiar->titulo){
+                    return 4;
+                }
+
+                if(!$familiar->firstName){
+                    return 4;
+                }
+
+
+                if(!$familiar->telefono){
+                    return 4;
+                }
+
+                if(!$familiar->celular){
+                    return 4;
+                }
+
+                if(!$familiar->email){
+                    return 4;
+                }
+
+                if(!$familiar->giro){
+                    return 4;
+                }
+
+                if(!$familiar->puesto){
+                    return 4;
+                }
+
+                if($familiar->empresa == null){
+                    return 4;
+                }
+
+                if(!$familiar2->titulo){
+                    return 4;
+                }
+
+                if(!$familiar2->firstName){
+                    return 4;
+                }
+
+
+                if(!$familiar2->telefono){
+                    return 4;
+                }
+
+                if(!$familiar2->celular){
+                    return 4;
+                }
+
+                if(!$familiar2->email){
+                    return 4;
+                }
+
+
+                if(!$familiar2->giro){
+                    return 4;
+                }
+
+                if(!$familiar2->puesto){
+                    return 4;
+                }
+
+                if($familiar2->empresa == null){
+                    return 4;
+                }
+            }else{
+                return 4;
+            }
+
+
+            if(!$alumno->tutor){
+                $familiar3 = familiar::where('idUser','=',$user->id)->where('relacion','=',3)->first();
+
+                if($familiar3){
+                    if(!$familiar3->titulo){
+                        return 4;
+                    }
+
+                    if(!$familiar3->firstName){
+                        return 4;
+                    }
+
+                    if(!$familiar3->telefono){
+                        return 4;
+                    }
+
+                    if(!$familiar3->celular){
+                        return 4;
+                    }
+
+                    if(!$familiar3->email){
+                        return 4;
+                    }
+
+                    if(!$familiar3->giro){
+                        return 4;
+                    }
+
+                    if(!$familiar3->puesto){
+                        return 4;
+                    }
+
+                    if($familiar3->empresa == null){
+                        return 4;
+                    }
+                }else{
+                    return 4;
+                }
+
+            }
+
+            $ov = OrientacionVocacional::where('idUser','=',$alumno->idUser)->first();
+
+            if(!$ov){
+                return 5;
+            }else{
+                if(!$ov->finished){
+                    return 5;
+                }
+            }
+
+            return 6;
         }
     }
 }

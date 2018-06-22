@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrientacionVocacional extends Model
 {
-    protected $table = 'orientacion_vocacionals';
+    protected $table = 'orientacion_vocacional';
 
     protected $primaryKey = 'id';
 
@@ -18,7 +18,12 @@ class OrientacionVocacional extends Model
         'razonExperienciaLaboralElegirCarrera','trabajoActual','razonTrabajoActual','empresaTrabajoActual','añosTrabajoActual',
         'mesesTrabajoActual','horarioTrabajoActual','considerarSaludable','necesitaAsistencia','tipoAsistenciaNecesitada',
         'necesitaExamenesNoEscritos','tipoDeExamenNecesitado','problemaContinuoSalud','tipoProblemaContinuoSalud','terapiaRecibida',
-        'tipoDeTerapiaRecibida','razonDeTerapiaRecibida',
+        'tipoDeTerapiaRecibida','razonDeTerapiaRecibida', 'descripcionFamilia','mejorRelacionFamiliar','cambioEnFamilia',
+        'admirarPersonalidadPadre','defectosPersonalidadPadre','platicarProblemasConPadre','admirarPersonalidadMadre',
+        'defectosPersonalidadMadre','platicarProblemasConMadre','relacionConHermanos','pasatiempos','practicaDeporte','cualPracticaDeporte',
+        'organizacionAyudaSocial','cualOrganizacionAyudaSocial','directivoGrupo','cualDirectivoGrupo','actividadCultural',
+        'cualDirectivoGrupo','cualActividadCultural','gustoLectura','frecuenciaLectura','usaRedesSociales','cualExperienciaOrganizaciones',
+        'cualRedesSociales', 'cualLectura','finished'
     ];
 
     public $incrementing = true;

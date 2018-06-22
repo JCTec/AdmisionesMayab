@@ -177,6 +177,11 @@
                                     sectionsCount += 1;
                                 });
 
+                                $('#back').on('click', function (e) {
+                                    e.preventDefault();
+                                    window.location = "{{route('backOV')}}";
+                                });
+
 
                             });
                         </script>
@@ -258,7 +263,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12" style="text-align: right">
+                                    <div class="col-sm-6">
+                                        <button id="back" class="btn btn-outline-primary">Atras</button>
+                                    </div>
+                                    <div class="col-sm-6" style="text-align: right">
                                         <button id="saveASD" class="btn btn-outline-primary">Guardar</button>
                                     </div>
                                 </div>

@@ -14,6 +14,21 @@
 
                             $(document).ready(function () {
 
+                                $('#navbarDropdown').on('click', function (event) {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+
+                                    if($(this).attr('aria-expanded') == "true"){
+                                        $('#nav').find('li').removeClass('show');
+                                        $(this).attr('aria-expanded', false);
+                                        $(this).next().removeClass('show');
+                                    }else{
+                                        $('#nav').find('li').addClass('show');
+                                        $(this).attr('aria-expanded', true);
+                                        $(this).next().addClass('show');
+                                    }
+                                });
+
                                 $('#back').on('click', function () {
                                     window.location = "{{route('back')}}";
                                 });

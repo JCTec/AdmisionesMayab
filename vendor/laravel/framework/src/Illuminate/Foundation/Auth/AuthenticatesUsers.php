@@ -42,14 +42,7 @@ trait AuthenticatesUsers
         }
 
         if ($this->attemptLogin($request)) {
-
-            $user = \App\User::where('email', '=',$request->email)->first();
-
-            if($user->active){
-                return $this->sendLoginResponse($request);
-            }else{
-                return $this->sendFailedLoginResponse($request);
-            }
+            return $this->sendLoginResponse($request);
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts

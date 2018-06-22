@@ -51,7 +51,7 @@
                                     }
                                 }else if (estudioEnExtranjero == 0){
                                     $('#lugarEstudioExtranjero').attr('required', false);
-                                    $('#lugarEstudioExtranjero').hide(200);
+                                    $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=estudioEnExtranjero]');
                                     if($radios.is(':checked') === false) {
@@ -77,8 +77,8 @@
                                 }else if (examenesExtraordinarios == 0){
                                     $('#cualExamenExtraordinario').attr('required', false);
                                     $('#razonExamenExtraordinario').attr('required', false);
-                                    $('#cualExamenExtraordinario').hide(200);
-                                    $('#razonExamenExtraordinario').hide(200);
+                                    $('#cualExamenExtraordinario').hide(200).prev().hide(200);
+                                    $('#razonExamenExtraordinario').hide(200).prev().hide(200);
 
 
                                     var $radios = $('input:radio[name=examenesExtraordinarios]');
@@ -106,8 +106,8 @@
                                 }else if (reprobarSemestre == 0){
                                     $('#cualReprobarSemestre').attr('required', false);
                                     $('#razonReprobarSemestre').attr('required', false);
-                                    $('#cualReprobarSemestre').hide(200);
-                                    $('#razonReprobarSemestre').hide(200);
+                                    $('#cualReprobarSemestre').hide(200).prev().hide(200);
+                                    $('#razonReprobarSemestre').hide(200).prev().hide(200);
 
 
                                     var $radios = $('input:radio[name=reprobarSemestre]');
@@ -133,7 +133,7 @@
                                     }
                                 }else if (universidadPrevia == 0){
                                     $('#razonUniversidadPrevia').attr('required', false);
-                                    $('#razonUniversidadPrevia').hide(200);
+                                    $('#razonUniversidadPrevia').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=universidadPrevia]');
                                     if($radios.is(':checked') === false) {
@@ -396,25 +396,25 @@
                                     if (this.value == 1) {
                                         $('#cualExamenExtraordinario').attr('required', true);
                                         $('#razonExamenExtraordinario').attr('required', true);
-                                        $('#cualExamenExtraordinario').show(200);
-                                        $('#razonExamenExtraordinario').show(200);
+                                        $('#cualExamenExtraordinario').show(200).prev().show(200);
+                                        $('#razonExamenExtraordinario').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#cualExamenExtraordinario').attr('required', false);
                                         $('#razonExamenExtraordinario').attr('required', false);
-                                        $('#cualExamenExtraordinario').hide(200);
-                                        $('#razonExamenExtraordinario').hide(200);
+                                        $('#cualExamenExtraordinario').hide(200).prev().hide(200);
+                                        $('#razonExamenExtraordinario').hide(200).prev().hide(200);
                                     }
                                 });
 
                                 $('input[type=radio][name=estudioEnExtranjero]').change(function() {
                                     if (this.value == 1) {
                                         $('#lugarEstudioExtranjero').attr('required', true);
-                                        $('#lugarEstudioExtranjero').show(200);
+                                        $('#lugarEstudioExtranjero').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#lugarEstudioExtranjero').attr('required', false);
-                                        $('#lugarEstudioExtranjero').hide(200);
+                                        $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     }
                                 });
@@ -423,27 +423,27 @@
                                     if (this.value == 1) {
                                         $('#cualReprobarSemestre').attr('required', true);
                                         $('#razonReprobarSemestre').attr('required', true);
-                                        $('#cualReprobarSemestre').show(200);
-                                        $('#razonReprobarSemestre').show(200);
+                                        $('#cualReprobarSemestre').show(200).prev().show(200);
+                                        $('#razonReprobarSemestre').show(200).prev().show(200);
 
                                     }
                                     else if (this.value == 0) {
                                         $('#cualReprobarSemestre').attr('required', false);
                                         $('#razonReprobarSemestre').attr('required', false);
-                                        $('#cualReprobarSemestre').hide(200);
-                                        $('#razonReprobarSemestre').hide(200);
+                                        $('#cualReprobarSemestre').hide(200).prev().hide(200);
+                                        $('#razonReprobarSemestre').hide(200).prev().hide(200);
                                     }
                                 });
 
                                 $('input[type=radio][name=universidadPrevia]').change(function() {
                                     if (this.value == 1) {
                                         $('#razonUniversidadPrevia').attr('required', true);
-                                        $('#razonUniversidadPrevia').show(200);
+                                        $('#razonUniversidadPrevia').show(200).prev().show(200);
 
                                     }
                                     else if (this.value == 0) {
                                         $('#razonUniversidadPrevia').attr('required', false);
-                                        $('#razonUniversidadPrevia').hide(200);
+                                        $('#razonUniversidadPrevia').hide(200).prev().hide(200);
                                     }
                                 });
 
@@ -607,8 +607,8 @@
                                 <div class="row">
                                     <div class="form-group col-md-5">
                                         <label class="formLabel">¿Has estudiado en el extranjero?</label>
-                                        <input type="radio" id="estudioEnExtranjero" name="estudioEnExtranjero" value=1> Sí
-                                        <input type="radio" id="estudioEnExtranjero" name="estudioEnExtranjero" value=0> No
+                                        <input type="radio" id="estudioEnExtranjero" name="estudioEnExtranjero" class="form-control checkbox-inline"  value=1> Sí
+                                        <input type="radio" id="estudioEnExtranjero" name="estudioEnExtranjero" class="form-control checkbox-inline" value=0> No
                                     </div>
                                     <div class="form-group col-md-7">
                                         <label class="formLabel">¿En dónde y por cuánto tiempo?</label>
@@ -641,8 +641,8 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿Has presentado exámenes extraordinarios?</label>
-                                        <input type="radio" id="examenesExtraordinarios" name="examenesExtraordinarios" value=1> Sí
-                                        <input type="radio" id="examenesExtraordinarios" name="examenesExtraordinarios" value=0> No
+                                        <input type="radio" id="examenesExtraordinarios" name="examenesExtraordinarios" class="form-control checkbox-inline" value=1> Sí
+                                        <input type="radio" id="examenesExtraordinarios" name="examenesExtraordinarios" class="form-control checkbox-inline" value=0> No
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿Cuál(es)?</label>
@@ -661,8 +661,8 @@
                                 <div class="row">
                                     <div class="form-group col-md-5">
                                         <label class="formLabel">¿Has reprobado algún año o semestre?</label>
-                                        <input type="radio" id="reprobarSemestre" name="reprobarSemestre" value=1> Sí
-                                        <input type="radio" id="reprobarSemestre" name="reprobarSemestre" value=0> No
+                                        <input type="radio" id="reprobarSemestre" name="reprobarSemestre" class="form-control checkbox-inline" value=1> Sí
+                                        <input type="radio" id="reprobarSemestre" name="reprobarSemestre" class="form-control checkbox-inline" value=0> No
                                     </div>
                                     <div class="form-group col-md-7">
                                         <label class="formLabel">¿Cuál(es)?</label>
@@ -680,8 +680,8 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿Has estado inscrito en alguna universidad?</label>
-                                        <input type="radio" id="universidadPrevia" name="universidadPrevia" value=1> Sí
-                                        <input type="radio" id="universidadPrevia" name="universidadPrevia" value=0> No
+                                        <input type="radio" id="universidadPrevia" name="universidadPrevia" class="form-control checkbox-inline" value=1> Sí
+                                        <input type="radio" id="universidadPrevia" name="universidadPrevia" class="form-control checkbox-inline" value=0> No
                                     </div>
                                 </div>
 

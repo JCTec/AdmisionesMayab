@@ -13,7 +13,7 @@ class CreateOrientacionVocacionalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('orientacion_vocacionals', function (Blueprint $table) {
+        Schema::create('orientacion_vocacional', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idUser')->unsigned()->unique();
             $table->boolean('active')->default(true);
@@ -56,6 +56,32 @@ class CreateOrientacionVocacionalsTable extends Migration
             $table->boolean('terapiaRecibida')->nullable();
             $table->string('tipoDeTerapiaRecibida')->nullable();
             $table->string('razonDeTerapiaRecibida')->nullable();
+            $table->text('descripcionFamilia')->nullable();
+            $table->text('mejorRelacionFamiliar')->nullable();
+            $table->text('cambioEnFamilia')->nullable();
+            $table->text('admirarPersonalidadPadre')->nullable();
+            $table->text('defectosPersonalidadPadre')->nullable();
+            $table->text('platicarProblemasConPadre')->nullable();
+            $table->text('admirarPersonalidadMadre')->nullable();
+            $table->text('defectosPersonalidadMadre')->nullable();
+            $table->text('platicarProblemasConMadre')->nullable();
+            $table->text('relacionConHermanos')->nullable();
+            $table->string('pasatiempos')->nullable();
+            $table->boolean('practicaDeporte')->nullable();
+            $table->string('cualPracticaDeporte')->nullable();
+            $table->boolean('organizacionAyudaSocial')->nullable();
+            $table->string('cualOrganizacionAyudaSocial')->nullable();
+            $table->boolean('directivoGrupo')->nullable();
+            $table->string('cualDirectivoGrupo')->nullable();
+            $table->boolean('actividadCultural')->nullable();
+            $table->string('cualActividadCultural')->nullable();
+            $table->boolean('gustoLectura')->nullable();
+            $table->string('cualLectura')->nullable();
+            $table->string('frecuenciaLectura')->nullable();
+            $table->boolean('usaRedesSociales')->nullable();
+            $table->string('cualRedesSociales')->nullable();
+            $table->string('cualExperienciaOrganizaciones')->nullable();
+            $table->boolean('finished')->default(false);
             $table->timestamps();
         });
     }
@@ -67,6 +93,6 @@ class CreateOrientacionVocacionalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orientacion_vocacionals');
+        Schema::dropIfExists('orientacion_vocacional');
     }
 }

@@ -29,7 +29,9 @@ class CreateAlumnosTable extends Migration
             $table->integer('preparatoria')->unsigned();
             $table->string('otraPreparatoria')->nullable();
             $table->string('carrera');
+            $table->string('telefonoInt');
             $table->string('telefono');
+            $table->string('celularInt');
             $table->string('celular');
             $table->string('postal');
             $table->string('direccion');

@@ -504,7 +504,7 @@ class Connection implements ConnectionInterface
             }
 
             $this->recordsHaveBeenModified(
-                $change = ($this->getPdo()->exec($query) === false ? false : true)
+                $change = $this->getPdo()->exec($query) !== false
             );
 
             return $change;
@@ -929,7 +929,7 @@ class Connection implements ConnectionInterface
             return $this->getPdo();
         }
 
-        if ($this->getConfig('sticky') && $this->recordsModified) {
+        if ($this->recordsModified && $this->getConfig('sticky')) {
             return $this->getPdo();
         }
 

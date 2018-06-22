@@ -11,7 +11,8 @@ class familiar extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'idUser','relacion','titulo','firstName','secondName','firstLastName','secondLastName','telefono','celular','direccion','email','giro','puesto','empresa','isAlive','isEgresado','active'
+        'idUser','relacion','titulo','firstName','secondName','firstLastName','secondLastName','telefono','celular','direccion',
+        'email','giro','puesto','empresa','isAlive','isEgresado','active', 'telefonoInt', 'celularInt'
     ];
 
     public $incrementing = true;

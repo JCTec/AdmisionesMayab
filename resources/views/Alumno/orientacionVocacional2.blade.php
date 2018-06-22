@@ -32,7 +32,7 @@
                                     }
                                 }else if (trabajoPrevio == 0){
                                     $('#puestoTrabajoPrevio').attr('required', false);
-                                    $('#puestoTrabajoPrevio').hide(200);
+                                    $('#puestoTrabajoPrevio').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=trabajoPrevio]');
                                     if($radios.is(':checked') === false) {
@@ -56,7 +56,7 @@
                                     }
                                 }else if (experienciaLaboralElegirCarrera == 0){
                                     $('#lugarEstudioExtranjero').attr('required', false);
-                                    $('#lugarEstudioExtranjero').hide(200);
+                                    $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=experienciaLaboralElegirCarrera]');
                                     if($radios.is(':checked') === false) {
@@ -80,7 +80,7 @@
                                     }
                                 }else if (trabajoActual == 0){
                                     $('#lugarEstudioExtranjero').attr('required', false);
-                                    $('#lugarEstudioExtranjero').hide(200);
+                                    $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=trabajoActual]');
                                     if($radios.is(':checked') === false) {
@@ -104,7 +104,7 @@
                                     }
                                 }else if (considerarSaludable == 0){
                                     $('#lugarEstudioExtranjero').attr('required', false);
-                                    $('#lugarEstudioExtranjero').hide(200);
+                                    $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=considerarSaludable]');
                                     if($radios.is(':checked') === false) {
@@ -128,7 +128,7 @@
                                     }
                                 }else if (necesitaAsistencia == 0){
                                     $('#lugarEstudioExtranjero').attr('required', false);
-                                    $('#lugarEstudioExtranjero').hide(200);
+                                    $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=necesitaAsistencia]');
                                     if($radios.is(':checked') === false) {
@@ -152,7 +152,7 @@
                                     }
                                 }else if (necesitaExamenesNoEscritos == 0){
                                     $('#lugarEstudioExtranjero').attr('required', false);
-                                    $('#lugarEstudioExtranjero').hide(200);
+                                    $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=necesitaExamenesNoEscritos]');
                                     if($radios.is(':checked') === false) {
@@ -176,7 +176,7 @@
                                     }
                                 }else if (problemaContinuoSalud == 0){
                                     $('#lugarEstudioExtranjero').attr('required', false);
-                                    $('#lugarEstudioExtranjero').hide(200);
+                                    $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=problemaContinuoSalud]');
                                     if($radios.is(':checked') === false) {
@@ -200,7 +200,7 @@
                                     }
                                 }else if (terapiaRecibida == 0){
                                     $('#lugarEstudioExtranjero').attr('required', false);
-                                    $('#lugarEstudioExtranjero').hide(200);
+                                    $('#lugarEstudioExtranjero').hide(200).prev().hide(200);
 
                                     var $radios = $('input:radio[name=terapiaRecibida]');
                                     if($radios.is(':checked') === false) {
@@ -218,49 +218,49 @@
                                 $('input[type=radio][name=trabajoPrevio]').change(function() {
                                     if (this.value == 1) {
                                         $('#puestoTrabajoPrevio').attr('required', true);
-                                        $('#puestoTrabajoPrevio').show(200);
+                                        $('#puestoTrabajoPrevio').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#puestoTrabajoPrevio').attr('required', false);
-                                        $('#puestoTrabajoPrevio').hide(200);
+                                        $('#puestoTrabajoPrevio').hide(200).prev().hide(200);
                                     }
                                 });
 
                                 $('input[type=radio][name=experienciaLaboralElegirCarrera]').change(function() {
                                     if (this.value == 1) {
                                         $('#razonExperienciaLaboralElegirCarrera').attr('required', true);
-                                        $('#razonExperienciaLaboralElegirCarrera').show(200);
+                                        $('#razonExperienciaLaboralElegirCarrera').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#razonExperienciaLaboralElegirCarrera').attr('required', false);
-                                        $('#razonExperienciaLaboralElegirCarrera').hide(200);
+                                        $('#razonExperienciaLaboralElegirCarrera').hide(200).prev().hide(200);
                                     }
                                 });
 
                                 $('input[type=radio][name=trabajoActual]').change(function() {
                                     if (this.value == 1) {
                                         $('#razonTrabajoActual').attr('required', true);
-                                        $('#razonTrabajoActual').show(200);
+                                        $('#razonTrabajoActual').show(200).prev().show(200);
                                         $('#empresaTrabajoActual').attr('required', true);
-                                        $('#empresaTrabajoActual').show(200);
+                                        $('#empresaTrabajoActual').show(200).prev().show(200);
                                         $('#añosTrabajoActual').attr('required', true);
-                                        $('#añosTrabajoActual').show(200);
+                                        $('#añosTrabajoActual').show(200).prev().show(200);
                                         $('#mesesTrabajoActual').attr('required', true);
-                                        $('#mesesTrabajoActual').show(200);
+                                        $('#mesesTrabajoActual').show(200).prev().show(200);
                                         $('#horarioTrabajoActual').attr('required', true);
-                                        $('#horarioTrabajoActual').show(200);
+                                        $('#horarioTrabajoActual').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#razonTrabajoActual').attr('required', false);
-                                        $('#razonTrabajoActual').hide(200);
+                                        $('#razonTrabajoActual').hide(200).prev().hide(200);
                                         $('#empresaTrabajoActual').attr('required', false);
-                                        $('#empresaTrabajoActual').hide(200);
+                                        $('#empresaTrabajoActual').hide(200).prev().hide(200);
                                         $('#añosTrabajoActual').attr('required', false);
-                                        $('#añosTrabajoActual').hide(200);
+                                        $('#añosTrabajoActual').hide(200).prev().hide(200);
                                         $('#mesesTrabajoActual').attr('required', false);
-                                        $('#mesesTrabajoActual').hide(200);
+                                        $('#mesesTrabajoActual').hide(200).prev().hide(200);
                                         $('#horarioTrabajoActual').attr('required', false);
-                                        $('#horarioTrabajoActual').hide(200);
+                                        $('#horarioTrabajoActual').hide(200).prev().hide(200);
                                     }
                                 });
 
@@ -276,51 +276,55 @@
                                 $('input[type=radio][name=necesitaAsistencia]').change(function() {
                                     if (this.value == 1) {
                                         $('#tipoAsistenciaNecesitada').attr('required', true);
-                                        $('#tipoAsistenciaNecesitada').show(200);
+                                        $('#tipoAsistenciaNecesitada').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#tipoAsistenciaNecesitada').attr('required', false);
-                                        $('#tipoAsistenciaNecesitada').hide(200);
+                                        $('#tipoAsistenciaNecesitada').hide(200).prev().hide(200);
                                     }
                                 });
 
                                 $('input[type=radio][name=necesitaExamenesNoEscritos]').change(function() {
                                     if (this.value == 1) {
                                         $('#tipoDeExamenNecesitado').attr('required', true);
-                                        $('#tipoDeExamenNecesitado').show(200);
+                                        $('#tipoDeExamenNecesitado').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#tipoDeExamenNecesitado').attr('required', false);
-                                        $('#tipoDeExamenNecesitado').hide(200);
+                                        $('#tipoDeExamenNecesitado').hide(200).prev().hide(200);
                                     }
                                 });
 
                                 $('input[type=radio][name=problemaContinuoSalud]').change(function() {
                                     if (this.value == 1) {
                                         $('#tipoProblemaContinuoSalud').attr('required', true);
-                                        $('#tipoProblemaContinuoSalud').show(200);
+                                        $('#tipoProblemaContinuoSalud').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#tipoProblemaContinuoSalud').attr('required', false);
-                                        $('#tipoProblemaContinuoSalud').hide(200);
+                                        $('#tipoProblemaContinuoSalud').hide(200).prev().hide(200);
                                     }
                                 });
 
                                 $('input[type=radio][name=terapiaRecibida]').change(function() {
                                     if (this.value == 1) {
                                         $('#tipoDeTerapiaRecibida').attr('required', true);
-                                        $('#tipoDeTerapiaRecibida').show(200);
+                                        $('#tipoDeTerapiaRecibida').show(200).prev().show(200);
                                         $('#razonDeTerapiaRecibida').attr('required', true);
-                                        $('#razonDeTerapiaRecibida').show(200);
+                                        $('#razonDeTerapiaRecibida').show(200).prev().show(200);
                                     }
                                     else if (this.value == 0) {
                                         $('#tipoDeTerapiaRecibida').attr('required', false);
-                                        $('#tipoDeTerapiaRecibida').hide(200);
+                                        $('#tipoDeTerapiaRecibida').hide(200).prev().hide(200);
                                         $('#razonDeTerapiaRecibida').attr('required', false);
-                                        $('#razonDeTerapiaRecibida').hide(200);
+                                        $('#razonDeTerapiaRecibida').hide(200).prev().hide(200);
                                     }
                                 });
 
+                                $('#back').on('click', function (e) {
+                                    e.preventDefault();
+                                    window.location = "{{route('backOV')}}";
+                                });
 
                             });
                         </script>
@@ -460,7 +464,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12" style="text-align: right">
+                                    <div class="col-sm-6">
+                                        <button id="back" class="btn btn-outline-primary">Atras</button>
+                                    </div>
+                                    <div class="col-sm-6" style="text-align: right">
                                         <button id="saveASD" class="btn btn-outline-primary">Guardar</button>
                                     </div>
                                 </div>
