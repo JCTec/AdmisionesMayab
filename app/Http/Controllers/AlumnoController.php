@@ -267,7 +267,6 @@ class AlumnoController extends Controller
             $step = $user->step2;
 
             if($request["idiomaChange"] == "1"){
-                return "idiomaChange";
 
                 $info = $request->except('_token');
 
