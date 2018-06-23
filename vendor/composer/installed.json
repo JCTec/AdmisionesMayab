@@ -1161,50 +1161,6 @@
         ]
     },
     {
-        "name": "jackocnr/intl-tel-input",
-        "version": "12.3.0",
-        "version_normalized": "12.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/jackocnr/intl-tel-input.git",
-            "reference": "f6ecc7d6b2a352dfa27ae2d4ce1191878078e159"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/jackocnr/intl-tel-input/zipball/f6ecc7d6b2a352dfa27ae2d4ce1191878078e159",
-            "reference": "f6ecc7d6b2a352dfa27ae2d4ce1191878078e159",
-            "shasum": ""
-        },
-        "time": "2018-06-10T19:35:30+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jack O'Connor",
-                "homepage": "http://jackocnr.com"
-            }
-        ],
-        "description": "A jQuery plugin for entering international telephone numbers",
-        "homepage": "https://github.com/jackocnr/intl-tel-input",
-        "keywords": [
-            "code",
-            "country",
-            "dial",
-            "flag",
-            "i18n",
-            "input",
-            "international",
-            "mobile",
-            "number",
-            "tel",
-            "telephone"
-        ]
-    },
-    {
         "name": "jakub-onderka/php-console-color",
         "version": "0.1",
         "version_normalized": "0.1.0.0",
@@ -2854,17 +2810,17 @@
     },
     {
         "name": "phpunit/phpunit",
-        "version": "7.2.4",
-        "version_normalized": "7.2.4.0",
+        "version": "7.2.6",
+        "version_normalized": "7.2.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/sebastianbergmann/phpunit.git",
-            "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd"
+            "reference": "400a3836ee549ae6f665323ac3f21e27eac7155f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
-            "reference": "00bc0b93f0ff4f557e9ea766557fde96da9a03dd",
+            "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/400a3836ee549ae6f665323ac3f21e27eac7155f",
+            "reference": "400a3836ee549ae6f665323ac3f21e27eac7155f",
             "shasum": ""
         },
         "require": {
@@ -2880,7 +2836,7 @@
             "php": "^7.1",
             "phpspec/prophecy": "^1.7",
             "phpunit/php-code-coverage": "^6.0.7",
-            "phpunit/php-file-iterator": "^2.0",
+            "phpunit/php-file-iterator": "^2.0.1",
             "phpunit/php-text-template": "^1.2.1",
             "phpunit/php-timer": "^2.0",
             "sebastian/comparator": "^3.0",
@@ -2903,7 +2859,7 @@
             "ext-xdebug": "*",
             "phpunit/php-invoker": "^2.0"
         },
-        "time": "2018-06-05T03:40:05+00:00",
+        "time": "2018-06-21T13:13:39+00:00",
         "bin": [
             "phpunit"
         ],
