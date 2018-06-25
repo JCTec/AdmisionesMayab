@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Brother;
 use App\Carrera;
 use App\familiar;
@@ -16,6 +17,10 @@ use App\Alumno;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
+use GuzzleHttp\Exception\ConnectException;
 
 
 class HomeController extends Controller
@@ -37,15 +42,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $state = $this->getState();
+        $user = Auth::user();
 
-        $pictureState = $this->getPicState();
+        if ($user) {
+            $state = $this->getState();
 
-        if($state == 1){
-            $pictureState = False;
+            $admin = Admin::where('idUser','=',$user->id)->count();
+
+            if($admin == 0){
+                return view('home')->with(['state' => $state]);
+            }
         }
-
-        return view('home')->with(['state' => $state, 'pictureState' => $pictureState]);
     }
 
     public function cuestionario(){
@@ -56,28 +63,31 @@ class HomeController extends Controller
 
             $alumno = Alumno::where('idUser','=',$user->id)->first();
 
-            $client = new Client([
-                'base_uri' => 'https://miplana.mx/u/',
-                'timeout'  => 2.0,
-            ]);
-
             try{
+                $client = new Client([
+                    'base_uri' => 'https://miplana.mx/u/',
+                    'timeout'  => 2.0,
+                ]);
+
                 $response = $client->request('GET', 'Programa/getProgramasActualesLC');
-            }catch (ConnectException $e){
-                return abort(404);
 
-            }
+                if($response->getStatusCode() == 404){
+                    return abort(404);
+                }
 
-            if($response->getStatusCode() == 404){
-                return abort(404);
-            }
+                if($response->getStatusCode() == 200){
+                    $json = (string) $response->getBody();
 
-            if($response->getStatusCode() == 200){
-                $json = (string) $response->getBody();
+                    $decoded = json_decode($json, true);
 
-                $decoded = json_decode($json, true);
+                    $programas = $decoded["programas"];
 
-                $programas = $decoded["programas"];
+                    $cache = Storage::disk('json')->get('getProgramasActualesLC.json');
+
+                    $cache = $json;
+
+                    Storage::disk('json')->put('getProgramasActualesLC.json', $cache);
+                }
 
                 $response = $client->request('GET', 'Preparatoria/getPreparatorias');
 
@@ -92,37 +102,40 @@ class HomeController extends Controller
 
                     $preparatorias = $decoded["preparatorias"];
 
-                    if($alumno){
-                        return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno]);
+                    $cache = Storage::disk('json')->get('getPreparatorias.json');
 
-                    }else{
-                        $alumno = new Alumno();
-                        return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno]);
-                    }
+                    $cache = $json;
+
+                    Storage::disk('json')->put('getPreparatorias.json', $cache);
 
                 }else{
                     return abort(404);
                 }
 
+            }catch (ConnectException $e){
+                $json = Storage::disk('json')->get('getProgramasActualesLC.json');
+
+                $decoded = json_decode($json, true);
+
+                $programas = $decoded["programas"];
+
+                $json = Storage::disk('json')->get('getPreparatorias.json');
+
+                $decoded = json_decode($json, true);
+
+                $preparatorias = $decoded["preparatorias"];
             }
 
-        }
 
-    }
+            if($alumno){
+                return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno]);
 
-    private function getPicState(){
-        $user = Auth::user();
-
-        if ($user) {
-            $files =  Fileentries::where('idUser','=',$user->id)->where('aprobado','=',True)->count();
-
-            if($files == 3){
-                return True;
             }else{
-                return False;
+                $alumno = new Alumno();
+                return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno]);
             }
-        }
 
+        }
 
     }
 

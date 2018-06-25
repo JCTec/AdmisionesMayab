@@ -137,10 +137,21 @@
                                         <label class="formLabel">Preparatoria:</label>
                                         <select id='preparatoria' name='preparatoria' class="form-control" required>
                                             <?php $__currentLoopData = $preparatorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prepa): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <?php if($prepa["id"] == $Alumno->preparatoria): ?>
-                                                    <option value='<?php echo e($prepa["id"]); ?>' selected="selected"><?php echo e($prepa["nombrePreparatoria"]); ?></option>
-                                                <?php else: ?>
-                                                    <option value='<?php echo e($prepa["id"]); ?>'><?php echo e($prepa["nombrePreparatoria"]); ?></option>
+                                                <?php if($prepa["id"] == 159): ?>
+                                                    <?php if($prepa["id"] == $Alumno->preparatoria): ?>
+                                                        <option value='<?php echo e($prepa["id"]); ?>' selected="selected"><?php echo e($prepa["nombrePreparatoria"]); ?></option>
+                                                    <?php else: ?>
+                                                        <option value='<?php echo e($prepa["id"]); ?>'><?php echo e($prepa["nombrePreparatoria"]); ?></option>
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $preparatorias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prepa): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($prepa["id"] != 159): ?>
+                                                    <?php if($prepa["id"] == $Alumno->preparatoria): ?>
+                                                        <option value='<?php echo e($prepa["id"]); ?>' selected="selected"><?php echo e($prepa["nombrePreparatoria"]); ?></option>
+                                                    <?php else: ?>
+                                                        <option value='<?php echo e($prepa["id"]); ?>'><?php echo e($prepa["nombrePreparatoria"]); ?></option>
+                                                    <?php endif; ?>
                                                 <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>

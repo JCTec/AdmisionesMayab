@@ -2,139 +2,139 @@
 <div class="container py-5">
     <div class="row justify-content-center">
 
+        <script>
+            $(document).ready(function () {
+                var state = parseInt("<?php echo e($state); ?>");
+
+                if(state == 1){
+
+                    $('#pago').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+                    $('#subirArchivos').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+                    $('#familia').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+                    $('#ov').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+                    $('#pago').css('background-color','#806255');
+
+                    $('#subirArchivos').css('background-color','#806255');
+
+                    $('#familia').css('background-color','#806255');
+
+                    $('#ov').css('background-color','#806255');
+
+                    $('#pago').css('color','#d7d7d6');
+
+                    $('#subirArchivos').css('color','#d7d7d6');
+
+                    $('#familia').css('color','#d7d7d6');
+
+                    $('#ov').css('color','#d7d7d6');
+
+                    $('#pago').css('cursor','default');
+
+                    $('#subirArchivos').css('cursor','default');
+
+                    $('#familia').css('cursor','default');
+
+                    $('#ov').css('cursor','default');
+
+
+                }else if (state == 2){
+
+
+                    $('#subirArchivos').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+                    $('#familia').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+                    $('#ov').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+
+
+                    $('#subirArchivos').css('background-color','#806255');
+
+                    $('#familia').css('background-color','#806255');
+
+                    $('#ov').css('background-color','#806255');
+
+
+                    $('#subirArchivos').css('color','#d7d7d6');
+
+                    $('#familia').css('color','#d7d7d6');
+
+                    $('#ov').css('color','#d7d7d6');
+
+
+                    $('#subirArchivos').css('cursor','default');
+
+                    $('#familia').css('cursor','default');
+
+                    $('#ov').css('cursor','default');
+
+                }else if(state == 3){
+
+                    $('#familia').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+                    $('#ov').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+
+                    $('#familia').css('background-color','#806255');
+
+                    $('#ov').css('background-color','#806255');
+
+
+                    $('#familia').css('color','#d7d7d6');
+
+                    $('#ov').css('color','#d7d7d6');
+
+
+                    $('#familia').css('cursor','default');
+
+                    $('#ov').css('cursor','default');
+
+                }else if (state == 4){
+
+                    $('#ov').on('click', function (e) {
+                        e.preventDefault();
+                    });
+
+
+                    $('#ov').css('background-color','#806255');
+
+
+                    $('#ov').css('color','#d7d7d6');
+
+
+                    $('#ov').css('cursor','default');
+
+                }else{
+
+                }
+            });
+
+        </script>
+
         <div id="home">
-            <script>
-                $(document).ready(function () {
-                    var state = parseInt("<?php echo e($state); ?>");
-
-                    if(state == 1){
-
-                        $('#pago').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-                        $('#subirArchivos').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-                        $('#familia').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-                        $('#ov').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-                        $('#pago').css('background-color','#806255');
-
-                        $('#subirArchivos').css('background-color','#806255');
-
-                        $('#familia').css('background-color','#806255');
-
-                        $('#ov').css('background-color','#806255');
-
-                        $('#pago').css('color','#d7d7d6');
-
-                        $('#subirArchivos').css('color','#d7d7d6');
-
-                        $('#familia').css('color','#d7d7d6');
-
-                        $('#ov').css('color','#d7d7d6');
-
-                        $('#pago').css('cursor','default');
-
-                        $('#subirArchivos').css('cursor','default');
-
-                        $('#familia').css('cursor','default');
-
-                        $('#ov').css('cursor','default');
-
-
-                    }else if (state == 2){
-
-
-                        $('#subirArchivos').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-                        $('#familia').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-                        $('#ov').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-
-
-                        $('#subirArchivos').css('background-color','#806255');
-
-                        $('#familia').css('background-color','#806255');
-
-                        $('#ov').css('background-color','#806255');
-
-
-                        $('#subirArchivos').css('color','#d7d7d6');
-
-                        $('#familia').css('color','#d7d7d6');
-
-                        $('#ov').css('color','#d7d7d6');
-
-
-                        $('#subirArchivos').css('cursor','default');
-
-                        $('#familia').css('cursor','default');
-
-                        $('#ov').css('cursor','default');
-
-                    }else if(state == 3){
-
-                        $('#familia').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-                        $('#ov').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-
-                        $('#familia').css('background-color','#806255');
-
-                        $('#ov').css('background-color','#806255');
-
-
-                        $('#familia').css('color','#d7d7d6');
-
-                        $('#ov').css('color','#d7d7d6');
-
-
-                        $('#familia').css('cursor','default');
-
-                        $('#ov').css('cursor','default');
-
-                    }else if (state == 4){
-
-                        $('#ov').on('click', function (e) {
-                            e.preventDefault();
-                        });
-
-
-                        $('#ov').css('background-color','#806255');
-
-
-                        $('#ov').css('color','#d7d7d6');
-
-
-                        $('#ov').css('cursor','default');
-
-                    }else{
-
-                    }
-                });
-
-            </script>
-
-            <div class="box">
+            <div class="box" style="padding-left: 10px; padding-right: 10px;">
                 <div class="text-center" style="margin: 10px; padding-bottom: 5px;">
                     Bienvenido al sistema de Admisiones de la Universidad Anáhuac Mayab, a partir de este momento empiezas tu camino
                     como aspirante a estudiar en esta prestigiosa institución. <br> <br>
@@ -163,7 +163,6 @@
                 </ul>
             </div>
         </div>
-
     </div>
 </div>
 <?php $__env->stopSection(); ?>

@@ -139,10 +139,21 @@
                                         <label class="formLabel">Preparatoria:</label>
                                         <select id='preparatoria' name='preparatoria' class="form-control" required>
                                             @foreach ($preparatorias as $prepa)
-                                                @if($prepa["id"] == $Alumno->preparatoria)
-                                                    <option value='{{$prepa["id"]}}' selected="selected">{{$prepa["nombrePreparatoria"]}}</option>
-                                                @else
-                                                    <option value='{{$prepa["id"]}}'>{{$prepa["nombrePreparatoria"]}}</option>
+                                                @if ($prepa["id"] == 159)
+                                                    @if($prepa["id"] == $Alumno->preparatoria)
+                                                        <option value='{{$prepa["id"]}}' selected="selected">{{$prepa["nombrePreparatoria"]}}</option>
+                                                    @else
+                                                        <option value='{{$prepa["id"]}}'>{{$prepa["nombrePreparatoria"]}}</option>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                            @foreach ($preparatorias as $prepa)
+                                                @if ($prepa["id"] != 159)
+                                                    @if($prepa["id"] == $Alumno->preparatoria)
+                                                        <option value='{{$prepa["id"]}}' selected="selected">{{$prepa["nombrePreparatoria"]}}</option>
+                                                    @else
+                                                        <option value='{{$prepa["id"]}}'>{{$prepa["nombrePreparatoria"]}}</option>
+                                                    @endif
                                                 @endif
                                             @endforeach
                                         </select>
