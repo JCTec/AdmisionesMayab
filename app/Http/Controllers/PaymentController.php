@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\security;
 use Illuminate\Support\Facades\Auth;
 
-class PaymentController extends Controller
+class PaymentController extends HomeController
 {
     public function payment(){
         $user = Auth::user();
 
         if ($user) {
-            return view('Payment.PagoAlumno');
+            $state = $this->getState();
+
+            return view('Payment.PagoAlumno')->with(['state' => $state]);
         }
     }
 

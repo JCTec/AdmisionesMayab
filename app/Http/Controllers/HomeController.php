@@ -45,12 +45,14 @@ class HomeController extends Controller
         $user = Auth::user();
 
         if ($user) {
-            $state = $this->getState();
-
             $admin = Admin::where('idUser','=',$user->id)->count();
 
             if($admin == 0){
+                $state = $this->getState();
+
                 return view('home')->with(['state' => $state]);
+            }else{
+                return view('Admin.home');
             }
         }
     }
@@ -62,6 +64,8 @@ class HomeController extends Controller
         if ($user) {
 
             $alumno = Alumno::where('idUser','=',$user->id)->first();
+
+            $state = $this->getState();
 
             try{
                 $client = new Client([
@@ -128,11 +132,11 @@ class HomeController extends Controller
 
 
             if($alumno){
-                return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno]);
+                return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno, 'state' => $state]);
 
             }else{
                 $alumno = new Alumno();
-                return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno]);
+                return view('Alumno.cuestionario')->with(['programas' => $programas, 'preparatorias' => $preparatorias, 'Alumno' => $alumno, 'state' => $state]);
             }
 
         }
@@ -147,7 +151,9 @@ class HomeController extends Controller
             $prepa = Fileentries::where('idUser','=',$user->id)->where('type','=',2)->first();
             $image = Fileentries::where('idUser','=',$user->id)->where('type','=',3)->first();
 
-            return view('Alumno.uploadFiles')->with(['acta' => $acta, 'prepa' => $prepa, 'image' => $image]);
+            $state = $this->getState();
+
+            return view('Alumno.uploadFiles')->with(['acta' => $acta, 'prepa' => $prepa, 'image' => $image, 'state' => $state]);
         }
     }
 
@@ -158,6 +164,7 @@ class HomeController extends Controller
             $padre = familiar::where('idUser','=',$user->id)->where('relacion','=',1)->first();
             $madre = familiar::where('idUser','=',$user->id)->where('relacion','=',2)->first();
             $tutor = familiar::where('idUser','=',$user->id)->where('relacion','=',3)->first();
+            $state = $this->getState();
 
             $alumno = Alumno::where('idUser','=',$user->id)->first();
 
@@ -177,36 +184,36 @@ class HomeController extends Controller
                         $brothers = Brother::where('idUser','=',$user->id)->get();
                         $historialAcademico = HistorialAcademico::where('idUser','=',$user->id)->get();
 
-                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov, 'brothers' => $brothers, 'HA' => $historialAcademico]);
+                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov, 'brothers' => $brothers, 'HA' => $historialAcademico,'state' => $state]);
                     }elseif ($user->step2 == 2){
-                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
+                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov,'state' => $state]);
                     }elseif ($user->step2 == 3){
                         $string = file_get_contents(storage_path("json/languages.json"));
                         $languages = json_decode($string, true);
 
                         $idiomas = Idioma::where('idUser','=',$user->id)->get();
 
-                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov, 'languages' => $languages, 'idiomas' => $idiomas]);
+                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov, 'languages' => $languages, 'idiomas' => $idiomas,'state' => $state]);
                     }elseif ($user->step2 == 4){
-                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov]);
+                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => $tutor,'alumno' => $alumno, 'ov' => $ov,'state' => $state]);
                     }
                 }else {
                     if($user->step2 == 1){
                         $brothers = Brother::where('idUser','=',$user->id)->get();
                         $historialAcademico = HistorialAcademico::where('idUser','=',$user->id)->get();
 
-                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov, 'brothers' => $brothers, 'HA' => $historialAcademico]);
+                        return view('Alumno.orientacionVocacional')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov, 'brothers' => $brothers, 'HA' => $historialAcademico,'state' => $state]);
                     }elseif ($user->step2 == 2){
-                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
+                        return view('Alumno.orientacionVocacional2')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov,'state' => $state]);
                     }elseif ($user->step2 == 3){
                         $string = file_get_contents(storage_path("json/languages.json"));
                         $languages = json_decode($string, true);
 
                         $idiomas = Idioma::where('idUser','=',$user->id)->get();
 
-                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov, 'languages' => $languages, 'idiomas' => $idiomas]);
+                        return view('Alumno.orientacionVocacional3')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov, 'languages' => $languages, 'idiomas' => $idiomas,'state' => $state]);
                     }elseif ($user->step2 == 4){
-                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov]);
+                        return view('Alumno.orientacionVocacional4')->with(['padre' => $padre, 'madre' => $madre,'tutor' => null,'alumno' => $alumno, 'ov' => $ov,'state' => $state]);
                     }
                 }
 
@@ -220,6 +227,8 @@ class HomeController extends Controller
 
         if ($user) {
 
+            $state = $this->getState();
+
             $user->step = 4;
 
             $user->saveOrFail();
@@ -230,7 +239,7 @@ class HomeController extends Controller
                 $familiar = new familiar();
             }
 
-            return view('Alumno.tutor')->with(['familiar' => $familiar]);
+            return view('Alumno.tutor')->with(['familiar' => $familiar,'state' => $state]);
         }
     }
 
@@ -239,6 +248,8 @@ class HomeController extends Controller
 
         $step = $user->step;
 
+        $state = $this->getState();
+
         if($step == 1){
             $familiar = familiar::where('idUser','=',$user->id)->where('relacion','=',1)->first();
 
@@ -246,7 +257,7 @@ class HomeController extends Controller
                 $familiar = new familiar();
             }
 
-            return view('Alumno.familiar1')->with(['familiar' => $familiar]);
+            return view('Alumno.familiar1')->with(['familiar' => $familiar,'state' => $state]);
         }elseif ($step == 2){
             $familiar = familiar::where('idUser','=',$user->id)->where('relacion','=',2)->first();
 
@@ -254,11 +265,11 @@ class HomeController extends Controller
                 $familiar = new familiar();
             }
 
-            return view('Alumno.familiar2')->with(['familiar' => $familiar]);
+            return view('Alumno.familiar2')->with(['familiar' => $familiar,'state' => $state]);
 
         }elseif ($step == 3){
 
-            return view('Alumno.selectTutor');
+            return view('Alumno.selectTutor')->with(['state' => $state]);
         }else{
             return redirect()->route('familiarTutorInfo');
         }
@@ -270,7 +281,7 @@ class HomeController extends Controller
     }
 
 
-    private function getState(){
+    protected function getState(){
         $user = Auth::user();
 
         if ($user) {

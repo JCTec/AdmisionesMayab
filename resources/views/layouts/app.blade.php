@@ -11,10 +11,7 @@
     <title>{{ config('app.name', 'Admisiones') }}</title>
 
     <!-- Scripts -->
-    @if(Request::url() != route('cuestionario') && Request::url() != route('familiar'))
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    @endif
-
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
@@ -32,19 +29,11 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
-    <!-- Bootstrap Core CSS -->
-    <!-- Custom CSS -->
-
-    <link href="css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
-    <link href="css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
-    <link href="css/lib/owl.carousel.min.css" rel="stylesheet" />
-    <link href="css/lib/owl.theme.default.min.css" rel="stylesheet" />
-    <link href="css/helper.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 
     <link href="{{ asset('css/intlTelInput.css') }}" rel="stylesheet">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 
     <style>
         .iti-flag {background-image: url("{{asset('img/flags.png')}}");}
@@ -55,134 +44,231 @@
     </style>
 
     <style>
+        @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-        html {
-            height: 100%;
-        }
-        html, body {
-            min-height: 100%;
-        }
-        html, main {
-            min-height: 100%;
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fafafa;
         }
 
-        fieldset {
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border: 2px solid rgba(0, 0, 0, 0.3);
+        p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1em;
+            font-weight: 300;
+            line-height: 1.7em;
+            color: #999;
         }
 
-        .form-inline > * {
-            margin:5px 5px;
-        }
-
-        #menuJC ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-        }
-        #menuJC li {
-            display: inline-block;
-            padding: 50px 30px;
-        }
-
-        .fileUpload {
-            position: relative;
-            overflow: hidden;
-            margin: 10px;
-        }
-        .fileUpload input.upload {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0;
-            filter: alpha(opacity=0);
-        }
-
-        .archiveLabel {
-            border-radius: 25px;
-            border-style: solid;
-            border-width: 5px;
-        }
-
-        .archive {
-            border-radius: 25px;
-            border-style: solid;
-            border-width: 0px;
-        }
-
-        hr {
-            display: block;
-            height: 1px;
-            border: 0;
-            border-top: 1px solid #ccc;
-            margin: 1em 0;
-            padding: 0;
-        }
-
-        .box {
-            width: 100%;
-            border: 2px solid #4c2f1e;
-            background-color: #613b25;
-            border-radius: 25px;
-            font-family: Roboto;
-            color: #ffffff;
-        }
-
-        #menuJC a {
-            display: block;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px #4c2f1e solid;
+        a, a:hover, a:focus {
+            color: inherit;
             text-decoration: none;
-            font-size: 1vw;
-            text-align: center;
-            padding-top: 10px;
-            line-height:  5vw;
-            margin: 5%;
-            color: #ffffff;
-            background-color: #613b25;
-            font-family: "Roboto Condensed";
-            font-size: 20px;
+            transition: all 0.3s;
         }
 
-        .formLabel {
-            font-family: "Roboto Slab";
+        .navbar {
+            padding: 15px 10px;
+            background: #fff;
+            border: none;
+            border-radius: 0;
+            margin-bottom: 0px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
 
-        p.divider {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+        .navbar-btn {
+            box-shadow: none;
+            outline: none !important;
+            border: none;
         }
-        p.divider * {
-            flex-shrink: 0
-        }
-        p.divider span.divider {
+
+        .line {
             width: 100%;
-            flex-shrink: 1;
-            border-bottom: 1px solid black;
-            margin: 5px
+            height: 1px;
+            border-bottom: 1px dashed #ddd;
+            margin: 40px 0;
         }
 
-        * {margin: 0; padding: 0;}
-        #container {height: 100%; width:100%; font-size: 0;}
-        #left, #middle, #right {display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;}
-        #left {width: 25%; }
-        #middle {width: 50%; }
-        #right {width: 25%; }
+        /* ---------------------------------------------------
+            SIDEBAR STYLE
+        ----------------------------------------------------- */
 
-        .intl-tel-input {width: 100%;}
+        .wrapper {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+            perspective: 1500px;
+        }
+
+
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: #fd8023;
+            color: #fff;
+            transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+            transform-origin: bottom left;
+        }
+
+        #sidebar.active {
+            margin-left: -250px;
+            transform: rotateY(100deg);
+        }
+
+        #sidebar .sidebar-header {
+            padding: 20px;
+            background: #fd7c18;
+        }
+
+        #sidebar ul.components {
+            padding: 20px 0;
+            border-bottom: 1px solid #613b25;
+        }
+
+        #sidebar ul p {
+            color: #fff;
+            padding: 10px;
+        }
+
+        #sidebar ul li a {
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+        }
+        #sidebar ul li a:hover {
+            color: #613b25;
+            background: #fff;
+        }
+
+        #sidebar ul li.active > a, a[aria-expanded="true"] {
+            color: #fff;
+            background: #fd7203;
+        }
+
+
+        a[data-toggle="collapse"] {
+            position: relative;
+        }
+
+        .dropdown-toggle::after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        ul ul a {
+            font-size: 0.9em !important;
+            padding-left: 30px !important;
+            background: #fd9137;
+        }
+
+        ul.CTAs {
+            padding: 20px;
+        }
+
+        ul.CTAs a {
+            text-align: center;
+            font-size: 0.9em !important;
+            display: block;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        a.download {
+            background: #fff;
+            color: #7386D5;
+        }
+
+        a.article, a.article:hover {
+            background: #6d7fcc !important;
+            color: #fff !important;
+        }
+
+
+
+        /* ---------------------------------------------------
+            CONTENT STYLE
+        ----------------------------------------------------- */
+        #content {
+            width: 100%;
+            padding: 20px;
+            min-height: 100vh;
+            transition: all 0.3s;
+        }
+
+        #sidebarCollapse {
+            width: 40px;
+            height: 40px;
+            background: #f5f5f5;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #sidebarCollapse span {
+            width: 80%;
+            height: 2px;
+            margin: 0 auto;
+            display: block;
+            background: #555;
+            transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+            transition-delay: 0.2s;
+        }
+
+        #sidebarCollapse span:first-of-type {
+            transform: rotate(45deg) translate(2px, 2px);
+        }
+        #sidebarCollapse span:nth-of-type(2) {
+            opacity: 0;
+        }
+        #sidebarCollapse span:last-of-type {
+            transform: rotate(-45deg) translate(1px, -1px);
+        }
+
+
+        #sidebarCollapse.active span {
+            transform: none;
+            opacity: 1;
+            margin: 5px auto;
+        }
+
+
+        /* ---------------------------------------------------
+            MEDIAQUERIES
+        ----------------------------------------------------- */
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+                transform: rotateY(90deg);
+            }
+            #sidebar.active {
+                margin-left: 0;
+                transform: none;
+            }
+            #sidebarCollapse span:first-of-type,
+            #sidebarCollapse span:nth-of-type(2),
+            #sidebarCollapse span:last-of-type {
+                transform: none;
+                opacity: 1;
+                margin: 5px auto;
+            }
+            #sidebarCollapse.active span {
+                margin: 0 auto;
+            }
+            #sidebarCollapse.active span:first-of-type {
+                transform: rotate(45deg) translate(2px, 2px);
+            }
+            #sidebarCollapse.active span:nth-of-type(2) {
+                opacity: 0;
+            }
+            #sidebarCollapse.active span:last-of-type {
+                transform: rotate(-45deg) translate(1px, -1px);
+            }
+
+        }
 
     </style>
+
 
     <script type="text/javascript">
         function toggle_visibility(id) {
@@ -192,17 +278,24 @@
             else
                 e.style.display = 'block';
         }
+
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
     </script>
 </head>
-<body style="background-color: #fd8023">
-<div id="app" style="padding-bottom: 40px">
+<body style="background-color: #ffffff">
+<div id="app" style="">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <ul class="navbar-nav mr-auto">
             <img src="{{ URL::asset("img/anahuac.jpg") }}" width="150" height="50">
         </ul>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
+            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Admisiones') }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -290,7 +383,56 @@
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-    @yield('content')
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Menu</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a id="basico" href="{{ route('cuestionario') }}">Información Basica</a>
+                </li>
+                <li>
+                    <a id="pago" href="{{ route('payment') }}">Pago</a>
+                </li>
+                <li>
+                    <a id="subirArchivos" href="{{ route('uploadFiles') }}">Archivos</a>
+                </li>
+                <li>
+                    <a id="familia" href="{{ route('familiar') }}">Familia</a>
+                </li>
+                <li>
+                    <a id="ov" href="{{ route('orientacionVocacional') }}">Orientación Vocacional</a>
+                </li>
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+
+            </ul>
+        </nav>
+
+        <button type="button" id="sidebarCollapse" class="navbar-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+        </button>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            @yield('content')
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
 </div>
 </body>
 </html>
