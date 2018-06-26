@@ -293,68 +293,68 @@
                                         <div class="h6 text-center">
                                             ¿Cómo describirías a tu familia?
                                         </div>
-                                        <textarea id="descripcionFamilia" name="descripcionFamilia" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="descripcionFamilia" name="descripcionFamilia" class="form-control" placeholder="Escribe una pequeña descripción de tu familia..." rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Con quién te llevas mejor?
                                         </div>
-                                        <textarea id="mejorRelacionFamiliar" name="mejorRelacionFamiliar" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="mejorRelacionFamiliar" name="mejorRelacionFamiliar" class="form-control" placeholder="Escribe con que miembro de tu familia te llevas mejor y describelo de manera breve..." rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Si pudieras cambiar algo de tu familia qué sería?
                                         </div>
-                                        <textarea id="cambioEnFamilia" name="cambioEnFamilia" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="cambioEnFamilia" name="cambioEnFamilia" class="form-control" placeholder="Describe de manera breve que cambiarias en tu familia..." rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Qué características de personalidad admiras de tu padre?
                                         </div>
-                                        <textarea id="admirarPersonalidadPadre" name="admirarPersonalidadPadre" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="admirarPersonalidadPadre" name="admirarPersonalidadPadre" class="form-control" placeholder="Describe que características admiras de tu padre..." rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Qué defectos observas en él?
                                         </div>
-                                        <textarea id="defectosPersonalidadPadre" name="defectosPersonalidadPadre" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="defectosPersonalidadPadre" name="defectosPersonalidadPadre" class="form-control" placeholder="Describe que defectos observas de tu padre..." rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Platicas tus problemas con él?
                                         </div>
-                                        <textarea id="platicarProblemasConPadre" name="platicarProblemasConPadre" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="platicarProblemasConPadre" name="platicarProblemasConPadre" class="form-control" placeholder="Describe las razones de porque platicas o no tu problemas con él..." rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Qué características de personalidad admiras de tu madre?
                                         </div>
-                                        <textarea id="admirarPersonalidadMadre" name="admirarPersonalidadMadre" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="admirarPersonalidadMadre" name="admirarPersonalidadMadre" class="form-control" placeholder="Describe que características admiras de tu madre..." rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Qué defectos observas en ella?
                                         </div>
-                                        <textarea id="defectosPersonalidadMadre" name="defectosPersonalidadMadre" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="defectosPersonalidadMadre" name="defectosPersonalidadMadre" class="form-control" placeholder="Describe que defectos observas de tu madre..." rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Platicas tus problemas con ella?
                                         </div>
-                                        <textarea id="platicarProblemasConMadre" name="platicarProblemasConMadre" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="platicarProblemasConMadre" name="platicarProblemasConMadre" class="form-control" placeholder="Describe las razones de porque platicas o no tu problemas con ella" rows="2" cols=65"></textarea>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <div class="h6 text-center">
                                             ¿Cómo es tu relación con tus hermanos?
                                         </div>
-                                        <textarea id="relacionConHermanos" name="relacionConHermanos" class="form-control" rows="2" cols=65"></textarea>
+                                        <textarea id="relacionConHermanos" name="relacionConHermanos" class="form-control" placeholder="Describe tu relación con tus hermanos..." rows="2" cols=65"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Qué haces en tu tiempo libre?</label>
-                                        <input type="text" id="pasatiempos" name="pasatiempos" class="form-control" required>
+                                        <input type="text" id="pasatiempos" name="pasatiempos" class="form-control" placeholder="Describe de manera breve que haces en tu tiempo libre" required>
                                     </div>
                                 </div>
 
@@ -366,7 +366,7 @@
                                     </div>
                                     <div class="col-md-7 form-group">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualPracticaDeporte" name="cualPracticaDeporte" class="form-control" required>
+                                        <input type="text" id="cualPracticaDeporte" name="cualPracticaDeporte" placeholder="Detalla cuales deportes practicas" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -381,7 +381,7 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualOrganizacionAyudaSocial" name="cualOrganizacionAyudaSocial" class="form-control" required>
+                                        <input type="text" id="cualOrganizacionAyudaSocial" name="cualOrganizacionAyudaSocial" placeholder="Escribe cual es la organización en la que participas" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -396,7 +396,7 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿De cuál(es)?</label>
-                                        <input type="text" id="cualDirectivoGrupo" name="cualDirectivoGrupo" class="form-control" required>
+                                        <input type="text" id="cualDirectivoGrupo" name="cualDirectivoGrupo" placeholder="Escribe cual(es) son los grupos en los que has sido jefe o directivo" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -411,7 +411,7 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualActividadCultural" name="cualActividadCultural" class="form-control" required>
+                                        <input type="text" id="cualActividadCultural" name="cualActividadCultural" placeholder="Escribe cual(es) son las actividades culturales" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -423,13 +423,13 @@
                                     </div>
                                     <div class="col-md-7 form-group">
                                         <label class="formLabel">¿Con qué frecuencia lees?</label>
-                                        <input type="text" id="frecuenciaLectura" name="frecuenciaLectura" class="form-control" required>
+                                        <input type="text" id="frecuenciaLectura" name="frecuenciaLectura" placeholder="Detalla la frecuencia con la que lees" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Qué tipo de lectura prefieres?  </label>
-                                        <input type="text" id="cualLectura" name="cualLectura" class="form-control" required>
+                                        <input type="text" id="cualLectura" name="cualLectura" placeholder="Detalla que tipo de lectura prefieres" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -441,7 +441,7 @@
                                     </div>
                                     <div class="col-md-7 form-group">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualRedesSociales" name="cualRedesSociales" class="form-control" required>
+                                        <input type="text" id="cualRedesSociales" name="cualRedesSociales" placeholder="Detalla que redes sociales utilizas" class="form-control" required>
                                     </div>
                                 </div>
 
@@ -456,7 +456,7 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualExperienciaOrganizaciones" name="cualExperienciaOrganizaciones" class="form-control" required>
+                                        <input type="text" id="cualExperienciaOrganizaciones" name="cualExperienciaOrganizaciones" placeholder="Detalla las organizaciones a las que perteneces" class="form-control" required>
                                     </div>
                                 </div>
 

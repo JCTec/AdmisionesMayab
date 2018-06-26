@@ -341,7 +341,7 @@
                                     </div>
                                     <div class="col-md-7 form-group">
                                         <label class="formLabel">¿Qué puesto desempeñaste?</label>
-                                        <input type="text" id="puestoTrabajoPrevio" name="puestoTrabajoPrevio" class="form-control"  value="{{$ov->puestoTrabajoPrevio}}" required>
+                                        <input type="text" id="puestoTrabajoPrevio" name="puestoTrabajoPrevio" placeholder="Descripción del puesto que desempeñastes" class="form-control"  value="{{$ov->puestoTrabajoPrevio}}" required>
                                     </div>
                                 </div>
 
@@ -356,7 +356,7 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Por qué?</label>
-                                        <input type="text" id="razonExperienciaLaboralElegirCarrera" name="razonExperienciaLaboralElegirCarrera" value="{{$ov->razonExperienciaLaboralElegirCarrera}}"  class="form-control" required>
+                                        <input type="text" id="razonExperienciaLaboralElegirCarrera" name="razonExperienciaLaboralElegirCarrera" placeholder="Explica porque sientes que tu experiencia laboral te ha resultado útil" value="{{$ov->razonExperienciaLaboralElegirCarrera}}"  class="form-control" required>
                                     </div>
                                 </div>
 
@@ -368,14 +368,14 @@
                                     </div>
                                     <div class="col-md-7 form-group">
                                         <label class="formLabel">¿Por qué motivo?</label>
-                                        <input type="text" id="razonTrabajoActual" name="razonTrabajoActual" class="form-control"  value="{{$ov->razonTrabajoActual}}" required>
+                                        <input type="text" id="razonTrabajoActual" name="razonTrabajoActual" placeholder="Explica porque trabajas actualmente" class="form-control"  value="{{$ov->razonTrabajoActual}}" required>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">Nombre de la organización o empresa:</label>
-                                        <input type="text" id="empresaTrabajoActual" name="empresaTrabajoActual" class="form-control" value="{{$ov->empresaTrabajoActual}}"  required>
+                                        <input type="text" id="empresaTrabajoActual" name="empresaTrabajoActual" placeholder="Nombre de la organización o empresa en la que trabajas" class="form-control" value="{{$ov->empresaTrabajoActual}}"  required>
                                     </div>
                                 </div>
 
@@ -407,7 +407,7 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Qué tipo de asistencia requieres?</label>
-                                        <input type="text" id="tipoAsistenciaNecesitada" name="tipoAsistenciaNecesitada" class="form-control" value="{{$ov->tipoAsistenciaNecesitada}}"  required>
+                                        <input type="text" id="tipoAsistenciaNecesitada" name="tipoAsistenciaNecesitada" placeholder="Explica que tipo de asistencia requieres" class="form-control" value="{{$ov->tipoAsistenciaNecesitada}}"  required>
                                     </div>
                                 </div>
 
@@ -422,7 +422,7 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">Indica qué tipo de modalidad necesitas:</label>
-                                        <input type="text" id="tipoDeExamenNecesitado" name="tipoDeExamenNecesitado" class="form-control" value="{{$ov->tipoDeExamenNecesitado}}"  required>
+                                        <input type="text" id="tipoDeExamenNecesitado" name="tipoDeExamenNecesitado" placeholder="Explica que tipo de modalidad de examenes requieres" class="form-control" value="{{$ov->tipoDeExamenNecesitado}}"  required>
                                     </div>
                                 </div>
 
@@ -437,7 +437,7 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Cuál?</label>
-                                        <input type="text" id="tipoProblemaContinuoSalud" name="tipoProblemaContinuoSalud" class="form-control" value="{{$ov->tipoProblemaContinuoSalud}}"  required>
+                                        <input type="text" id="tipoProblemaContinuoSalud" name="tipoProblemaContinuoSalud" placeholder="Explica que problema de salud tienes" class="form-control" value="{{$ov->tipoProblemaContinuoSalud}}"  required>
                                     </div>
                                 </div>
 
@@ -452,14 +452,14 @@
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Qué tipo de terapia has recibido?</label>
-                                        <input type="text" id="tipoDeTerapiaRecibida" name="tipoDeTerapiaRecibida" class="form-control" value="{{$ov->tipoDeTerapiaRecibida}}"  required>
+                                        <input type="text" id="tipoDeTerapiaRecibida" name="tipoDeTerapiaRecibida" placeholder="Explica que tipo de terapia has recibido" class="form-control" value="{{$ov->tipoDeTerapiaRecibida}}"  required>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12 form-group">
                                         <label class="formLabel">¿Por qué tuviste que recibir la terapia?</label>
-                                        <input type="text" id="razonDeTerapiaRecibida" name="razonDeTerapiaRecibida" class="form-control" value="{{$ov->razonDeTerapiaRecibida}}"  required>
+                                        <input type="text" id="razonDeTerapiaRecibida" name="razonDeTerapiaRecibida" class="form-control" placeholder="Explica el porqué recibistes terapia" value="{{$ov->razonDeTerapiaRecibida}}"  required>
                                     </div>
                                 </div>
 
