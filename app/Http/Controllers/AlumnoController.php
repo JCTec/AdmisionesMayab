@@ -162,7 +162,7 @@ class AlumnoController extends Controller
 
             $alumno->saveOrFail();
 
-            return redirect()->route('home');
+            return redirect()->route('payment');
         }
 
     }
@@ -206,7 +206,7 @@ class AlumnoController extends Controller
                 $alumno->saveOrFail();
             }
 
-            return redirect()->route('home');
+            return redirect()->route('orientacionVocacional');
         }
     }
 
@@ -245,7 +245,7 @@ class AlumnoController extends Controller
 
                 $user->saveOrFail();
 
-                return redirect()->route('home');
+                return redirect()->route('orientacionVocacional');
             }else{
                 $rStep = ($step + 1);
 

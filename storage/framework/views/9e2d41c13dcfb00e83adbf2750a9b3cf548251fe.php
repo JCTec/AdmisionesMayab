@@ -27,15 +27,13 @@
 
                                     $('#saveASD').on('click', function (e) {
                                         e.preventDefault();
-                                        if($('#finalEmail').val() == $('#finalEmail2').val()){
-                                            $('#saveB').click();
-                                        }
+                                        $('#saveB').click();
                                     });
                                 });
                             </script>
 
                             <div class="card-body">
-                                <form class="form" role="form" method="POST" action="<?php echo e(route('user.createFamiliar')); ?>" accept-charset="UTF-8" id="login-nav">
+                                <form class="form" role="form" method="POST" action="<?php echo e(route('user.createFamiliar')); ?>" accept-charset="UTF-8" id="familiar1">
                                     <?php echo csrf_field(); ?>
                                     <input type="hidden" name="relacion" value=1>
 
@@ -107,9 +105,9 @@
                                             });
 
                                             <?php if(isset($familiar->celular)): ?>
-                                            $("#celular").intlTelInput("setNumber", "<?php echo e($familiar->celularInt); ?><?php echo e($familiar->celular); ?>");
+                                                $("#celular").intlTelInput("setNumber", "<?php echo e($familiar->celularInt); ?><?php echo e($familiar->celular); ?>");
                                             <?php else: ?>
-                                            $('#celularInt').val("+52");
+                                                $('#celularInt').val("+52");
                                             <?php endif; ?>
 
                                             $('#telefono').on('countrychange', function (e, countrychange) {
@@ -136,7 +134,7 @@
                                             <?php endif; ?>
                                         </div>
                                         <div class="col-md-6 form-group">
-                                            <label class="formLabel">¿Es egresada de la Universidad Anáhuac?</label>
+                                            <label class="formLabel">¿Es egresado de la Universidad Anáhuac?</label>
                                             <?php if(!isset($familiar->isEgresado) || $familiar->isEgresado == true): ?>
                                                 <input type="radio" name="isEgresado" value=1 checked> Si<br>
                                                 <input type="radio" name="isEgresado" value=0> No<br>

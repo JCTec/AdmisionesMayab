@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Admisiones') }}</title>
 
     <!-- Scripts -->
-    @if(Request::url() != route('cuestionario') && Request::url() != route('familiar'))
+    @if(false)
         <script src="{{ asset('js/app.js') }}" defer></script>
     @endif
 
@@ -46,362 +46,8 @@
         }
     </style>
 
-    <style>
+    <link href="{{ asset('css/Admisiones.css') }}" rel="stylesheet">
 
-        html {
-            height: 100%;
-        }
-        html, body {
-            min-height: 100%;
-        }
-        html, main {
-            min-height: 100%;
-        }
-
-        fieldset {
-            padding-left: 10px;
-            padding-right: 10px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            border: 2px solid rgba(0, 0, 0, 0.3);
-        }
-
-        .form-inline > * {
-            margin:5px 5px;
-        }
-
-         #menuJC ul {
-             list-style-type: none;
-             padding: 0;
-             margin: 0;
-             text-align: center;
-         }
-        #menuJC li {
-            display: inline-block;
-            padding: 50px 30px;
-        }
-
-        .fileUpload {
-            position: relative;
-            overflow: hidden;
-            margin: 10px;
-        }
-        .fileUpload input.upload {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
-            font-size: 20px;
-            cursor: pointer;
-            opacity: 0;
-            filter: alpha(opacity=0);
-        }
-
-        .archiveLabel {
-            border-radius: 25px;
-            border-style: solid;
-            border-width: 5px;
-        }
-
-        .archive {
-            border-radius: 25px;
-            border-style: solid;
-            border-width: 0px;
-        }
-
-        hr {
-            display: block;
-            height: 1px;
-            border: 0;
-            border-top: 1px solid #ccc;
-            margin: 1em 0;
-            padding: 0;
-        }
-
-        .box {
-            width: 100%;
-            font-family: Roboto;
-            font-size: 20px;
-            color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.50);
-        }
-
-        #menuJC a {
-            display: block;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px #4c2f1e solid;
-            text-decoration: none;
-            font-size: 1vw;
-            text-align: center;
-            padding-top: 10px;
-            line-height:  5vw;
-            margin: 5%;
-            color: #ffffff;
-            background-color: #613b25;
-            font-family: "Roboto Condensed";
-            font-size: 20px;
-        }
-
-        .formLabel {
-            font-family: "Roboto Slab";
-        }
-
-        p.divider {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-        p.divider * {
-            flex-shrink: 0
-        }
-        p.divider span.divider {
-            width: 100%;
-            flex-shrink: 1;
-            border-bottom: 1px solid black;
-            margin: 5px
-        }
-
-        * {margin: 0; padding: 0;}
-        #container {height: 100%; width:100%; font-size: 0;}
-        #left, #middle, #right {display: inline-block; *display: inline; zoom: 1; vertical-align: top; font-size: 12px;}
-        #left {width: 25%; }
-        #middle {width: 50%; }
-        #right {width: 25%; }
-
-        .intl-tel-input {width: 100%;}
-
-        @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #fafafa;
-        }
-
-        p {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.1em;
-            font-weight: 300;
-            line-height: 1.7em;
-            color: #999;
-        }
-
-        a, a:hover, a:focus {
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .navbarAD {
-            padding: 15px 10px;
-            background: #fff;
-            border: none;
-            border-radius: 0;
-            margin-bottom: 0px;
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-btnAD {
-            box-shadow: none;
-            outline: none !important;
-            border: none;
-        }
-
-        .line {
-            width: 100%;
-            height: 1px;
-            border-bottom: 1px dashed #ddd;
-            margin: 40px 0;
-        }
-
-        /* ---------------------------------------------------
-            SIDEBAR STYLE
-        ----------------------------------------------------- */
-
-        .wrapper {
-            display: flex;
-            width: 100%;
-            align-items: stretch;
-            perspective: 1500px;
-        }
-
-
-        #sidebar {
-            min-width: 250px;
-            max-width: 250px;
-            background: #fd8023;
-            color: #fff;
-            transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
-            transform-origin: bottom left;
-        }
-
-        #sidebar.active {
-            margin-left: -250px;
-            transform: rotateY(100deg);
-        }
-
-        #sidebar .sidebar-header {
-            padding: 20px;
-            background: #fd7c18;
-        }
-
-        #sidebar .sidebar-header:hover {
-            color: #000000;
-            background: #ffffff;
-        }
-
-        #sidebar ul.components {
-            padding: 20px 0;
-            border-bottom: 1px solid #613b25;
-        }
-
-        #sidebar ul p {
-            color: #fff;
-            padding: 10px;
-        }
-
-        #sidebar ul li a {
-            padding: 10px;
-            font-size: 1.1em;
-            display: block;
-        }
-        #sidebar ul li a:hover {
-            color: #613b25;
-            background: #fff;
-        }
-
-        #sidebar ul li.active > a {
-            color: #fff;
-            background: #fd7203;
-        }
-
-
-        a[data-toggle="collapse"] {
-            position: relative;
-        }
-
-        .dropdown-toggleJC::after {
-            display: block;
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-        }
-
-        ul ul a {
-            font-size: 0.9em !important;
-            padding-left: 30px !important;
-            background: #fd9137;
-        }
-
-        ul.CTAs {
-            padding: 20px;
-        }
-
-        ul.CTAs a {
-            text-align: center;
-            font-size: 0.9em !important;
-            display: block;
-            border-radius: 5px;
-            margin-bottom: 5px;
-        }
-
-        a.download {
-            background: #fff;
-            color: #7386D5;
-        }
-
-        a.article, a.article:hover {
-            background: #6d7fcc !important;
-            color: #fff !important;
-        }
-
-
-
-        /* ---------------------------------------------------
-            CONTENT STYLE
-        ----------------------------------------------------- */
-        #content {
-            width: 100%;
-            padding: 20px;
-            min-height: 100vh;
-            transition: all 0.3s;
-        }
-
-        #sidebarCollapse {
-            width: 40px;
-            height: 40px;
-            background: #f5f5f5;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        #sidebarCollapse span {
-            width: 80%;
-            height: 2px;
-            margin: 0 auto;
-            display: block;
-            background: #555;
-            transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
-            transition-delay: 0.2s;
-        }
-
-        #sidebarCollapse span:first-of-type {
-            transform: rotate(45deg) translate(2px, 2px);
-        }
-        #sidebarCollapse span:nth-of-type(2) {
-            opacity: 0;
-        }
-        #sidebarCollapse span:last-of-type {
-            transform: rotate(-45deg) translate(1px, -1px);
-        }
-
-
-        #sidebarCollapse.active span {
-            transform: none;
-            opacity: 1;
-            margin: 5px auto;
-        }
-
-
-        /* ---------------------------------------------------
-            MEDIAQUERIES
-        ----------------------------------------------------- */
-        @media (max-width: 768px) {
-            #sidebar {
-                margin-left: -250px;
-                transform: rotateY(90deg);
-            }
-            #sidebar.active {
-                margin-left: 0;
-                transform: none;
-            }
-            #sidebarCollapse span:first-of-type,
-            #sidebarCollapse span:nth-of-type(2),
-            #sidebarCollapse span:last-of-type {
-                transform: none;
-                opacity: 1;
-                margin: 5px auto;
-            }
-            #sidebarCollapse.active span {
-                margin: 0 auto;
-            }
-            #sidebarCollapse.active span:first-of-type {
-                transform: rotate(45deg) translate(2px, 2px);
-            }
-            #sidebarCollapse.active span:nth-of-type(2) {
-                opacity: 0;
-            }
-            #sidebarCollapse.active span:last-of-type {
-                transform: rotate(-45deg) translate(1px, -1px);
-            }
-
-        }
-
-    </style>
 
     <script type="text/javascript">
         function toggle_visibility(id) {
@@ -413,6 +59,7 @@
         }
 
         $(document).ready(function () {
+
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');
@@ -545,6 +192,7 @@
             }
         });
     </script>
+
 </head>
 @if(Request::url() == route('home'))
     <body style="background-color: #ffffff; background-image: url('{{ asset('img/foto_anahuac.jpg') }}')">
@@ -559,10 +207,8 @@
     </ul>
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Admisiones') }}</a>
+
         <!-- Left Side Of Navbar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -625,28 +271,14 @@
                 </li>
                 <li><a href="{{ route('register') }}" class="nav-link">Registrate</a></li>-->
                 @else
-                    <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                    <div >{{ Auth::user()->name }}</div>
                 @endguest
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+@if(Request::url() != route('login') && Request::url() != route('register') && Request::url() != route('logout'))
+
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
@@ -675,7 +307,19 @@
             </ul>
 
             <ul class="list-unstyled CTAs">
+                <li>
+                    <div style="text-align: center">{{ Auth::user()->name }}</div>
 
+                    <a class="download" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
             </ul>
         </nav>
 
@@ -684,13 +328,13 @@
             <span></span>
             <span></span>
         </button>
-        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
-        </button>
+        <script>
+            $('#sidebar').toggleClass('active');
+            $('#sidebarCollapse').toggleClass('active');
+        </script>
 
         <!-- Page Content Holder -->
         <div id="content">
-
             @yield('content')
         </div>
     </div>
@@ -698,6 +342,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    @else
+        @yield('content')
+    @endif
 
 </div>
 </body>

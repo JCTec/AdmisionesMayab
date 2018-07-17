@@ -21,6 +21,8 @@ class FileEntryController extends Controller
 
         if($token){
 
+            $ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+
             $types = array('Acta de Nacimiento','Certificado de Preparatoria','Foto');
 
             $acta = Request::file('actaDeNacimiento');
@@ -28,7 +30,7 @@ class FileEntryController extends Controller
             $image = Request::file('imagenDePerfil');
 
             if(!$acta && !$prepa && !$image){
-                return redirect()->route('home');
+                return redirect()->route('familiar');
             }
 
             if($acta){
@@ -48,18 +50,22 @@ class FileEntryController extends Controller
 
                 $fileName = $acta->getFilename();
 
+                $mime = $acta->getClientMimeType();
+
                 $extension = $acta->getClientOriginalExtension();
                 Storage::disk('local')->put('/'.$token->id .'/'. $fileName .'.'.$extension,  File::get($acta));
                 $entry->type = $type+1;
                 $entry->idUser = $token->id;
-                $entry->mime = $acta->getClientMimeType();
+                $entry->mime = $mime;
                 $entry->original_filename = $acta->getClientOriginalName();
                 $name = $types[$type].', '.$token->name;
                 $entry->descripcion = $name;
                 $entry->filename = $fileName.'.'.$extension;
                 $entry->aprobado = null;
 
-                $entry->base64 = "data:image/". $extension . ";base64," . base64_encode(file_get_contents($acta));
+                if(in_array($mime, $ValidImageTypes)){
+                    $entry->base64 = "data:image/". $extension . ";base64," . base64_encode(file_get_contents($acta));
+                }
 
                 $entry->saveOrFail();
             }
@@ -80,18 +86,22 @@ class FileEntryController extends Controller
 
                 $fileName = $prepa->getFilename();
 
+                $mime = $prepa->getClientMimeType();
+
                 $extension = $prepa->getClientOriginalExtension();
                 Storage::disk('local')->put('/'.$token->id .'/'. $fileName .'.'.$extension,  File::get($prepa));
                 $entry->type = $type+1;
                 $entry->idUser = $token->id;
-                $entry->mime = $prepa->getClientMimeType();
+                $entry->mime = $mime;
                 $entry->original_filename = $prepa->getClientOriginalName();
                 $name = $types[$type].', '.$token->name;
                 $entry->descripcion = $name;
                 $entry->filename = $fileName.'.'.$extension;
                 $entry->aprobado = null;
 
-                $entry->base64 = "data:image/". $extension . ";base64," . base64_encode(file_get_contents($prepa));
+                if(in_array($mime, $ValidImageTypes)){
+                    $entry->base64 = "data:image/". $extension . ";base64," . base64_encode(file_get_contents($prepa));
+                }
 
                 $entry->saveOrFail();
             }
@@ -128,7 +138,7 @@ class FileEntryController extends Controller
                 $entry->saveOrFail();
             }
 
-            return redirect()->route('home');
+            return redirect()->route('familia');
 
         }
 

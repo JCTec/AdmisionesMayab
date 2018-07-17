@@ -460,17 +460,14 @@
                                         <label class="formLabel ">¿Con Quién Vives?:</label>
                                         <select id='conQuienVives' name='conQuienVives' class="form-control" required>
                                             <?php if($tutor): ?>
-                                                <option value='1'><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
-                                                <option value='2'><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
-                                                <option value='3' selected="selected"><?php echo e($tutor->titulo); ?> <?php echo e($tutor->firstName); ?></option>
+                                                <option value='Ambos Padres'>Ambos Padres</option>
+                                                <option value='Padre'><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
+                                                <option value='Madre'><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
+                                                <option value='Tutor' selected="selected"><?php echo e($tutor->titulo); ?> <?php echo e($tutor->firstName); ?></option>
                                             <?php else: ?>
-                                                <?php if($alumno->tutor == 1): ?>
-                                                    <option value='1' selected="selected"><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
-                                                    <option value='2'><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
-                                                <?php else: ?>
-                                                    <option value='1'><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
-                                                    <option value='2' selected="selected"><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
-                                                <?php endif; ?>
+                                                <option value='Ambos Padres' selected="selected">Ambos Padres</option>
+                                                <option value='Padre'><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
+                                                <option value='Madre'><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
                                             <?php endif; ?>
                                         </select>
                                     </div>
@@ -478,17 +475,14 @@
                                         <label class="formLabel ">¿Quién paga tus estudios?:</label>
                                         <select id='quienPagaTusEstudios' name='quienPagaTusEstudios' class="form-control" required>
                                             <?php if($tutor): ?>
-                                                <option value='1'><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
-                                                <option value='2'><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
-                                                <option value='3' selected="selected"><?php echo e($tutor->titulo); ?> <?php echo e($tutor->firstName); ?></option>
+                                                <option value='Ambos Padres'>Ambos Padres</option>
+                                                <option value='Padre'><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
+                                                <option value='Madre'><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
+                                                <option value='Tutor' selected="selected"><?php echo e($tutor->titulo); ?> <?php echo e($tutor->firstName); ?></option>
                                             <?php else: ?>
-                                                <?php if($alumno->tutor == 1): ?>
-                                                    <option value='1' selected="selected"><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
-                                                    <option value='2'><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
-                                                <?php else: ?>
-                                                    <option value='1'><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
-                                                    <option value='2' selected="selected"><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
-                                                <?php endif; ?>
+                                                <option value='Ambos Padres' selected="selected">Ambos Padres</option>
+                                                <option value='Padre'><?php echo e($padre->titulo); ?> <?php echo e($padre->firstName); ?></option>
+                                                <option value='Madre'><?php echo e($madre->titulo); ?> <?php echo e($madre->firstName); ?></option>
                                             <?php endif; ?>
                                         </select>
                                     </div>
@@ -598,7 +592,7 @@
                                 <div class="row" style="padding-top: 20px">
                                     <div class="form-group col-md-12">
                                         <label class="formLabel">¿Qué área cursas o cursaste en el último año de bachillerato?</label>
-                                        <input type="text" id="areaBachillerato" name="areaBachillerato" class="form-control" required value="<?php echo e($ov->areaBachillerato); ?>">
+                                        <input type="text" id="areaBachillerato" name="areaBachillerato" placeholder="Área/Especialidad de tu bachillerato" class="form-control" required value="<?php echo e($ov->areaBachillerato); ?>">
                                     </div>
                                 </div>
 
@@ -610,29 +604,29 @@
                                     </div>
                                     <div class="form-group col-md-7">
                                         <label class="formLabel">¿En dónde y por cuánto tiempo?</label>
-                                        <input type="text" id="lugarEstudioExtranjero" name="lugarEstudioExtranjero" class="form-control" value="<?php echo e($ov->lugarEstudioExtranjero); ?>">
+                                        <input type="text" id="lugarEstudioExtranjero" name="lugarEstudioExtranjero" placeholder="País donde estudiastes" class="form-control" value="<?php echo e($ov->lugarEstudioExtranjero); ?>">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿En qué materias has obtenido las calificaciones más altas?</label>
-                                        <input type="text" id="mejorMateria" name="mejorMateria" class="form-control" required  value="<?php echo e($ov->mejorMateria); ?>">
+                                        <input type="text" id="mejorMateria" name="mejorMateria" placeholder="Nombre de tu mejor materia. Ej. Matemáticas" class="form-control" required  value="<?php echo e($ov->mejorMateria); ?>">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿En qué materias has obtenido las calificaciones más bajas?</label>
-                                        <input type="text" id="peorMateria" name="peorMateria" class="form-control" required  value="<?php echo e($ov->peorMateria); ?>">
+                                        <input type="text" id="peorMateria" name="peorMateria" placeholder="Nombre de tu peor materia. Ej. Matemáticas" class="form-control" required  value="<?php echo e($ov->peorMateria); ?>">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿Qué materias te gustan más?</label>
-                                        <input type="text" id="materiaFavorita" name="materiaFavorita" class="form-control" required value="<?php echo e($ov->materiaFavorita); ?>">
+                                        <input type="text" id="materiaFavorita" name="materiaFavorita" placeholder="Nombre de tu materia favorita. Ej. Matemáticas" class="form-control" required value="<?php echo e($ov->materiaFavorita); ?>">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿Qué materias te gustan menos?</label>
-                                        <input type="text" id="materiaDisgusto" name="materiaDisgusto" class="form-control" required value="<?php echo e($ov->materiaDisgusto); ?>">
+                                        <input type="text" id="materiaDisgusto" name="materiaDisgusto" placeholder="Nombre de la materia que disfrutas menos. Ej. Matemáticas" class="form-control" required value="<?php echo e($ov->materiaDisgusto); ?>">
                                     </div>
                                 </div>
 
@@ -644,14 +638,14 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualExamenExtraordinario" name="cualExamenExtraordinario" class="form-control" value="<?php echo e($ov->cualExamenExtraordinario); ?>">
+                                        <input type="text" id="cualExamenExtraordinario" name="cualExamenExtraordinario" placeholder="Institución donde has presentado examenes extraordinarios" class="form-control" value="<?php echo e($ov->cualExamenExtraordinario); ?>">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label class="formLabel">¿Por qué?</label>
-                                        <input type="text" id="razonExamenExtraordinario" name="razonExamenExtraordinario" class="form-control" value="<?php echo e($ov->razonExamenExtraordinario); ?>">
+                                        <input type="text" id="razonExamenExtraordinario" name="razonExamenExtraordinario" placeholder="Explicación de el porqué tomastes un examen extraordinario" class="form-control" value="<?php echo e($ov->razonExamenExtraordinario); ?>">
                                     </div>
                                 </div>
 
@@ -664,14 +658,14 @@
                                     </div>
                                     <div class="form-group col-md-7">
                                         <label class="formLabel">¿Cuál(es)?</label>
-                                        <input type="text" id="cualReprobarSemestre" name="cualReprobarSemestre" class="form-control" value="<?php echo e($ov->cualReprobarSemestre); ?>">
+                                        <input type="text" id="cualReprobarSemestre" name="cualReprobarSemestre" placeholder="Institución donde has reprobado algún año o semestre" class="form-control" class="form-control" value="<?php echo e($ov->cualReprobarSemestre); ?>">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label class="formLabel">¿Por qué?</label>
-                                        <input type="text" id="razonReprobarSemestre" name="razonReprobarSemestre" class="form-control" value="<?php echo e($ov->razonReprobarSemestre); ?>">
+                                        <input type="text" id="razonReprobarSemestre" name="razonReprobarSemestre" placeholder="Explicación de el porqué has reprobado algún año o semestre"  class="form-control" value="<?php echo e($ov->razonReprobarSemestre); ?>">
                                     </div>
                                 </div>
 
@@ -686,7 +680,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label class="formLabel">¿Por qué la reprobastes o dejastes?</label>
-                                        <input type="text" id="razonUniversidadPrevia" name="razonUniversidadPrevia" class="form-control" required value="<?php echo e($ov->razonUniversidadPrevia); ?>">
+                                        <input type="text" id="razonUniversidadPrevia" name="razonUniversidadPrevia"  placeholder="Explicación de el porqué reprobastes o dejastes tu anterior universidad" class="form-control" required value="<?php echo e($ov->razonUniversidadPrevia); ?>">
                                     </div>
                                 </div>
 

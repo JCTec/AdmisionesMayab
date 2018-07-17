@@ -25,7 +25,7 @@ class PaymentController extends HomeController
         if ($user) {
             $transaction = Transaction::create(['idUser' => $user->id, 'estatus' => true]);
 
-            return redirect()->route('home');
+            return redirect()->route('uploadFiles');
         }
     }
 }

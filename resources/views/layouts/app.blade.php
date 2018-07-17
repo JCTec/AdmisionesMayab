@@ -44,230 +44,164 @@
     </style>
 
     <style>
-        @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #fafafa;
+        .table-wrapper {
+            background: #fff;
+            padding: 20px 25px;
+            margin: 30px 0;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
         }
-
-        p {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.1em;
-            font-weight: 300;
-            line-height: 1.7em;
-            color: #999;
+        .table-title {
+            padding-bottom: 15px;
+            background: #299be4;
+            color: #fff;
+            padding: 16px 30px;
+            margin: -20px -25px 10px;
+            border-radius: 3px 3px 0 0;
         }
-
-        a, a:hover, a:focus {
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.3s;
+        .table-title h2 {
+            margin: 5px 0 0;
+            font-size: 24px;
         }
-
-        .navbar {
-            padding: 15px 10px;
+        .table-title .btn {
+            color: #566787;
+            float: right;
+            font-size: 13px;
             background: #fff;
             border: none;
-            border-radius: 0;
-            margin-bottom: 0px;
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-btn {
-            box-shadow: none;
+            min-width: 50px;
+            border-radius: 2px;
+            border: none;
             outline: none !important;
-            border: none;
+            margin-left: 10px;
+        }
+        .table-title .btn:hover, .table-title .btn:focus {
+            color: #566787;
+            background: #f2f2f2;
+        }
+        .table-title .btn i {
+            float: left;
+            font-size: 21px;
+            margin-right: 5px;
+        }
+        .table-title .btn span {
+            float: left;
+            margin-top: 2px;
+        }
+        table.table tr th, table.table tr td {
+            border-color: #e9e9e9;
+            padding: 12px 15px;
+            vertical-align: middle;
         }
 
-        .line {
-            width: 100%;
-            height: 1px;
-            border-bottom: 1px dashed #ddd;
-            margin: 40px 0;
+        table.table tr th:last-child {
+            width: 100px;
         }
 
-        /* ---------------------------------------------------
-            SIDEBAR STYLE
-        ----------------------------------------------------- */
+        @if(!$u)
+            table.table tr th:last-child {
+                width: 200px;
+            }
+        @endif
 
-        .wrapper {
-            display: flex;
-            width: 100%;
-            align-items: stretch;
-            perspective: 1500px;
+        table.table-striped tbody tr:nth-of-type(odd) {
+            background-color: #fcfcfc;
         }
-
-
-        #sidebar {
-            min-width: 250px;
-            max-width: 250px;
-            background: #fd8023;
-            color: #fff;
-            transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
-            transform-origin: bottom left;
-        }
-
-        #sidebar.active {
-            margin-left: -250px;
-            transform: rotateY(100deg);
-        }
-
-        #sidebar .sidebar-header {
-            padding: 20px;
-            background: #fd7c18;
-        }
-
-        #sidebar ul.components {
-            padding: 20px 0;
-            border-bottom: 1px solid #613b25;
-        }
-
-        #sidebar ul p {
-            color: #fff;
-            padding: 10px;
-        }
-
-        #sidebar ul li a {
-            padding: 10px;
-            font-size: 1.1em;
-            display: block;
-        }
-        #sidebar ul li a:hover {
-            color: #613b25;
-            background: #fff;
-        }
-
-        #sidebar ul li.active > a, a[aria-expanded="true"] {
-            color: #fff;
-            background: #fd7203;
-        }
-
-
-        a[data-toggle="collapse"] {
-            position: relative;
-        }
-
-        .dropdown-toggle::after {
-            display: block;
-            position: absolute;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-        }
-
-        ul ul a {
-            font-size: 0.9em !important;
-            padding-left: 30px !important;
-            background: #fd9137;
-        }
-
-        ul.CTAs {
-            padding: 20px;
-        }
-
-        ul.CTAs a {
-            text-align: center;
-            font-size: 0.9em !important;
-            display: block;
-            border-radius: 5px;
-            margin-bottom: 5px;
-        }
-
-        a.download {
-            background: #fff;
-            color: #7386D5;
-        }
-
-        a.article, a.article:hover {
-            background: #6d7fcc !important;
-            color: #fff !important;
-        }
-
-
-
-        /* ---------------------------------------------------
-            CONTENT STYLE
-        ----------------------------------------------------- */
-        #content {
-            width: 100%;
-            padding: 20px;
-            min-height: 100vh;
-            transition: all 0.3s;
-        }
-
-        #sidebarCollapse {
-            width: 40px;
-            height: 40px;
+        table.table-striped.table-hover tbody tr:hover {
             background: #f5f5f5;
+        }
+        table.table th i {
+            font-size: 13px;
+            margin: 0 5px;
             cursor: pointer;
-            border-radius: 5px;
         }
-
-        #sidebarCollapse span {
-            width: 80%;
-            height: 2px;
-            margin: 0 auto;
-            display: block;
-            background: #555;
-            transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
-            transition-delay: 0.2s;
+        table.table td:last-child i {
+            opacity: 0.9;
+            font-size: 22px;
+            margin: 0 5px;
         }
-
-        #sidebarCollapse span:first-of-type {
-            transform: rotate(45deg) translate(2px, 2px);
+        table.table td a {
+            font-weight: bold;
+            color: #566787;
+            display: inline-block;
+            text-decoration: none;
         }
-        #sidebarCollapse span:nth-of-type(2) {
-            opacity: 0;
+        table.table td a:hover {
+            color: #2196F3;
         }
-        #sidebarCollapse span:last-of-type {
-            transform: rotate(-45deg) translate(1px, -1px);
+        table.table td a.settings {
+            color: #2196F3;
         }
-
-
-        #sidebarCollapse.active span {
-            transform: none;
-            opacity: 1;
-            margin: 5px auto;
+        table.table td a.delete {
+            color: #F44336;
         }
-
-
-        /* ---------------------------------------------------
-            MEDIAQUERIES
-        ----------------------------------------------------- */
-        @media (max-width: 768px) {
-            #sidebar {
-                margin-left: -250px;
-                transform: rotateY(90deg);
-            }
-            #sidebar.active {
-                margin-left: 0;
-                transform: none;
-            }
-            #sidebarCollapse span:first-of-type,
-            #sidebarCollapse span:nth-of-type(2),
-            #sidebarCollapse span:last-of-type {
-                transform: none;
-                opacity: 1;
-                margin: 5px auto;
-            }
-            #sidebarCollapse.active span {
-                margin: 0 auto;
-            }
-            #sidebarCollapse.active span:first-of-type {
-                transform: rotate(45deg) translate(2px, 2px);
-            }
-            #sidebarCollapse.active span:nth-of-type(2) {
-                opacity: 0;
-            }
-            #sidebarCollapse.active span:last-of-type {
-                transform: rotate(-45deg) translate(1px, -1px);
-            }
-
+        table.table td i {
+            font-size: 19px;
         }
-
+        table.table .avatar {
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .status {
+            font-size: 30px;
+            margin: 2px 2px 0 0;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 10px;
+        }
+        .text-success {
+            color: #10c469;
+        }
+        .text-info {
+            color: #62c9e8;
+        }
+        .text-warning {
+            color: #FFC107;
+        }
+        .text-danger {
+            color: #ff5b5b;
+        }
+        .pagination {
+            float: right;
+            margin: 0 0 5px;
+        }
+        .pagination li a {
+            border: none;
+            font-size: 13px;
+            min-width: 30px;
+            min-height: 30px;
+            color: #999;
+            margin: 0 2px;
+            line-height: 30px;
+            border-radius: 2px !important;
+            text-align: center;
+            padding: 0 6px;
+        }
+        .pagination li a:hover {
+            color: #666;
+        }
+        .pagination li.active a, .pagination li.active a.page-link {
+            background: #03A9F4;
+        }
+        .pagination li.active a:hover {
+            background: #0397d6;
+        }
+        .pagination li.disabled i {
+            color: #ccc;
+        }
+        .pagination li i {
+            font-size: 16px;
+            padding-top: 6px
+        }
+        .hint-text {
+            float: left;
+            margin-top: 10px;
+            font-size: 13px;
+        }
     </style>
+
+    <link href="{{ asset('css/Admisiones.css') }}" rel="stylesheet">
 
 
     <script type="text/javascript">
@@ -280,15 +214,20 @@
         }
 
         $(document).ready(function () {
+
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active');
                 $(this).toggleClass('active');
             });
+
         });
     </script>
+
+    <script src="{{ asset('js/State.js') }}" defer></script>
+
 </head>
-<body style="background-color: #ffffff">
-<div id="app" style="">
+<body style="background-color: #ffffff;">
+<div id="app" style="padding-bottom: 0px">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <ul class="navbar-nav mr-auto">
             <img src="{{ URL::asset("img/anahuac.jpg") }}" width="150" height="50">
@@ -296,19 +235,17 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Admisiones') }}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
             <!-- Left Side Of Navbar -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                 <!-- Right Side Of Navbar -->
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <ul id="nav" class="navbar-nav ml-auto">
-                    @guest
-                        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>
-                        <li><a class="nav-link" href="{{ route('register') }}">{{ __('Registrate') }}</a></li>
-                    <!-- <li class="nav nav-link">
+                        <ul id="nav" class="navbar-nav ml-auto">
+                            @guest
+                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a></li>
+                                <li><a class="nav-link" href="{{ route('register') }}">{{ __('Registrate') }}</a></li>
+                            <!-- <li class="nav nav-link">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>{{__('Iniciar sesión')}}</b> <span class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
@@ -323,31 +260,31 @@
                                     <form class="form" role="form" method="POST" action="{{ route('login') }}" accept-charset="UTF-8" id="login-nav">
                                         @csrf
 
-                            <div class="form-group">
-                                <label class="email" for="exampleInputEmail2"><h4>{{__('Correo electrónico:')}}</h4></label>
+                                    <div class="form-group">
+                                        <label class="email" for="exampleInputEmail2"><h4>{{__('Correo electrónico:')}}</h4></label>
                                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Correo electrónico" required autofocus>
                                                 @if ($errors->has('email'))
-                        <span class="invalid-feedback">
-                            <strong>{{ $errors->first('email') }}</strong>
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('email') }}</strong>
                                                     </span>
                                                 @endif
-                            </div>
-                            <div class="form-group">
-                                <label class="password" for="exampleInputPassword2"><h4>{{__('Contraseña:')}}</h4></label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="password" for="exampleInputPassword2"><h4>{{__('Contraseña:')}}</h4></label>
                                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Contraseña"  required>
                                                 @if ($errors->has('password'))
-                        <span class="invalid-feedback">
-                            <strong>{{ $errors->first('password') }}</strong>
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('password') }}</strong>
                                                     </span>
                                                 @endif
-                            <div class="help-block text-right"><a href="">Forget the password ?</a></div>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> keep me logged-in
+                                    <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> keep me logged-in
                                             </label>
                                         </div>
                                     </form>
@@ -360,79 +297,69 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('register') }}" class="nav-link">Registrate</a></li>-->
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                            @else
+                                <div >{{ Auth::user()->name }}</div>
+                            @endguest
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+@if(Request::url() != route('login') && Request::url() != route('register') && Request::url() != route('logout'))
+
+            <div class="wrapper">
+                <!-- Sidebar Holder -->
+                <nav id="sidebar">
+                    <a href="{{ route('home') }}">
+                        <div class="sidebar-header">
+                            <h3>Menu</h3>
+                        </div>
+                    </a>
+
+                    <ul class="list-unstyled components">
+                        <li>
+                            <a id="" href="{{route('alumnos')}}">Alumnos</a>
+                        </li>
+                    </ul>
+
+                    <ul class="list-unstyled CTAs">
+                        <li>
+                            <div style="text-align: center">{{ Auth::user()->name }}</div>
+
+                            <a class="download" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
                             </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </li>
-                    @endguest
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-    <div class="wrapper">
-        <!-- Sidebar Holder -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Menu</h3>
+                    </ul>
+                </nav>
+
+                <button type="button" id="sidebarCollapse" class="navbar-btnAD">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <script>
+                    $('#sidebar').toggleClass('active');
+                    $('#sidebarCollapse').toggleClass('active');
+                </script>
+
+                <!-- Page Content Holder -->
+                <div id="content">
+                    @yield('content')
+                </div>
             </div>
 
-            <ul class="list-unstyled components">
-                <li>
-                    <a id="basico" href="{{ route('cuestionario') }}">Información Basica</a>
-                </li>
-                <li>
-                    <a id="pago" href="{{ route('payment') }}">Pago</a>
-                </li>
-                <li>
-                    <a id="subirArchivos" href="{{ route('uploadFiles') }}">Archivos</a>
-                </li>
-                <li>
-                    <a id="familia" href="{{ route('familiar') }}">Familia</a>
-                </li>
-                <li>
-                    <a id="ov" href="{{ route('orientacionVocacional') }}">Orientación Vocacional</a>
-                </li>
-            </ul>
-
-            <ul class="list-unstyled CTAs">
-
-            </ul>
-        </nav>
-
-        <button type="button" id="sidebarCollapse" class="navbar-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fas fa-align-justify"></i>
-        </button>
-
-        <!-- Page Content Holder -->
-        <div id="content">
-
-            @yield('content')
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+            <!-- Bootstrap JS -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+@else
+     @yield('content')
+@endif
         </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
-</div>
-</body>
+        </body>
 </html>

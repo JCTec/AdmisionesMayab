@@ -462,17 +462,14 @@
                                         <label class="formLabel ">¿Con Quién Vives?:</label>
                                         <select id='conQuienVives' name='conQuienVives' class="form-control" required>
                                             @if($tutor)
-                                                <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
-                                                <option value='3' selected="selected">{{$tutor->titulo}} {{$tutor->firstName}}</option>
+                                                <option value='Ambos Padres'>Ambos Padres</option>
+                                                <option value='Padre'>{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                <option value='Madre'>{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                <option value='Tutor' selected="selected">{{$tutor->titulo}} {{$tutor->firstName}}</option>
                                             @else
-                                                @if($alumno->tutor == 1)
-                                                    <option value='1' selected="selected">{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                    <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
-                                                @else
-                                                    <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                    <option value='2' selected="selected">{{$madre->titulo}} {{$madre->firstName}}</option>
-                                                @endif
+                                                <option value='Ambos Padres' selected="selected">Ambos Padres</option>
+                                                <option value='Padre'>{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                <option value='Madre'>{{$madre->titulo}} {{$madre->firstName}}</option>
                                             @endif
                                         </select>
                                     </div>
@@ -480,17 +477,14 @@
                                         <label class="formLabel ">¿Quién paga tus estudios?:</label>
                                         <select id='quienPagaTusEstudios' name='quienPagaTusEstudios' class="form-control" required>
                                             @if($tutor)
-                                                <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
-                                                <option value='3' selected="selected">{{$tutor->titulo}} {{$tutor->firstName}}</option>
+                                                <option value='Ambos Padres'>Ambos Padres</option>
+                                                <option value='Padre'>{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                <option value='Madre'>{{$madre->titulo}} {{$madre->firstName}}</option>
+                                                <option value='Tutor' selected="selected">{{$tutor->titulo}} {{$tutor->firstName}}</option>
                                             @else
-                                                @if($alumno->tutor == 1)
-                                                    <option value='1' selected="selected">{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                    <option value='2'>{{$madre->titulo}} {{$madre->firstName}}</option>
-                                                @else
-                                                    <option value='1'>{{$padre->titulo}} {{$padre->firstName}}</option>
-                                                    <option value='2' selected="selected">{{$madre->titulo}} {{$madre->firstName}}</option>
-                                                @endif
+                                                <option value='Ambos Padres' selected="selected">Ambos Padres</option>
+                                                <option value='Padre'>{{$padre->titulo}} {{$padre->firstName}}</option>
+                                                <option value='Madre'>{{$madre->titulo}} {{$madre->firstName}}</option>
                                             @endif
                                         </select>
                                     </div>

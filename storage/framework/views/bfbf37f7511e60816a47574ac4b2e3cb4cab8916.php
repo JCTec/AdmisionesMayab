@@ -7,7 +7,6 @@
                 <div class="text-center" style="margin: 10px; padding-bottom: 5px;">
                     <h1>Bienvenido al sistema de Admisiones de la Universidad Anáhuac Mayab, a partir de este momento empiezas tu camino
                         como aspirante a estudiar en esta prestigiosa institución.</h1> <br> <br>
-                    
                 </div>
             </div>
 

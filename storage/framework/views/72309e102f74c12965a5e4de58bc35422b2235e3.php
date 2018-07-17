@@ -85,13 +85,56 @@
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         <label class="formLabel">Teléfono:</label>
-                                        <input name="telefono" id="telefono" class="form-control" placeholder="Teléfono" type="text" value="<?php echo e($familiar->telefono); ?>" required>
+                                        <input name="telefono" id="telefono" class="form-control" type="tel" required>
+                                        <input name="telefonoInt" id="telefonoInt" class="form-control" type="text" value="<?php echo e($familiar->telefonoInt); ?>" hidden required>
+
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label class="formLabel">Celular:</label>
-                                        <input name="celular" id="celular" class="form-control" placeholder="Celular" type="text" value="<?php echo e($familiar->celular); ?>" required>
+                                        <input name="celular" id="celular" class="form-control" type="tel" required>
+                                        <input name="celularInt" id="celularInt" class="form-control" type="text" value="<?php echo e($familiar->celularInt); ?>" hidden required>
                                     </div>
+                                    <script src="<?php echo e(asset('js/intlTelInput.js')); ?>"></script>
+                                    <script>
+
+                                        $('#telefono').intlTelInput({
+                                            allowDropdown: true,
+                                            utilsScript: "<?php echo e(asset('js/utils.js')); ?>",
+                                            preferredCountries: ["mx", "sv"],
+                                            initialCountry: "mx"
+                                        });
+
+                                        <?php if(isset($familiar->telefono)): ?>
+                                        $("#telefono").intlTelInput("setNumber", "<?php echo e($familiar->telefonoInt); ?><?php echo e($familiar->telefono); ?>");
+                                        <?php else: ?>
+                                        $('#telefonoInt').val("+52");
+                                        <?php endif; ?>
+
+                                        $('#celular').intlTelInput({
+                                            allowDropdown: true,
+                                            utilsScript: "<?php echo e(asset('js/utils.js')); ?>",
+                                            preferredCountries: ["mx", "sv"],
+                                            initialCountry: "mx"
+                                        });
+
+                                        <?php if(isset($familiar->celular)): ?>
+                                        $("#celular").intlTelInput("setNumber", "<?php echo e($familiar->celularInt); ?><?php echo e($familiar->celular); ?>");
+                                        <?php else: ?>
+                                        $('#celularInt').val("+52");
+                                        <?php endif; ?>
+
+                                        $('#telefono').on('countrychange', function (e, countrychange) {
+                                            var code = ('+' + countrychange.dialCode);
+                                            $('#telefonoInt').val(code);
+                                        });
+
+                                        $('#celular').on('countrychange', function (e, countrychange) {
+                                            var code = ('+' + countrychange.dialCode);
+                                            $('#celularInt').val(code);
+                                        });
+                                    </script>
                                 </div>
+
 
                                 <div class="row">
                                     <div class="col-md-6 form-group">
