@@ -17,4 +17,5 @@ class Alumno extends Model
 
     public $incrementing = true;
 
+
 }

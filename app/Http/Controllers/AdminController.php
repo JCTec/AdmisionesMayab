@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Role;
 use Illuminate\Http\Request;
 use App\Admin;
+use App\User;
 use App\Alumno;
 use App\security;
 use Illuminate\Support\Facades\Auth;
@@ -34,42 +36,30 @@ class AdminController extends Controller
                 return redirect()->route('home');
             }else{
 
-                $alumnos = Alumno::all();
+                $usuarios = User::where('active','=','1')->with('alumno')->with('transaction')->get();
 
-                $c = false;
+                $role = new Role();
 
-                $cS = 'C';
+                $role->setRoles($admin);
 
-                if(strpos($admin->role, $cS) == true){
-                    $c = true;
-                }
+                return view('Admin.Alumnos')->with(['usuarios' => $usuarios,'role' => $role]);
+            }
+        }
+    }
 
-                $r = false;
+    public function archivos(){
 
-                $rS = 'R';
+        $user = Auth::user();
 
-                if(strpos($admin->role, $rS) == true){
-                    $r = true;
-                }
+        if ($user){
 
+            $admin = Admin::where('idUser','=',$user->id)->first();
 
-                $u = false;
+            if(!$admin){
+                return redirect()->route('home');
+            }else{
 
-                $uS = 'U';
-
-                if(strpos($admin->role, $uS) == true){
-                    $u = true;
-                }
-
-                $d = false;
-
-                $dS = 'D';
-
-                if(strpos($admin->role, $dS) == true){
-                    $d = true;
-                }
-
-                return view('Admin.Alumnos')->with(['alumnos' => $alumnos,'c' => $c,'r' => $r ,'u' => $u, 'd' => $d]);
+                return "Archivos";
             }
         }
     }

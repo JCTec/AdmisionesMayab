@@ -49,6 +49,15 @@
     <link href="{{ asset('css/Admisiones.css') }}" rel="stylesheet">
 
 
+    @if(Request::url() == route('perfil'))
+        <style>
+            #legend{
+                padding-left: 20px;
+                text-align: left;
+            }
+        </style>
+    @endif
+
     <script type="text/javascript">
         function toggle_visibility(id) {
             var e = document.getElementById(id);
@@ -191,11 +200,12 @@
 
             }
         });
+
     </script>
 
 </head>
 @if(Request::url() == route('home'))
-    <body style="background-color: #ffffff; background-image: url('{{ asset('img/foto_anahuac.jpg') }}')">
+    <body style="background-color: #ffffff; background-image: url('{{ asset('img/foto_anahuac.jpg') }}');background-repeat: no-repeat;background-size: 100% 100%;">
 @else
     <body style="background-color: #ffffff;">
 @endif
@@ -304,6 +314,9 @@
                 <li>
                     <a id="ov" href="{{ route('orientacionVocacional') }}">Orientación Vocacional</a>
                 </li>
+                <li>
+                    <a id="perfil" href="{{ route('perfil') }}">Perfil</a>
+                </li>
             </ul>
 
             <ul class="list-unstyled CTAs">
@@ -329,8 +342,10 @@
             <span></span>
         </button>
         <script>
-            $('#sidebar').toggleClass('active');
-            $('#sidebarCollapse').toggleClass('active');
+            @if(Request::url() != route('home'))
+                $('#sidebar').toggleClass('active');
+                $('#sidebarCollapse').toggleClass('active');
+            @endif
         </script>
 
         <!-- Page Content Holder -->

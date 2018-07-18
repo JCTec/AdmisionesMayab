@@ -49,6 +49,15 @@
     <link href="<?php echo e(asset('css/Admisiones.css')); ?>" rel="stylesheet">
 
 
+    <?php if(Request::url() == route('perfil')): ?>
+        <style>
+            #legend{
+                padding-left: 20px;
+                text-align: left;
+            }
+        </style>
+    <?php endif; ?>
+
     <script type="text/javascript">
         function toggle_visibility(id) {
             var e = document.getElementById(id);
@@ -191,11 +200,12 @@
 
             }
         });
+
     </script>
 
 </head>
 <?php if(Request::url() == route('home')): ?>
-    <body style="background-color: #ffffff; background-image: url('<?php echo e(asset('img/foto_anahuac.jpg')); ?>')">
+    <body style="background-color: #ffffff; background-image: url('<?php echo e(asset('img/foto_anahuac.jpg')); ?>');background-repeat: no-repeat;background-size: 100% 100%;">
 <?php else: ?>
     <body style="background-color: #ffffff;">
 <?php endif; ?>
@@ -304,6 +314,9 @@
                 <li>
                     <a id="ov" href="<?php echo e(route('orientacionVocacional')); ?>">Orientación Vocacional</a>
                 </li>
+                <li>
+                    <a id="perfil" href="<?php echo e(route('perfil')); ?>">Perfil</a>
+                </li>
             </ul>
 
             <ul class="list-unstyled CTAs">
@@ -330,8 +343,10 @@
             <span></span>
         </button>
         <script>
-            $('#sidebar').toggleClass('active');
-            $('#sidebarCollapse').toggleClass('active');
+            <?php if(Request::url() != route('home')): ?>
+                $('#sidebar').toggleClass('active');
+                $('#sidebarCollapse').toggleClass('active');
+            <?php endif; ?>
         </script>
 
         <!-- Page Content Holder -->

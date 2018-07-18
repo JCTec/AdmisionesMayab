@@ -55,4 +55,28 @@ class User extends Authenticatable implements JWTSubject
     public function files(){
         return $this->hasMany(Fileentries::class,'idUser','id');
     }
+
+    public function alumno(){
+        return $this->hasOne(Alumno::class,'idUser','id');
+    }
+
+    public function transaction(){
+        return $this->hasOne(Transaction::class,'idUser','id');
+    }
+
+    public function familiares(){
+        return $this->hasMany(familiar::class,'idUser','id');
+    }
+
+    public function ov(){
+        return $this->hasOne(OrientacionVocacional::class,'idUser','id');
+    }
+
+    public function idiomas(){
+        return $this->hasMany(Idioma::class,'idUser','id');
+    }
+
+    public function brothers(){
+        return $this->hasMany(Brother::class,'idUser','id');
+    }
 }

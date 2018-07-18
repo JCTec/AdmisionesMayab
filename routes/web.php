@@ -30,6 +30,9 @@ Route::get('/payment', 'PaymentController@payment')->name('payment');
 Route::get('/isFinnished', 'AlumnoController@isFinnished')->name('isFinnished');
 
 Route::get('/alumnos', 'AdminController@alumnos')->name('alumnos');
+Route::get('/archivos', 'AdminController@archivos')->name('admin.archivos');
+Route::post('/alumnos/perfil', 'HomeController@perfil')->name('perfil');
+Route::get('/alumnos/perfil', 'HomeController@perfilGet')->name('perfil');
 
 
 Route::get('/payment/dummy', 'PaymentController@dummy')->name('dummy');

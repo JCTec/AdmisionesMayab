@@ -29,6 +29,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link href="<?php echo e(asset('css/intlTelInput.css')); ?>" rel="stylesheet">
 
@@ -44,6 +45,56 @@
     </style>
 
     <style>
+        fieldset {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin: 10px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+        }
+
+        .collapsible {
+            background-color: #ff8000;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .active, .collapsible:hover {
+            background-color: #ff7800;
+        }
+
+        .collapsible:after {
+            content: '\002B';
+            color: white;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .active:after {
+            content: "\2212";
+        }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        #legend{
+            padding-left: 20px;
+            text-align: left;
+        }
+
         .table-wrapper {
             background: #fff;
             padding: 20px 25px;
@@ -98,7 +149,7 @@
             width: 100px;
         }
 
-        <?php if(!$u): ?>
+        <?php if(!$role->u): ?>
             table.table tr th:last-child {
                 width: 200px;
             }
@@ -226,7 +277,11 @@
     <script src="<?php echo e(asset('js/State.js')); ?>" defer></script>
 
 </head>
-<body style="background-color: #ffffff;">
+<?php if(Request::url() == route('home')): ?>
+    <body style="background-color: #ffffff; background-image: url('<?php echo e(asset('img/foto_anahuac.jpg')); ?>'); background-repeat: no-repeat;background-size: 100% 100%;">
+<?php else: ?>
+    <body style="background-color: #ffffff;">
+<?php endif; ?>
 <div id="app" style="padding-bottom: 0px">
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <ul class="navbar-nav mr-auto">
@@ -319,6 +374,10 @@
                         <li>
                             <a id="" href="<?php echo e(route('alumnos')); ?>">Alumnos</a>
                         </li>
+
+                        <li>
+                            <a id="" href="<?php echo e(route('admin.archivos')); ?>">Archivos</a>
+                        </li>
                     </ul>
 
                     <ul class="list-unstyled CTAs">
@@ -345,8 +404,10 @@
                     <span></span>
                 </button>
                 <script>
-                    $('#sidebar').toggleClass('active');
-                    $('#sidebarCollapse').toggleClass('active');
+                    <?php if(Request::url() != route('home')): ?>
+                        $('#sidebar').toggleClass('active');
+                        $('#sidebarCollapse').toggleClass('active');
+                    <?php endif; ?>
                 </script>
 
                 <!-- Page Content Holder -->

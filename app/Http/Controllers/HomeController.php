@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Role;
 use App\Brother;
 use App\Carrera;
 use App\familiar;
@@ -52,7 +53,14 @@ class HomeController extends Controller
 
                 return view('home')->with(['state' => $state]);
             }else{
-                return view('Admin.home');
+
+                $admin = Admin::where('idUser','=',$user->id)->first();
+
+                $role = new Role();
+
+                $role->setRoles($admin);
+
+                return view('Admin.home')->with(['role' => $role]);
             }
         }
     }
@@ -280,6 +288,87 @@ class HomeController extends Controller
         return $request;
     }
 
+    public function perfil(Request $request){
+        $user = Auth::user();
+
+        $id = $request->userID;
+
+        return $this->miPerfil($user, $id);
+    }
+
+    public function perfilGet(){
+        $user = Auth::user();
+
+        $id = $user->id;
+
+        return $this->miPerfil($user, $id);
+    }
+
+    private function miPerfil($user, $id){
+        if ($user) {
+
+            $admin = Admin::where('idUser','=',$user->id)->first();
+
+            if($user->id == $id || $admin){
+
+                $userToSend = User::where('id', '=', $id)
+                    ->with('alumno')
+                    ->with('transaction')
+                    ->with('ov')
+                    ->first();
+
+                $familiares = familiar::where('idUser','=',$userToSend->id)->get();
+
+                $brothers = Brother::where('idUser','=',$userToSend->id)->get();
+
+                $idiomas = Idioma::where('idUser','=',$userToSend->id)->get();
+
+                $historialAcademico = HistorialAcademico::where('idUser','=', $user->id)->get();
+
+                $pp = Fileentries::where('idUser','=',$userToSend->id)->where('type', '=' ,'3')->first();
+
+                $role = new Role();
+
+                $json = Storage::disk('json')->get('getProgramasActualesLC.json');
+
+                $decoded = json_decode($json, true);
+
+                $programas = $decoded["programas"];
+
+                $json = Storage::disk('json')->get('getPreparatorias.json');
+
+                $decoded = json_decode($json, true);
+
+                $preparatorias = $decoded["preparatorias"];
+
+                foreach ($programas as $programa){
+                    if($programa['programa'] == $userToSend->alumno->carrera){
+                        $programaS = $programa['nombre'];
+                    }
+                }
+
+                foreach ($preparatorias as $preparatoria){
+                    if($preparatoria['id'] == $userToSend->alumno->preparatoria){
+                        $preparatoriaS = $preparatoria['nombrePreparatoria'];
+                    }
+                }
+
+
+                if($admin){
+                    $role->setRoles($admin);
+
+                    return view('Alumno.perfil')->with(['user' => $userToSend, 'pp' => $pp, 'role' => $role, 'admin' => true, 'programa' => $programaS, 'preparatoria' => $preparatoriaS, 'familiares' => $familiares,'brothers' => $brothers, 'idiomas' => $idiomas, 'historialAcademico' => $historialAcademico]);
+                }else{
+                    return view('Alumno.perfil')->with(['user' => $userToSend, 'state' => $this->getState(), 'pp' => $pp, 'role' => $role, 'admin' => false, 'programa' => $programaS, 'preparatoria' => $preparatoriaS, 'familiares' => $familiares,'brothers' => $brothers, 'idiomas' => $idiomas, 'historialAcademico' => $historialAcademico]);
+                }
+
+
+            }else{
+                return redirect()->route('home');
+            }
+
+        }
+    }
 
     protected function getState(){
         $user = Auth::user();
@@ -495,6 +584,14 @@ class HomeController extends Controller
             }
 
             return 6;
+        }
+    }
+
+    private function BOOLtoString($bool){
+        if($bool){
+            return "True";
+        }else{
+            return "False";
         }
     }
 }
