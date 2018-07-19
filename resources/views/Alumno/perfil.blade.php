@@ -42,7 +42,7 @@
 
                                     var state = parseInt("{{$state}}");
 
-                                    if(state == 1){
+                                    if(state == 1 || state == 2 || state == 3){
 
                                         $('#famB').on('click', function (e) {
                                             e.preventDefault();
