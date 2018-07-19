@@ -13,14 +13,16 @@
                         <div class="card-body" style="background: .winter-neva-gradient;text-align: center">
                             <script>
                                 $(document).ready(function () {
-                                    @if (isset($pp))
+                                    @if (isset($pp) and isset($pp->base64))
                                         var isSetImage = true;
                                     @else
                                         var isSetImage = false;
                                     @endif
 
                                     if(isSetImage){
-                                        $('#pp').attr('src', "{{$pp->base64}}");
+                                        @if (isset($pp) and isset($pp->base64))
+                                            $('#pp').attr('src', "{{$pp->base64}}");
+                                        @endif
                                     }
 
                                     var coll = document.getElementsByClassName("collapsible");
