@@ -36,10 +36,9 @@ class AdminController extends Controller
                 return redirect()->route('home');
             }else{
 
-                $usuarios = User::where('users.active','=','1')
+                $usuarios = User::join('admins', 'users.id', '!=', 'admins.idUser')
+                    ->where('users.active','=','1')
                     ->with('alumno')
-                    ->join('admins', 'users.id', '=', 'admins.idUser')
-                    ->where('admins.idUser', '=', null)
                     ->with('transaction')->get();
 
                 $role = new Role();
