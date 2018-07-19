@@ -357,7 +357,7 @@ class HomeController extends Controller
                 if($admin){
                     $role->setRoles($admin);
 
-                    return view('Alumno.perfil')->with(['user' => $userToSend, 'pp' => $pp, 'role' => $role, 'admin' => true, 'programa' => $programaS, 'preparatoria' => $preparatoriaS, 'familiares' => $familiares,'brothers' => $brothers, 'idiomas' => $idiomas, 'historialAcademico' => $historialAcademico]);
+                    return view('Alumno.perfil')->with(['user' => $userToSend, 'state' => $this->getStateADMIN($userToSend->id), 'pp' => $pp, 'role' => $role, 'admin' => true, 'programa' => $programaS, 'preparatoria' => $preparatoriaS, 'familiares' => $familiares,'brothers' => $brothers, 'idiomas' => $idiomas, 'historialAcademico' => $historialAcademico]);
                 }else{
                     return view('Alumno.perfil')->with(['user' => $userToSend, 'state' => $this->getState(), 'pp' => $pp, 'role' => $role, 'admin' => false, 'programa' => $programaS, 'preparatoria' => $preparatoriaS, 'familiares' => $familiares,'brothers' => $brothers, 'idiomas' => $idiomas, 'historialAcademico' => $historialAcademico]);
                 }
@@ -370,8 +370,23 @@ class HomeController extends Controller
         }
     }
 
+    protected function getStateADMIN($id){
+        $user = User::where('id', '=', $id)->first();
+
+        if ($user){
+            return $this->getStateInternal($user);
+        }
+    }
+
     protected function getState(){
         $user = Auth::user();
+
+        if ($user){
+            return $this->getStateInternal($user);
+        }
+    }
+
+    private function getStateInternal($user){
 
         if ($user) {
 
@@ -444,7 +459,7 @@ class HomeController extends Controller
             }
 
             $payment = Transaction::where('idUser','=',$user->id)->first();
-            
+
             if(!$payment){
                 return 2;
             }
@@ -586,6 +601,7 @@ class HomeController extends Controller
             return 6;
         }
     }
+
 
     private function BOOLtoString($bool){
         if($bool){

@@ -118,6 +118,19 @@
 
                 $('#ov').css('cursor','default');
 
+                $('#perfil').on('click', function (e) {
+                    e.preventDefault();
+                });
+
+
+                $('#perfil').css('background-color','#806255');
+
+
+                $('#perfil').css('color','#d7d7d6');
+
+
+                $('#perfil').css('cursor','default');
+
 
             }else if (state == 2){
 
@@ -156,6 +169,19 @@
 
                 $('#ov').css('cursor','default');
 
+                $('#perfil').on('click', function (e) {
+                    e.preventDefault();
+                });
+
+
+                $('#perfil').css('background-color','#806255');
+
+
+                $('#perfil').css('color','#d7d7d6');
+
+
+                $('#perfil').css('cursor','default');
+
             }else if(state == 3){
 
                 $('#familia').on('click', function (e) {
@@ -181,6 +207,19 @@
 
                 $('#ov').css('cursor','default');
 
+                $('#perfil').on('click', function (e) {
+                    e.preventDefault();
+                });
+
+
+                $('#perfil').css('background-color','#806255');
+
+
+                $('#perfil').css('color','#d7d7d6');
+
+
+                $('#perfil').css('cursor','default');
+
             }else if (state == 4){
 
                 $('#ov').on('click', function (e) {
@@ -195,6 +234,19 @@
 
 
                 $('#ov').css('cursor','default');
+
+                $('#perfil').on('click', function (e) {
+                    e.preventDefault();
+                });
+
+
+                $('#perfil').css('background-color','#806255');
+
+
+                $('#perfil').css('color','#d7d7d6');
+
+
+                $('#perfil').css('cursor','default');
 
             }else{
 

@@ -38,7 +38,7 @@ class CreateAlumnosTable extends Migration
             $table->string('city');
             $table->foreign('idUser')->references('id')->on('users');
             $table->foreign('tutor')->references('id')->on('familiar');
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }

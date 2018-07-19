@@ -58,7 +58,6 @@ class AdminController extends Controller
             if(!$admin){
                 return redirect()->route('home');
             }else{
-
                 return "Archivos";
             }
         }

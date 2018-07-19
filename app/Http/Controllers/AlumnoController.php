@@ -162,6 +162,12 @@ class AlumnoController extends Controller
 
             $alumno->saveOrFail();
 
+            if(!$user->active){
+                $user->active = true;
+
+                $user->saveOrFail();
+            }
+
             return redirect()->route('payment');
         }
 

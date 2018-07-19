@@ -37,6 +37,199 @@
                                             }
                                         });
                                     }
+
+                                    var state = parseInt("{{$state}}");
+
+                                    if(state == 1){
+
+                                        $('#famB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#contactoDeEmergenciaB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+                                        });
+
+                                        $('#idiomasB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#historialAcademicoB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#OVB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+
+
+                                        $('#famB').css('background-color','#806255');
+
+                                        $('#contactoDeEmergenciaB').css('background-color','#806255');
+
+                                        $('#idiomasB').css('background-color','#806255');
+
+                                        $('#historialAcademicoB').css('background-color','#806255');
+
+                                        $('#OVB').css('background-color','#806255');
+
+
+                                        $('#famB').css('cursor','default');
+
+                                        $('#contactoDeEmergenciaB').css('cursor','default');
+
+                                        $('#idiomasB').css('cursor','default');
+
+                                        $('#historialAcademicoB').css('cursor','default');
+
+                                        $('#OVB').css('cursor','default');
+
+
+
+                                    }else if (state == 4){
+
+
+
+                                        $('#idiomasB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#historialAcademicoB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#OVB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+
+
+                                        $('#idiomasB').css('background-color','#806255');
+
+                                        $('#historialAcademicoB').css('background-color','#806255');
+
+                                        $('#OVB').css('background-color','#806255');
+
+                                        $('#idiomasB').css('cursor','default');
+
+                                        $('#historialAcademicoB').css('cursor','default');
+
+                                        $('#OVB').css('cursor','default');
+
+
+                                    }else if(state == 5){
+
+
+                                    }else{
+
+
+
+                                    }
+
+
+                                    @if(!isset($familiares) and !isset($brothers))
+                                        $('#famB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#famB').css('background-color','#806255');
+
+                                        $('#famB').css('cursor','default');
+
+                                    @endif
+
+                                    @if(!isset($idiomas))
+                                        $('#idiomasB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#idiomasB').css('background-color','#806255');
+
+                                        $('#idiomasB').css('cursor','default');
+
+                                    @endif
+
+                                    @if(!isset($historialAcademico))
+                                        $('#historialAcademicoB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#historialAcademicoB').css('background-color','#806255');
+
+                                        $('#historialAcademicoB').css('cursor','default');
+
+                                    @endif
+
+                                    @if(!isset($emergencias))
+                                        $('#contactoDeEmergenciaB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#contactoDeEmergenciaB').css('background-color','#806255');
+
+                                        $('#contactoDeEmergenciaB').css('cursor','default');
+
+                                    @endif
                                 });
                             </script>
 
@@ -66,11 +259,11 @@
 
                             <hr>
 
-                            <button class="collapsible">
+                            <button id="basicoB" class="collapsible">
                                 Informacion Basica
                             </button>
 
-                            <div class="content">
+                            <div id="basicoC"  class="content">
 
                                 <div class="row" style="margin: 10px"></div>
 
@@ -156,295 +349,311 @@
 
                             <hr>
 
-                            <button class="collapsible">
+                            <button id="famB" class="collapsible">
                                 Datos Familiares
                             </button>
 
-                            <div class="content">
+                            @if(isset($familiares) or isset($brothers))
 
-                                <div class="row" style="margin: 10px"></div>
+                                <div id="famC" class="content">
 
-                                @foreach($familiares as $familiar)
+                                    <div class="row" style="margin: 10px"></div>
+                                   @if(isset($familiares))
+                                        @foreach($familiares as $familiar)
 
-                                    <fieldset>
-                                        <legend id="legend">
-                                            @if($familiar->relacion == 1)
-                                                Padre
-                                            @elseif($familiar->relacion == 2)
-                                                Madre
-                                            @else
-                                                Tutor
-                                            @endif
-                                        </legend>
+                                            <fieldset>
+                                                <legend id="legend">
+                                                    @if($familiar->relacion == 1)
+                                                        Padre
+                                                    @elseif($familiar->relacion == 2)
+                                                        Madre
+                                                    @else
+                                                        Tutor
+                                                    @endif
+                                                </legend>
 
-                                        <div class="row">
-                                            <div class="col-md">
-                                                {{$familiar->titulo}}
-                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md">
+                                                        {{$familiar->titulo}}
+                                                    </div>
 
-                                            <div class="col-md">
-                                                {{$familiar->firstName}} {{$familiar->secondName}}
-                                            </div>
+                                                    <div class="col-md">
+                                                        {{$familiar->firstName}} {{$familiar->secondName}}
+                                                    </div>
 
-                                            <div class="col-md">
-                                                {{$familiar->firstLastName}} {{$familiar->secondLastName}}
-                                            </div>
+                                                    <div class="col-md">
+                                                        {{$familiar->firstLastName}} {{$familiar->secondLastName}}
+                                                    </div>
 
-                                            @if(!$familiar->isAlive)
-                                                <div class="col-md">
-                                                    Fallecido
+                                                    @if(!$familiar->isAlive)
+                                                        <div class="col-md">
+                                                            Fallecido
+                                                        </div>
+                                                    @endif
                                                 </div>
-                                            @endif
-                                        </div>
 
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <label>
-                                                    Teléfono:
-                                                </label>
-                                                {{$familiar->telefonoInt}} {{$familiar->telefono}}
-                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Teléfono:
+                                                        </label>
+                                                        {{$familiar->telefonoInt}} {{$familiar->telefono}}
+                                                    </div>
 
-                                            <div class="col-md">
-                                                <label>
-                                                    Celular:
-                                                </label>
-                                                {{$familiar->celularInt}} {{$familiar->celular}}
-                                            </div>
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Celular:
+                                                        </label>
+                                                        {{$familiar->celularInt}} {{$familiar->celular}}
+                                                    </div>
 
-                                            <div class="col-md">
-                                                <label>
-                                                    ¿Egresado de la Mayab?:
-                                                </label>
-                                                @if($familiar->isEgresado)
-                                                    Si
-                                                @else
-                                                    No
-                                                @endif
-                                            </div>
-                                        </div>
+                                                    <div class="col-md">
+                                                        <label>
+                                                            ¿Egresado de la Mayab?:
+                                                        </label>
+                                                        @if($familiar->isEgresado)
+                                                            Si
+                                                        @else
+                                                            No
+                                                        @endif
+                                                    </div>
+                                                </div>
 
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <label>
-                                                    Email:
-                                                </label>
-                                                {{$familiar->email}}
-                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Email:
+                                                        </label>
+                                                        {{$familiar->email}}
+                                                    </div>
 
-                                            <div class="col-md">
-                                                <label>
-                                                    Dirección:
-                                                </label>
-                                                {{$familiar->direccion}}
-                                            </div>
-                                        </div>
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Dirección:
+                                                        </label>
+                                                        {{$familiar->direccion}}
+                                                    </div>
+                                                </div>
 
-                                        <div class="row">
-                                            <div class="col-md">
-                                                <label>
-                                                    Empresa:
-                                                </label>
-                                                {{$familiar->empresa}}
-                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Empresa:
+                                                        </label>
+                                                        {{$familiar->empresa}}
+                                                    </div>
 
-                                            <div class="col-md">
-                                                <label>
-                                                    Puesto:
-                                                </label>
-                                                {{$familiar->puesto}}
-                                            </div>
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Puesto:
+                                                        </label>
+                                                        {{$familiar->puesto}}
+                                                    </div>
 
-                                            <div class="col-md">
-                                                <label>
-                                                    Giro:
-                                                </label>
-                                                {{$familiar->giro}}
-                                            </div>
-                                        </div>
-                                    </fieldset>
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Giro:
+                                                        </label>
+                                                        {{$familiar->giro}}
+                                                    </div>
+                                                </div>
+                                            </fieldset>
 
-                                @endforeach
+                                        @endforeach
 
-                                @foreach($brothers as $brother)
+                                    @endif
 
-                                    <fieldset>
-                                        <legend id="legend">
-                                            Hermano
-                                        </legend>
+                                    @if(isset($brothers))
 
-                                        <div class="row">
-                                            <div class="col-md">
-                                                {{$brother->nombre}}
-                                            </div>
+                                        @foreach($brothers as $brother)
 
-                                            <div class="col-md">
-                                                <label>
-                                                    Sexo:
-                                                </label>
-                                                @if($brother->sex == 'f')
-                                                    Femenino
-                                                @else
-                                                    Masculino
-                                                @endif
-                                            </div>
+                                            <fieldset>
+                                                <legend id="legend">
+                                                    Hermano
+                                                </legend>
 
-                                            <div class="col-md">
-                                                <label>
-                                                    Edad:
-                                                </label>
-                                                {{$brother->edad}}
-                                            </div>
+                                                <div class="row">
+                                                    <div class="col-md">
+                                                        {{$brother->nombre}}
+                                                    </div>
 
-                                            <div class="col-md">
-                                                <label>
-                                                    Trabajo o Estudio:
-                                                </label>
-                                                {{$brother->trabajoEstudio}}
-                                            </div>
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Sexo:
+                                                        </label>
+                                                        @if($brother->sex == 'f')
+                                                            Femenino
+                                                        @else
+                                                            Masculino
+                                                        @endif
+                                                    </div>
 
-                                        </div>
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Edad:
+                                                        </label>
+                                                        {{$brother->edad}}
+                                                    </div>
 
-                                    </fieldset>
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Trabajo o Estudio:
+                                                        </label>
+                                                        {{$brother->trabajoEstudio}}
+                                                    </div>
 
-                                @endforeach
+                                                </div>
 
+                                            </fieldset>
+
+                                        @endforeach
+
+                                    @endif
+
+                                    </div>
+
+                                @endif
+                                <hr>
+
+                                <button id="contactoDeEmergenciaB" class="collapsible">
+                                    Contacto de Emergencia
+                                </button>
+
+                                @if(isset($emergencias))
+                                    <div id="contactoDeEmergenciaContent" class="content">
+
+                                        <div class="row" style="margin: 10px"></div>
+
+
+                                    </div>
+                                @endif
+
+                                <hr>
+
+                                <button id="idiomasB" class="collapsible">
+                                    Idiomas
+                                </button>
+
+                                @if(isset($idiomas))
+                                    <div id="idiomasC" class="content">
+
+                                        <div class="row" style="margin: 10px"></div>
+
+                                        @foreach($idiomas as $idioma)
+                                            <fieldset>
+                                                <legend id="legend">
+                                                    {{$idioma->idioma}}
+                                                </legend>
+
+                                                <div class="row">
+
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Lee:
+                                                        </label>
+                                                        {{$idioma->leer}}
+                                                    </div>
+
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Traduce:
+                                                        </label>
+                                                        {{$idioma->traduce}}
+                                                    </div>
+
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Habla:
+                                                        </label>
+                                                        {{$idioma->habla}}
+                                                    </div>
+
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Escribe:
+                                                        </label>
+                                                        {{$idioma->escribe}}
+                                                    </div>
+
+                                                </div>
+
+                                            </fieldset>
+
+                                        @endforeach
+
+                                    </div>
+                                @endif
+                                <hr>
+
+                                <button id="historialAcademicoB" class="collapsible">
+                                    Historial Academico
+                                </button>
+
+                                @if($historialAcademico)
+                                    <div id="historialAcademicoC" class="content">
+
+                                        <div class="row" style="margin: 10px"></div>
+
+                                        @foreach($historialAcademico as $escuela)
+                                            <fieldset>
+                                                <legend id="legend">
+                                                    @if($escuela->grado == 1)
+                                                        Primaria
+                                                    @elseif($escuela->grado == 2)
+                                                        Secundaria
+                                                    @else
+                                                        Preparatoria
+                                                    @endif
+                                                </legend>
+
+                                                <div class="row">
+
+                                                    <div class="col-md">
+                                                        {{$escuela->nombre}}
+                                                    </div>
+
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Ciudad:
+                                                        </label>
+                                                        {{$escuela->ciudad}}
+                                                    </div>
+
+                                                    <div class="col-md">
+                                                        <label>
+                                                            Promedio:
+                                                        </label>
+                                                        {{$escuela->promedio}}
+                                                    </div>
+
+                                                </div>
+
+                                            </fieldset>
+
+                                        @endforeach
+
+                                    </div>
+                                @endif
+
+                                <hr>
+
+                                <button id="OVB" class="collapsible">
+                                    Orientación Vocacional
+                                </button>
+
+                                @if(isset($user->ov))
+                                    <div id="OVC" class="content">
+
+                                        <div class="row" style="margin: 10px"></div>
+
+
+                                    </div>
+                                @endif
                             </div>
 
-                            <hr>
-
-                            <button class="collapsible">
-                                Contacto de Emergencia
-                            </button>
-
-                            <div class="content">
-
-                                <div class="row" style="margin: 10px"></div>
-
-
-                            </div>
-
-                            <hr>
-
-                            <button class="collapsible">
-                                Idiomas
-                            </button>
-
-                            <div class="content">
-
-                                <div class="row" style="margin: 10px"></div>
-
-                                @foreach($idiomas as $idioma)
-                                    <fieldset>
-                                        <legend id="legend">
-                                            {{$idioma->idioma}}
-                                        </legend>
-
-                                        <div class="row">
-
-                                            <div class="col-md">
-                                                <label>
-                                                    Lee:
-                                                </label>
-                                                {{$idioma->leer}}
-                                            </div>
-
-                                            <div class="col-md">
-                                                <label>
-                                                    Traduce:
-                                                </label>
-                                                {{$idioma->traduce}}
-                                            </div>
-
-                                            <div class="col-md">
-                                                <label>
-                                                    Habla:
-                                                </label>
-                                                {{$idioma->habla}}
-                                            </div>
-
-                                            <div class="col-md">
-                                                <label>
-                                                    Escribe:
-                                                </label>
-                                                {{$idioma->escribe}}
-                                            </div>
-
-                                        </div>
-
-                                    </fieldset>
-
-                                @endforeach
-
-                            </div>
-
-                            <hr>
-
-                            <button class="collapsible">
-                                Historial Academico
-                            </button>
-
-                            <div class="content">
-
-                                <div class="row" style="margin: 10px"></div>
-
-                                @foreach($historialAcademico as $escuela)
-                                    <fieldset>
-                                        <legend id="legend">
-                                            @if($escuela->grado == 1)
-                                                Primaria
-                                            @elseif($escuela->grado == 2)
-                                                Secundaria
-                                            @else
-                                                Preparatoria
-                                            @endif
-                                        </legend>
-
-                                        <div class="row">
-
-                                            <div class="col-md">
-                                                {{$escuela->nombre}}
-                                            </div>
-
-                                            <div class="col-md">
-                                                <label>
-                                                    Ciudad:
-                                                </label>
-                                                {{$escuela->ciudad}}
-                                            </div>
-
-                                            <div class="col-md">
-                                                <label>
-                                                    Promedio:
-                                                </label>
-                                                {{$escuela->promedio}}
-                                            </div>
-
-                                        </div>
-
-                                    </fieldset>
-
-                                @endforeach
-
-                            </div>
-
-                            <hr>
-
-                            <button class="collapsible">
-                                Orientación Vocacional
-                            </button>
-
-                            <div class="content">
-
-                                <div class="row" style="margin: 10px"></div>
-
-
-                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-        </div>
-    </main>
-@endsection
+        </main>
+    @endsection

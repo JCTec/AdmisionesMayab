@@ -149,10 +149,12 @@
             width: 100px;
         }
 
-        <?php if(!$role->u): ?>
-            table.table tr th:last-child {
-                width: 200px;
-            }
+        <?php if(isset($admin)): ?>
+            <?php if(!$role->u): ?>
+                table.table tr th:last-child {
+                    width: 200px;
+                }
+            <?php endif; ?>
         <?php endif; ?>
 
         table.table-striped tbody tr:nth-of-type(odd) {

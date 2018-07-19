@@ -35,6 +35,182 @@
                                             }
                                         });
                                     }
+
+                                    var state = parseInt("<?php echo e($state); ?>");
+
+                                    if(state == 1){
+
+                                        $('#famB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#contactoDeEmergenciaB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+                                        });
+
+                                        $('#idiomasB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#historialAcademicoB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#OVB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+
+
+                                        $('#famB').css('background-color','#806255');
+
+                                        $('#contactoDeEmergenciaB').css('background-color','#806255');
+
+                                        $('#idiomasB').css('background-color','#806255');
+
+                                        $('#historialAcademicoB').css('background-color','#806255');
+
+                                        $('#OVB').css('background-color','#806255');
+
+
+                                        $('#famB').css('cursor','default');
+
+                                        $('#contactoDeEmergenciaB').css('cursor','default');
+
+                                        $('#idiomasB').css('cursor','default');
+
+                                        $('#historialAcademicoB').css('cursor','default');
+
+                                        $('#OVB').css('cursor','default');
+
+
+
+                                    }else if (state == 4){
+
+
+
+                                        $('#idiomasB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#historialAcademicoB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#OVB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+
+
+                                        $('#idiomasB').css('background-color','#806255');
+
+                                        $('#historialAcademicoB').css('background-color','#806255');
+
+                                        $('#OVB').css('background-color','#806255');
+
+                                        $('#idiomasB').css('cursor','default');
+
+                                        $('#historialAcademicoB').css('cursor','default');
+
+                                        $('#OVB').css('cursor','default');
+
+
+                                    }else if(state == 5){
+
+
+                                    }else{
+
+
+
+                                    }
+
+                                    <?php if(!isset($idiomas)): ?>
+                                        $('#idiomasB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#idiomasB').css('background-color','#806255');
+
+                                        $('#idiomasB').css('cursor','default');
+
+                                    <?php endif; ?>
+
+                                    <?php if(!isset($historialAcademico)): ?>
+                                        $('#historialAcademicoB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#historialAcademicoB').css('background-color','#806255');
+
+                                        $('#historialAcademicoB').css('cursor','default');
+
+                                    <?php endif; ?>
+
+                                    <?php if(!isset($emergencias)): ?>
+                                        $('#contactoDeEmergenciaB').on('click', function (e) {
+                                            e.preventDefault();
+
+                                            this.disabled=true
+
+                                            $(this).next().remove();
+
+                                        });
+
+                                        $('#contactoDeEmergenciaB').css('background-color','#806255');
+
+                                        $('#contactoDeEmergenciaB').css('cursor','default');
+
+                                    <?php endif; ?>
                                 });
                             </script>
 
@@ -64,11 +240,11 @@
 
                             <hr>
 
-                            <button class="collapsible">
+                            <button id="basicoB" class="collapsible">
                                 Informacion Basica
                             </button>
 
-                            <div class="content">
+                            <div id="basicoC"  class="content">
 
                                 <div class="row" style="margin: 10px"></div>
 
@@ -162,11 +338,11 @@
 
                             <hr>
 
-                            <button class="collapsible">
+                            <button id="famB" class="collapsible">
                                 Datos Familiares
                             </button>
 
-                            <div class="content">
+                            <div id="famC" class="content">
 
                                 <div class="row" style="margin: 10px"></div>
 
@@ -332,11 +508,11 @@
 
                             <hr>
 
-                            <button class="collapsible">
+                            <button id="contactoDeEmergenciaB" class="collapsible">
                                 Contacto de Emergencia
                             </button>
 
-                            <div class="content">
+                            <div id="contactoDeEmergenciaContent" class="content">
 
                                 <div class="row" style="margin: 10px"></div>
 
@@ -345,11 +521,11 @@
 
                             <hr>
 
-                            <button class="collapsible">
+                            <button id="idiomasB" class="collapsible">
                                 Idiomas
                             </button>
 
-                            <div class="content">
+                            <div id="idiomasC" class="content">
 
                                 <div class="row" style="margin: 10px"></div>
 
@@ -404,11 +580,11 @@
 
                             <hr>
 
-                            <button class="collapsible">
+                            <button id="historialAcademicoB" class="collapsible">
                                 Historial Academico
                             </button>
 
-                            <div class="content">
+                            <div id="historialAcademicoC" class="content">
 
                                 <div class="row" style="margin: 10px"></div>
 
@@ -457,11 +633,11 @@
 
                             <hr>
 
-                            <button class="collapsible">
+                            <button id="OVB" class="collapsible">
                                 Orientación Vocacional
                             </button>
 
-                            <div class="content">
+                            <div id="OVC" class="content">
 
                                 <div class="row" style="margin: 10px"></div>
 
